@@ -1,0 +1,5 @@
+pmd.bat -d "" -f summaryhtml -R rulesets/java/quickstart.xml -r ""
+
+startSonar 
+para terminar ctrl + c
+sonar-scanner -Dproject.settings=sonar-project.propierties.cfg
