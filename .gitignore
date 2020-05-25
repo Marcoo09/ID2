@@ -1,7 +1,2 @@
 /AlimentacionSaludable/dist/
-/AlimentacionSaludable/build/
-/AlimentacionSaludable/build/test/
-/AlimentacionSaludable/Sistema.data/
-/AlimentacionSaludable/nbproject/private/private.xml
-/AlimentacionSaludableEjecutable/Sistema.data/
-
+/AlimentacionSaludable/build/test
