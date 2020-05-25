@@ -1,14 +1,15 @@
 package dominio;
 
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.Objects;
 import java.util.Currency;
 
 public final class PlanAlimentacion implements Serializable {
     private String nombreDelPlan;
     private Usuario usuario;
-    public Profesional profesional;
-    public boolean fueAtendidoElPlan;
+    private Profesional profesional;
+    private boolean fueAtendidoElPlan;
     private String[][] planDiaADia;
     private static final long serialVersionUID = 48L;
 
@@ -55,11 +56,12 @@ public final class PlanAlimentacion implements Serializable {
     }
 
     public String[][] getPlanDiaADia() {
-        return this.planDiaADia;
+        return Arrays.stream(this.planDiaADia).map(String[]::clone).toArray(String[][]::new);
     }
 
     public void setPlanDiaADia(String[][] unPlan) {
-        this.planDiaADia = unPlan;
+        String [][] copia = Arrays.stream(unPlan).map(String[]::clone).toArray(String[][]::new);
+        this.planDiaADia = copia;
     }
 
     public String getNombreDelPlan() {

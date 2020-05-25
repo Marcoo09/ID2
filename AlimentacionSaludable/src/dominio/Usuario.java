@@ -8,7 +8,7 @@ public final class Usuario extends Persona {
     private String nacionalidad;
     private ArrayList<String> preferencias;
     private ArrayList<String> restricciones;
-    public ArrayList<Ingesta> alimentosIngeridos;
+    private ArrayList<Ingesta> alimentosIngeridos;
     private static final long serialVersionUID = 50L;
 
     public Usuario(String unNombre,

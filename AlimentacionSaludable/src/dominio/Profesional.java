@@ -3,7 +3,7 @@ package dominio;
 import javax.swing.ImageIcon;
 
 public final class Profesional extends Persona {
-    public String tituloProfesional;
+    private String tituloProfesional;
     private String fechaGraduacion;
     private String paisGraduacion;
     private static final long serialVersionUID = 49L;

@@ -244,7 +244,7 @@ public final class Sistema implements Serializable {
         return false;
     }
 
-    public boolean crearConversacion(Persona usuario, Persona profesional, String mensaje, boolean usuarioEsRemitente) {
+    public boolean crearConversacion(Usuario usuario, Profesional profesional, String mensaje, boolean usuarioEsRemitente) {
         boolean fueAgregadaConversacion = false;
         if (usuario != null && profesional != null && mensaje != null && !mensaje.isEmpty()) {
             InformacionMensaje info;

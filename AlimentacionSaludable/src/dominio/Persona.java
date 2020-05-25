@@ -6,10 +6,10 @@ import javax.swing.ImageIcon;
 
 public abstract class Persona implements Serializable {
 
-    private String nombre;
-    private String apellido;
-    private String fechaNacimiento;
-    public ImageIcon fotoDePerfil;
+    protected String nombre;
+    protected String apellido;
+    protected String fechaNacimiento;
+    protected ImageIcon fotoDePerfil;
 
     public String getNombre() {
         return this.nombre;

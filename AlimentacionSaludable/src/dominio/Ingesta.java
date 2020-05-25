@@ -6,7 +6,7 @@ import java.util.Objects;
 import java.util.Arrays;
 
 public final class Ingesta implements Serializable {
-    public String fechaDeIngesta;
+    private String fechaDeIngesta;
     private ArrayList<Alimento> listaAlimentosPorFecha;
     private static final long serialVersionUID = 47L;
 

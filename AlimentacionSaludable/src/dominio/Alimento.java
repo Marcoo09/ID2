@@ -11,7 +11,7 @@ public final class Alimento implements Serializable {
     private String nombre;
     private String tipoAlimento;
     private ArrayList<ComposicionAlimento> listaNutrientesConProporcion;
-    public ImageIcon fotoDelAlimento;
+    private ImageIcon fotoDelAlimento;
     private static final long serialVersionUID = 44L;
 
     public Alimento(String unNombre,
