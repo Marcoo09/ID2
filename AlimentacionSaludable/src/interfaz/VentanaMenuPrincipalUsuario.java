@@ -12,7 +12,7 @@ import java.util.GregorianCalendar;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 
-public class VentanaMenuPrincipalUsuario extends javax.swing.JDialog {
+public final class VentanaMenuPrincipalUsuario extends javax.swing.JDialog {
 
     private Sistema sistema;
     private String profesionalSeleccionado;

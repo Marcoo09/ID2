@@ -3,13 +3,14 @@ package dominio;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Objects;
 
 public final class Conversacion implements Serializable {
-
     private ArrayList<InformacionMensaje> listaMensajes;
     public Persona usuario;
     public Persona profesional;
     private boolean fueAtendidaConsulta;
+    private static final long serialVersionUID = 45L;
 
     public Conversacion(Persona user, Persona pr, ArrayList<InformacionMensaje> lista) {
         setUsuario(user);
@@ -82,6 +83,14 @@ public final class Conversacion implements Serializable {
                 && getUsuario().equals(conversacionParametro.getUsuario());
     }
 
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 89 * hash + Objects.hashCode(this.usuario);
+        hash = 89 * hash + Objects.hashCode(this.profesional);
+        return hash;
+    }
+    
     @Override
     public String toString() {
         String retorno = "No hay mensajes para mostrar";

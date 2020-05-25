@@ -12,6 +12,7 @@ public final class Alimento implements Serializable {
     private String tipoAlimento;
     private ArrayList<ComposicionAlimento> listaNutrientesConProporcion;
     public ImageIcon fotoDelAlimento;
+    private static final long serialVersionUID = 44L;
 
     public Alimento(String unNombre,
             String unTipoAlimento,
@@ -87,4 +88,11 @@ public final class Alimento implements Serializable {
         return (this.getNombre().equals(otroAlimento.getNombre()));
     }
 
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 41 * hash + Objects.hashCode(this.nombre);
+        return hash;
+    }
+    
 }

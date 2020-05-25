@@ -6,9 +6,9 @@ import java.util.Objects;
 import java.util.Arrays;
 
 public final class Ingesta implements Serializable {
-
     public String fechaDeIngesta;
     private ArrayList<Alimento> listaAlimentosPorFecha;
+    private static final long serialVersionUID = 47L;
 
     public Ingesta(String f, ArrayList<Alimento> LA) {
         setFechaDeIngesta(f);
@@ -59,4 +59,12 @@ public final class Ingesta implements Serializable {
         return sonIguales;
     }
 
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 83 * hash + Objects.hashCode(this.fechaDeIngesta);
+        hash = 83 * hash + Objects.hashCode(this.listaAlimentosPorFecha);
+        return hash;
+    }
+    
 }

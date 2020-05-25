@@ -5,11 +5,11 @@ import javax.swing.ImageIcon;
 import java.io.File;
 
 public final class Usuario extends Persona {
-
     private String nacionalidad;
     private ArrayList<String> preferencias;
     private ArrayList<String> restricciones;
     public ArrayList<Ingesta> alimentosIngeridos;
+    private static final long serialVersionUID = 50L;
 
     public Usuario(String unNombre,
             String unApellido,
@@ -35,9 +35,9 @@ public final class Usuario extends Persona {
     }
 
     public void setNacionalidad(String unaNacionalidad) {
-       
+
         nacionalidad = unaNacionalidad;
-       
+
     }
 
     public ArrayList<String> getPreferencias() {
@@ -102,6 +102,15 @@ public final class Usuario extends Persona {
     }
 
     @Override
+    public void setFotoDePerfil(ImageIcon foto) {
+        if (foto == null) {
+            this.fotoDePerfil = new ImageIcon(getClass().getResource("/Imagenes/fotoDeUsuarioStandard.png"));
+        } else {
+            this.fotoDePerfil = foto;
+        }
+    }
+    
+    @Override
     public String toString() {
         return super.toString();
     }
@@ -113,4 +122,6 @@ public final class Usuario extends Persona {
     public void actualizarRestriccionesUsuario(Usuario usuario, ArrayList<String> restricciones) {
         usuario.setRestricciones(restricciones);
     }
+
+    
 }

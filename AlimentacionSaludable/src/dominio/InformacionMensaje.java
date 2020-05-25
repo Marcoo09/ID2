@@ -4,10 +4,10 @@ import java.io.Serializable;
 import java.util.Date;
         
 public final class InformacionMensaje implements Serializable {
-
     private String mensaje;
     public String destinatario;
     private String remitente;
+    private static final long serialVersionUID = 46L;
 
     public InformacionMensaje(String elRemitente, String dst, String elMensaje) {
         setRemitente(elRemitente);
