@@ -1,2 +1,5 @@
 Correccion de bugs de alta prioridad - 45 min
 Correccion de bugs de baja prioridad - 1hora 30min
+Correccion vulnerabilidades - 1 hora
+Correccion code smells alta prioridad - 1hora
+Correccion code smells baja prioridad - 1hora 30min
