@@ -78,6 +78,9 @@ public final class PlanAlimentacion implements Serializable {
 
     @Override
     public boolean equals(Object obj) {
+        if(!(obj instanceof PlanAlimentacion))
+            return false;
+        
         PlanAlimentacion otroPlanAlimentacion = (PlanAlimentacion) obj;
         return (this.getNombreDelPlan().equals(otroPlanAlimentacion.getNombreDelPlan())
                 && this.getUsuario().equals(otroPlanAlimentacion.getUsuario())

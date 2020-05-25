@@ -50,6 +50,9 @@ public final class Ingesta implements Serializable {
 
     @Override
     public boolean equals(Object obj) {
+        if(!(obj instanceof Ingesta))
+            return false;
+        
         Ingesta otraIngesta = (Ingesta) obj;
         boolean sonIguales = this.getFechaDeIngesta().equals(otraIngesta.getFechaDeIngesta());
         sonIguales = sonIguales && this.getListaAlimentosPorFecha().equals(otraIngesta.getListaAlimentosPorFecha());

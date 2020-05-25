@@ -74,6 +74,9 @@ public final class Conversacion implements Serializable {
 
     @Override
     public boolean equals(Object obj) {
+        if(!(obj instanceof Conversacion))
+            return false;
+        
         final Conversacion conversacionParametro = (Conversacion) obj;
         return getProfesional().equals(conversacionParametro.getProfesional())
                 && getUsuario().equals(conversacionParametro.getUsuario());
