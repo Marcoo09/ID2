@@ -3,3 +3,7 @@ pmd.bat -d "" -f summaryhtml -R rulesets/java/quickstart.xml -r ""
 startSonar 
 para terminar ctrl + c
 sonar-scanner -Dproject.settings=sonar-project.propierties.cfg
+
+------
+Matias: 
+pmd.bat -d "C:\Users\matia\Desktop\ID2\AlimentacionSaludable\src" -f summaryhtml -R rulesets/java/quickstart.xml -r "C:\Users\matia\Desktop\ID2\Analizadores\PMD\NewResults.html"

@@ -7,7 +7,6 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
-
 import java.util.Currency;
 import javax.swing.ImageIcon;
 
@@ -52,7 +51,7 @@ public final class Sistema implements Serializable {
     }
 
     public void setPersonaLogueada(Persona personaLogueada) {
-        personaLogueada = personaLogueada;
+        this.personaLogueada = personaLogueada;
         
     }
 
@@ -190,15 +189,13 @@ public final class Sistema implements Serializable {
     }
 
     public void guardarDatosSistema() {
-        try {
-            FileOutputStream archivo = new FileOutputStream("Sistema.data");
+        try (FileOutputStream archivo = new FileOutputStream("Sistema.data");
             BufferedOutputStream buffer = new BufferedOutputStream(archivo);
-            try (ObjectOutputStream objetoASerializar = new ObjectOutputStream(buffer)) {
+            ObjectOutputStream objetoASerializar = new ObjectOutputStream(buffer)){
                 objetoASerializar.writeObject(this);
                 objetoASerializar.flush();
-            }
         } catch (IOException e) {
-
+            System.err.println("Error al guardar los datos");
         }
     }
 

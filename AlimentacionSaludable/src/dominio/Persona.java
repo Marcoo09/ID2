@@ -76,6 +76,9 @@ public abstract class Persona implements Serializable {
 
     @Override
     public boolean equals(Object obj) {
+        if(!(obj instanceof Persona))
+            return false;
+        
         Persona otraPersona = (Persona) obj;
         return this.getNombreCompleto().equals(otraPersona.getNombreCompleto());
     }
