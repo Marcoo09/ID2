@@ -5,11 +5,13 @@ import java.io.Serializable;
 import javax.swing.ImageIcon;
 
 public abstract class Persona implements Serializable {
-
     protected String nombre;
     protected String apellido;
     protected String fechaNacimiento;
     protected ImageIcon fotoDePerfil;
+    private static final String APELLIDO_NO_INGRESADO = "Apellido no ingresado";
+    private static final String NOMBRE_NO_INGRESADO = "Nombre no ingresado";
+    private static final String FECHA_NO_INGRESADA = "Fehca no ingresada";
 
     public String getNombre() {
         return this.nombre;
@@ -25,7 +27,7 @@ public abstract class Persona implements Serializable {
 
     public void setApellido(String unApellido) {
         if (unApellido == null || unApellido.isEmpty()) {
-            this.apellido = "Apellido no ingresado";
+            this.apellido = APELLIDO_NO_INGRESADO;
         } else {
             this.apellido = unApellido;
         }
@@ -37,7 +39,7 @@ public abstract class Persona implements Serializable {
 
     public void setFechaNacimiento(String unaFecha) {
         if (unaFecha == null || unaFecha.isEmpty()) {
-            this.fechaNacimiento = "Fecha no ingresada";
+            this.fechaNacimiento = FECHA_NO_INGRESADA;
         } else {
             this.fechaNacimiento = unaFecha;
         }
@@ -51,11 +53,11 @@ public abstract class Persona implements Serializable {
 
     public String getNombreCompleto() {
         String retorno;
-        if (getNombre().equals("Nombre no ingresado") && getApellido().equals("Apellido no ingresado")) {
-            retorno = "Nombre no ingresado";
-        } else if (getNombre().equals("Nombre no ingresado")) {
+        if (getNombre().equals(NOMBRE_NO_INGRESADO) && getApellido().equals(APELLIDO_NO_INGRESADO)) {
+            retorno = NOMBRE_NO_INGRESADO;
+        } else if (getNombre().equals(NOMBRE_NO_INGRESADO)) {
             retorno = getApellido();
-        } else if (getApellido().equals("Apellido no ingresado")) {
+        } else if (getApellido().equals(APELLIDO_NO_INGRESADO)) {
             retorno = getNombre();
         } else {
             retorno = getNombre() + " " + getApellido();
