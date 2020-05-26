@@ -600,11 +600,11 @@ public final class VentanaRegistrarUsuario extends javax.swing.JDialog {
 
     private void cargarListaPreferencias() {
         Sistema.Preferencias[] listaPreferencias = new Sistema.Preferencias[5];
-        listaPreferencias[0] = Sistema.Preferencias.CarnesBlancas;
-        listaPreferencias[1] = Sistema.Preferencias.CarnesRojas;
-        listaPreferencias[2] = Sistema.Preferencias.Frutas;
-        listaPreferencias[3] = Sistema.Preferencias.Harinas;
-        listaPreferencias[4] = Sistema.Preferencias.Verduras;
+        listaPreferencias[0] = Sistema.Preferencias.CARNESBLANCAS;
+        listaPreferencias[1] = Sistema.Preferencias.CARNESROJAS;
+        listaPreferencias[2] = Sistema.Preferencias.FRUTAS;
+        listaPreferencias[3] = Sistema.Preferencias.HARINAS;
+        listaPreferencias[4] = Sistema.Preferencias.VERDURAS;
         for (int i = 0; i < listaPreferencias.length; i++) {
             if (i == 0) {
                 this.rdBtnCarnesRojas.setText("Carnes Rojas");
@@ -626,10 +626,10 @@ public final class VentanaRegistrarUsuario extends javax.swing.JDialog {
 
     private void cargarListaRestricciones() {
         Sistema.Restricciones[] listaRestricciones = new Sistema.Restricciones[4];
-        listaRestricciones[0] = Sistema.Restricciones.Celiaquia;
-        listaRestricciones[1] = Sistema.Restricciones.Diabetes;
-        listaRestricciones[2] = Sistema.Restricciones.IntoleranciaLactosa;
-        listaRestricciones[3] = Sistema.Restricciones.Veganismo;
+        listaRestricciones[0] = Sistema.Restricciones.CELIAQUIA;
+        listaRestricciones[1] = Sistema.Restricciones.DIABETES;
+        listaRestricciones[2] = Sistema.Restricciones.INTOLERANCIALACTOSA;
+        listaRestricciones[3] = Sistema.Restricciones.VEGANISMO;
         for (int i = 0; i < listaRestricciones.length; i++) {
             if (i == 0) {
                 this.rdBtnCeliaco.setText("Celiaquía");
