@@ -3,10 +3,10 @@ package dominio;
 import javax.swing.ImageIcon;
 
 public final class Profesional extends Persona {
-
     public String tituloProfesional;
     private String fechaGraduacion;
     private String paisGraduacion;
+    private static final long serialVersionUID = 49L;
 
     public Profesional(String unNombre,
             String unApellido,
@@ -55,11 +55,21 @@ public final class Profesional extends Persona {
 
     public void setPaisGraduacion(String unPaisGraduacion) {
         paisGraduacion = unPaisGraduacion;
-        
+
+    }
+
+    @Override
+    public void setFotoDePerfil(ImageIcon foto) {
+        if (foto == null) {
+            this.fotoDePerfil = new ImageIcon(getClass().getResource("/Imagenes/fotoDeUsuarioStandard.png"));
+        } else {
+            this.fotoDePerfil = foto;
+        }
     }
 
     @Override
     public String toString() {
         return super.toString();
     }
+
 }

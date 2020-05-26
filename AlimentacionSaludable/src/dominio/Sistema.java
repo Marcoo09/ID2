@@ -1,6 +1,5 @@
 package dominio;
 
-
 import java.io.BufferedOutputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -18,7 +17,8 @@ public final class Sistema implements Serializable {
     private ArrayList<PlanAlimentacion> listaPlanesAlimentacion;
     private ArrayList<Conversacion> listaConversaciones;
     private Persona personaLogueada;
-
+    private static final long serialVersionUID = 42L;
+    
     public Sistema(ArrayList<Usuario> unaListaUsuarios,
             ArrayList<Profesional> unaListaProfesionales,
             ArrayList<Alimento> unaListaAlimentos,

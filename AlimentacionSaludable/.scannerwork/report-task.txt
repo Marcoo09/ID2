@@ -2,5 +2,5 @@ projectKey=obligatorioIS2Dominio
 serverUrl=http://localhost:9000
 serverVersion=8.2.0.32929
 dashboardUrl=http://localhost:9000/dashboard?id=obligatorioIS2Dominio
-ceTaskId=AXJKAHWPUtn5OqQVAvwt
-ceTaskUrl=http://localhost:9000/api/ce/task?id=AXJKAHWPUtn5OqQVAvwt
+ceTaskId=AXJM17_VXDyQPbwUiRS3
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AXJM17_VXDyQPbwUiRS3

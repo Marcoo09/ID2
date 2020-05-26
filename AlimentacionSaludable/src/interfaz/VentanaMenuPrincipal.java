@@ -5,7 +5,7 @@ import dominio.Sistema;
 import java.awt.Image;
 import java.awt.Toolkit;
 
-public class VentanaMenuPrincipal extends javax.swing.JDialog {
+public final class VentanaMenuPrincipal extends javax.swing.JDialog {
 
     private Sistema sistema;
 

@@ -4,7 +4,7 @@ import dominio.Sistema;
 import dominio.Usuario;
 import java.util.ArrayList;
 
-public class VentanaEditarRestricciones extends javax.swing.JDialog {
+public final class VentanaEditarRestricciones extends javax.swing.JDialog {
 
     private Sistema sistema;
     private Usuario usuarioActual;

@@ -47,13 +47,7 @@ public abstract class Persona implements Serializable {
         return this.fotoDePerfil;
     }
 
-    public void setFotoDePerfil(ImageIcon foto) {
-        if (foto == null) {
-            this.fotoDePerfil = new ImageIcon(getClass().getResource("/Imagenes/fotoDeUsuarioStandard.png"));
-        } else {
-            this.fotoDePerfil = foto;
-        }
-    }
+    public abstract void setFotoDePerfil(ImageIcon foto);
 
     public String getNombreCompleto() {
         String retorno;
@@ -80,6 +74,16 @@ public abstract class Persona implements Serializable {
             return false;
         
         Persona otraPersona = (Persona) obj;
-        return this.getNombreCompleto().equals(otraPersona.getNombreCompleto());
+        return this.getNombre().equals(otraPersona.getNombre()) &&
+                this.getApellido().equals(otraPersona.getApellido());
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 37 * hash + Objects.hashCode(this.nombre);
+        hash = 37 * hash + Objects.hashCode(this.apellido);
+        return hash;
+    }
+    
 }

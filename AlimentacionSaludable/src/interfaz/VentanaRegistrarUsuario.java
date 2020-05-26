@@ -10,7 +10,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
-public class VentanaRegistrarUsuario extends javax.swing.JDialog {
+public final class VentanaRegistrarUsuario extends javax.swing.JDialog {
 
     private Sistema sistema;
     private ImageIcon fotoDePerfilActual;

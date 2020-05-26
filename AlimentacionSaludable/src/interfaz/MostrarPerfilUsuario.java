@@ -6,7 +6,7 @@ import dominio.Sistema;
 import dominio.Usuario;
 import java.util.ArrayList;
 
-public class MostrarPerfilUsuario extends javax.swing.JDialog {
+public final class MostrarPerfilUsuario extends javax.swing.JDialog {
 
     private Sistema sistema;
     private String nombreUsuario;

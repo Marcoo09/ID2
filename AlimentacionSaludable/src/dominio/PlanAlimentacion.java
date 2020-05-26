@@ -5,12 +5,12 @@ import java.util.Objects;
 import java.util.Currency;
 
 public final class PlanAlimentacion implements Serializable {
-
     private String nombreDelPlan;
     private Usuario usuario;
     public Profesional profesional;
     public boolean fueAtendidoElPlan;
     private String[][] planDiaADia;
+    private static final long serialVersionUID = 48L;
 
     public PlanAlimentacion(String np,
             Usuario usu,
@@ -85,6 +85,15 @@ public final class PlanAlimentacion implements Serializable {
         return (this.getNombreDelPlan().equals(otroPlanAlimentacion.getNombreDelPlan())
                 && this.getUsuario().equals(otroPlanAlimentacion.getUsuario())
                 && this.getProfesional().equals(otroPlanAlimentacion.getProfesional()));
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 53 * hash + Objects.hashCode(this.nombreDelPlan);
+        hash = 53 * hash + Objects.hashCode(this.usuario);
+        hash = 53 * hash + Objects.hashCode(this.profesional);
+        return hash;
     }
 
 }
