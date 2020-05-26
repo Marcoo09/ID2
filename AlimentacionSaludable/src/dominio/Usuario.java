@@ -1,14 +1,13 @@
 package dominio;
 
-import java.util.ArrayList;
+import java.util.List;
 import javax.swing.ImageIcon;
-import java.io.File;
 
 public final class Usuario extends Persona {
     private String nacionalidad;
-    private ArrayList<String> preferencias;
-    private ArrayList<String> restricciones;
-    private ArrayList<Ingesta> alimentosIngeridos;
+    private List<String> preferencias;
+    private List<String> restricciones;
+    private List<Ingesta> alimentosIngeridos;
     private static final long serialVersionUID = 50L;
 
     public Usuario(String unNombre,
@@ -16,9 +15,9 @@ public final class Usuario extends Persona {
             String unaFechaNacimiento,
             ImageIcon unaFotoDePerfil,
             String unaNacionalidad,
-            ArrayList<String> listaPreferencias,
-            ArrayList<String> listaRestricciones,
-            ArrayList<Ingesta> listaAlimentos) {
+            List<String> listaPreferencias,
+            List<String> listaRestricciones,
+            List<Ingesta> listaAlimentos) {
 
         this.setNombre(unNombre);
         this.setApellido(unApellido);
@@ -40,40 +39,28 @@ public final class Usuario extends Persona {
 
     }
 
-    public ArrayList<String> getPreferencias() {
+    public List<String> getPreferencias() {
         return this.preferencias;
     }
 
-    public void setPreferencias(ArrayList<String> listaPreferencias) {
-        if (listaPreferencias == null) {
-            this.preferencias = new ArrayList<>();
-        } else {
+    public void setPreferencias(List<String> listaPreferencias) {
             this.preferencias = listaPreferencias;
-        }
     }
 
-    public ArrayList<String> getRestricciones() {
+    public List<String> getRestricciones() {
         return this.restricciones;
     }
 
-    public void setRestricciones(ArrayList<String> listaRestricciones) {
-        if (listaRestricciones == null) {
-            this.restricciones = new ArrayList<>();
-        } else {
+    public void setRestricciones(List<String> listaRestricciones) {
             this.restricciones = listaRestricciones;
-        }
     }
 
-    public ArrayList<Ingesta> getAlimentosIngeridos() {
+    public List<Ingesta> getAlimentosIngeridos() {
         return this.alimentosIngeridos;
     }
 
-    public void setAlimentosIngeridos(ArrayList<Ingesta> listaAlimentos) {
-        if (listaAlimentos == null) {
-            this.alimentosIngeridos = new ArrayList<>();
-        } else {
+    public void setAlimentosIngeridos(List<Ingesta> listaAlimentos) {
             this.alimentosIngeridos = listaAlimentos;
-        }
 
     }
 
@@ -109,17 +96,12 @@ public final class Usuario extends Persona {
             this.fotoDePerfil = foto;
         }
     }
-    
-    @Override
-    public String toString() {
-        return super.toString();
-    }
 
-    public void actualizarPreferenciasUsuario(Usuario usuario, ArrayList<String> pr) {
+    public void actualizarPreferenciasUsuario(Usuario usuario, List<String> pr) {
         usuario.setPreferencias(pr);
     }
 
-    public void actualizarRestriccionesUsuario(Usuario usuario, ArrayList<String> restricciones) {
+    public void actualizarRestriccionesUsuario(Usuario usuario, List<String> restricciones) {
         usuario.setRestricciones(restricciones);
     }
 

@@ -5,6 +5,7 @@ import dominio.Sistema;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
@@ -435,9 +436,9 @@ public final class VentanaRegistrarUsuario extends javax.swing.JDialog {
     private void btnIngresarUsuarioASistemaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarUsuarioASistemaActionPerformed
         String nombre = this.txtNombre.getText();
         String apellido = this.txtApellido.getText();
-        ArrayList<String> preferencias = new ArrayList<>();
-        ArrayList<String> restricciones = new ArrayList<>();
-        ArrayList<Ingesta> alimentosIngeridosPorFecha = new ArrayList<>();
+        List<String> preferencias = new ArrayList<>();
+        List<String> restricciones = new ArrayList<>();
+        List<Ingesta> alimentosIngeridosPorFecha = new ArrayList<>();
         String nacionalidad = (String) this.listaNacionalidad.getSelectedItem();
         String fechaNacimiento = this.dateChooserFechaNacimiento.getText();
         if (nombre.equals("") || apellido.equals("") || nacionalidad.equals("Seleccione...")) {
@@ -517,7 +518,7 @@ public final class VentanaRegistrarUsuario extends javax.swing.JDialog {
 
     }//GEN-LAST:event_listaNacionalidadItemStateChanged
 
-    void agregarRestriccionesUsuario(ArrayList<String> restricciones) {
+    void agregarRestriccionesUsuario(List<String> restricciones) {
         if (this.rdBtnCeliaco.isSelected()) {
             restricciones.add("Celíaco");
         }
@@ -532,7 +533,7 @@ public final class VentanaRegistrarUsuario extends javax.swing.JDialog {
         }
     }
 
-    void agregarPreferenciasUsuario(ArrayList<String> preferencias) {
+    void agregarPreferenciasUsuario(List<String> preferencias) {
         if (this.rdBtnCarnesBlancas.isSelected()) {
             preferencias.add("Carnes Blancas");
         }
@@ -648,7 +649,7 @@ public final class VentanaRegistrarUsuario extends javax.swing.JDialog {
 
     private void cargarListaPaises() {
         DefaultComboBoxModel modelo = new DefaultComboBoxModel();
-        ArrayList<String> nacionalidaesEnSistema = sistema.devolverListaPaises();
+        List<String> nacionalidaesEnSistema = sistema.devolverListaPaises();
         this.listaNacionalidad.setModel(modelo);
         this.listaNacionalidad.addItem("Seleccione...");
         for (int i = 0; i < nacionalidaesEnSistema.size(); i++) {

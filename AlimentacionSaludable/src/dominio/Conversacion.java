@@ -1,18 +1,18 @@
 package dominio;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Collections;
+import java.util.List;
 import java.util.Objects;
 
 public final class Conversacion implements Serializable {
-    private ArrayList<InformacionMensaje> listaMensajes;
+
+    private List<InformacionMensaje> listaMensajes;
     private Usuario usuario;
     private Profesional profesional;
     private boolean fueAtendidaConsulta;
     private static final long serialVersionUID = 45L;
 
-    public Conversacion(Usuario user, Profesional pr, ArrayList<InformacionMensaje> lista) {
+    public Conversacion(Usuario user, Profesional pr, List<InformacionMensaje> lista) {
         setUsuario(user);
         setProfesional(pr);
         setListaMensajes(lista);
@@ -27,16 +27,12 @@ public final class Conversacion implements Serializable {
         this.fueAtendidaConsulta = fueAtendida;
     }
 
-    public ArrayList<InformacionMensaje> getListaMensajes() {
+    public List<InformacionMensaje> getListaMensajes() {
         return this.listaMensajes;
     }
 
-    public void setListaMensajes(ArrayList<InformacionMensaje> lista) {
-        if (lista == null || lista.isEmpty()) {
-            this.listaMensajes = new ArrayList<>();
-        } else {
-            this.listaMensajes = lista;
-        }
+    public void setListaMensajes(List<InformacionMensaje> lista) {
+        this.listaMensajes = lista;
     }
 
     public Persona getUsuario() {
@@ -63,21 +59,20 @@ public final class Conversacion implements Serializable {
         }
     }
 
-    public boolean agregarMensaje(String mensaje, boolean intercambioRemitente) {
+    public void agregarMensaje(String mensaje, boolean intercambioRemitente) {
         InformacionMensaje informacion = new InformacionMensaje(getUsuario().getNombreCompleto(), getProfesional().getNombreCompleto(), mensaje);
         if (intercambioRemitente) {
             informacion.intercambiarRemitente();
         }
         listaMensajes.add(informacion);
-        boolean agregueMensaje = true;
-        return agregueMensaje;
     }
 
     @Override
     public boolean equals(Object obj) {
-        if(!(obj instanceof Conversacion))
+        if (!(obj instanceof Conversacion)) {
             return false;
-        
+        }
+
         final Conversacion conversacionParametro = (Conversacion) obj;
         return getProfesional().equals(conversacionParametro.getProfesional())
                 && getUsuario().equals(conversacionParametro.getUsuario());
@@ -90,7 +85,7 @@ public final class Conversacion implements Serializable {
         hash = 89 * hash + Objects.hashCode(this.profesional);
         return hash;
     }
-    
+
     @Override
     public String toString() {
         String retorno = "No hay mensajes para mostrar";

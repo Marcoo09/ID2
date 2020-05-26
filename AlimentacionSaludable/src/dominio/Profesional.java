@@ -67,9 +67,4 @@ public final class Profesional extends Persona {
         }
     }
 
-    @Override
-    public String toString() {
-        return super.toString();
-    }
-
 }

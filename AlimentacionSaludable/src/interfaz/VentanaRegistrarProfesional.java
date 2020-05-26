@@ -1,9 +1,9 @@
 package interfaz;
 
 import dominio.Sistema;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
@@ -504,7 +504,7 @@ public final class VentanaRegistrarProfesional extends javax.swing.JDialog {
 
     private void cargarListaPaisesGraduacion() {
         DefaultComboBoxModel modelo = new DefaultComboBoxModel();
-        ArrayList<String> paisesEnSistema = sistema.devolverListaPaises();
+        List<String> paisesEnSistema = sistema.devolverListaPaises();
         this.listaPaisGraduacion.setModel(modelo);
         this.listaPaisGraduacion.addItem("Seleccione...");
         for (int i = 0; i < paisesEnSistema.size(); i++) {

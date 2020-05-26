@@ -3,7 +3,6 @@ package dominio;
 import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Objects;
-import java.util.Currency;
 
 public final class PlanAlimentacion implements Serializable {
     private String nombreDelPlan;
@@ -13,15 +12,15 @@ public final class PlanAlimentacion implements Serializable {
     private String[][] planDiaADia;
     private static final long serialVersionUID = 48L;
 
-    public PlanAlimentacion(String np,
-            Usuario usu,
-            Profesional pro,
+    public PlanAlimentacion(String nombrePlan,
+            Usuario usuario,
+            Profesional profesional,
             boolean fueAtendido,
             String[][] unPlan) {
 
-        setNombreDelPlan(np);
-        setUsuario(usu);
-        setProfesional(pro);
+        setNombreDelPlan(nombrePlan);
+        setUsuario(usuario);
+        setProfesional(profesional);
         setFueAtendidoElPlan(fueAtendido);
         setPlanDiaADia(unPlan);
     }
@@ -80,13 +79,14 @@ public final class PlanAlimentacion implements Serializable {
 
     @Override
     public boolean equals(Object obj) {
-        if(!(obj instanceof PlanAlimentacion))
+        if(!(obj instanceof PlanAlimentacion)){
             return false;
+        }
         
         PlanAlimentacion otroPlanAlimentacion = (PlanAlimentacion) obj;
-        return (this.getNombreDelPlan().equals(otroPlanAlimentacion.getNombreDelPlan())
+        return this.getNombreDelPlan().equals(otroPlanAlimentacion.getNombreDelPlan())
                 && this.getUsuario().equals(otroPlanAlimentacion.getUsuario())
-                && this.getProfesional().equals(otroPlanAlimentacion.getProfesional()));
+                && this.getProfesional().equals(otroPlanAlimentacion.getProfesional());
     }
 
     @Override
