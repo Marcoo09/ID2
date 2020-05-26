@@ -7,12 +7,12 @@ import java.util.Objects;
 
 public final class Conversacion implements Serializable {
     private ArrayList<InformacionMensaje> listaMensajes;
-    public Persona usuario;
-    public Persona profesional;
+    private Usuario usuario;
+    private Profesional profesional;
     private boolean fueAtendidaConsulta;
     private static final long serialVersionUID = 45L;
 
-    public Conversacion(Persona user, Persona pr, ArrayList<InformacionMensaje> lista) {
+    public Conversacion(Usuario user, Profesional pr, ArrayList<InformacionMensaje> lista) {
         setUsuario(user);
         setProfesional(pr);
         setListaMensajes(lista);
@@ -43,7 +43,7 @@ public final class Conversacion implements Serializable {
         return usuario;
     }
 
-    public void setUsuario(Persona unUsuario) {
+    public void setUsuario(Usuario unUsuario) {
         if (unUsuario == null) {
             this.usuario = new Usuario(null, null, null, null, null, null, null, null);
         } else {
@@ -55,7 +55,7 @@ public final class Conversacion implements Serializable {
         return this.profesional;
     }
 
-    public void setProfesional(Persona unProfesional) {
+    public void setProfesional(Profesional unProfesional) {
         if (unProfesional == null) {
             this.profesional = new Profesional(null, null, null, null, null, null, null);
         } else {

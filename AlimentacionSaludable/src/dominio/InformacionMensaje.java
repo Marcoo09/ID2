@@ -5,7 +5,7 @@ import java.util.Date;
         
 public final class InformacionMensaje implements Serializable {
     private String mensaje;
-    public String destinatario;
+    private String destinatario;
     private String remitente;
     private static final long serialVersionUID = 46L;
 
