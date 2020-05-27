@@ -150,6 +150,8 @@ public final class VentanaMenuPrincipalUsuario extends javax.swing.JDialog {
         lblNuevoAlimentoVacio = new javax.swing.JLabel();
         lblDatosIncorrectos2 = new javax.swing.JLabel();
         panelPlanDeAlimentacion = new javax.swing.JPanel();
+        lblErrorPlanPendiente2 = new javax.swing.JLabel();
+        lblErrorPlanPendiente = new javax.swing.JLabel();
         lblPlanDeAlimentacion = new javax.swing.JLabel();
         btnSolicitarNuevoPlan = new javax.swing.JButton();
         panelNoHayPlanesDisponibles = new javax.swing.JPanel();
@@ -803,11 +805,23 @@ public final class VentanaMenuPrincipalUsuario extends javax.swing.JDialog {
         panelPlanDeAlimentacion.setMinimumSize(new java.awt.Dimension(800, 800));
         panelPlanDeAlimentacion.setLayout(null);
 
+        lblErrorPlanPendiente2.setFont(new java.awt.Font("Century Gothic", 0, 19)); // NOI18N
+        lblErrorPlanPendiente2.setForeground(new java.awt.Color(255, 102, 102));
+        lblErrorPlanPendiente2.setText("Ya tiene un plan solicitado pendiente");
+        panelPlanDeAlimentacion.add(lblErrorPlanPendiente2);
+        lblErrorPlanPendiente2.setBounds(40, 190, 354, 25);
+
+        lblErrorPlanPendiente.setFont(new java.awt.Font("Century Gothic", 0, 19)); // NOI18N
+        lblErrorPlanPendiente.setForeground(new java.awt.Color(255, 102, 102));
+        lblErrorPlanPendiente.setText("espere a que sea atendido");
+        panelPlanDeAlimentacion.add(lblErrorPlanPendiente);
+        lblErrorPlanPendiente.setBounds(80, 220, 260, 25);
+
         lblPlanDeAlimentacion.setFont(new java.awt.Font("Levenim MT", 0, 50)); // NOI18N
         lblPlanDeAlimentacion.setForeground(new java.awt.Color(255, 255, 255));
         lblPlanDeAlimentacion.setText("Plan de alimentación");
         panelPlanDeAlimentacion.add(lblPlanDeAlimentacion);
-        lblPlanDeAlimentacion.setBounds(86, 31, 596, 62);
+        lblPlanDeAlimentacion.setBounds(160, 20, 596, 62);
 
         btnSolicitarNuevoPlan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/iconoNuevoPlanAlimentacion.png"))); // NOI18N
         btnSolicitarNuevoPlan.setBorderPainted(false);
@@ -818,7 +832,7 @@ public final class VentanaMenuPrincipalUsuario extends javax.swing.JDialog {
             }
         });
         panelPlanDeAlimentacion.add(btnSolicitarNuevoPlan);
-        btnSolicitarNuevoPlan.setBounds(138, 111, 124, 117);
+        btnSolicitarNuevoPlan.setBounds(150, 80, 124, 117);
 
         panelNoHayPlanesDisponibles.setBackground(new java.awt.Color(51, 52, 52));
 
@@ -894,11 +908,11 @@ public final class VentanaMenuPrincipalUsuario extends javax.swing.JDialog {
         panelPlanSolicitadoCorrectamenteLayout.setVerticalGroup(
             panelPlanSolicitadoCorrectamenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelPlanSolicitadoCorrectamenteLayout.createSequentialGroup()
-                .addGap(69, 69, 69)
+                .addGap(80, 80, 80)
                 .addComponent(lblPlanSolicitadoCorrectamente, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(31, 31, 31)
                 .addComponent(lblPlanSolicitado, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(209, Short.MAX_VALUE))
+                .addContainerGap(198, Short.MAX_VALUE))
         );
 
         panelPlanDeAlimentacion.add(panelPlanSolicitadoCorrectamente);
@@ -1012,7 +1026,7 @@ public final class VentanaMenuPrincipalUsuario extends javax.swing.JDialog {
                                         .addGap(30, 30, 30)
                                         .addComponent(lblValidarProfesionalPlan))
                                     .addComponent(lblCambiarPreferencias, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addContainerGap(20, Short.MAX_VALUE))
+                        .addContainerGap(25, Short.MAX_VALUE))
                     .addGroup(panelSolicitarNuevoPlanLayout.createSequentialGroup()
                         .addGap(9, 9, 9)
                         .addComponent(lblDatosIncorrectos, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1134,7 +1148,7 @@ public final class VentanaMenuPrincipalUsuario extends javax.swing.JDialog {
             }
         });
         panelPlanDeAlimentacion.add(btnVerPlanesExistentes);
-        btnVerPlanesExistentes.setBounds(509, 111, 124, 117);
+        btnVerPlanesExistentes.setBounds(510, 80, 124, 117);
 
         panelDerecho.add(panelPlanDeAlimentacion, "card6");
 
@@ -1337,19 +1351,28 @@ public final class VentanaMenuPrincipalUsuario extends javax.swing.JDialog {
     }//GEN-LAST:event_btnVerPlanesExistentesActionPerformed
 
     private void btnSolicitarNuevoPlanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSolicitarNuevoPlanActionPerformed
-        this.btnSolicitarNuevoPlan.setEnabled(false);
-        this.lblValidarProfesionalPlan.setVisible(false);
-        this.lblDatosIncorrectos.setVisible(false);
-        this.lblDatosIncorrectos1.setVisible(false);
-        this.panelSolicitarNuevoPlan.setVisible(true);
-        List<Profesional> lstProfesionales = this.sistema.getListaProfesionales();
-        DefaultComboBoxModel modelo = new DefaultComboBoxModel();
-        this.comboProfesionalesEnSistema.setModel(modelo);
-        this.comboProfesionalesEnSistema.addItem("Seleccione...");
-        for (int i = 0; i < lstProfesionales.size(); i++) {
-            this.comboProfesionalesEnSistema.addItem(lstProfesionales.get(i).toString());
+        String nombreUsuarioLoguedo = this.sistema.getPersonaLogueada().getNombreCompleto();
+        Usuario usuarioLogueado = this.sistema.getUsuarioPorNombre(nombreUsuarioLoguedo);
+        if(this.sistema.usuarioTieneSolicitudPlanAlimentacionPendiente(usuarioLogueado)){
+            lblErrorPlanPendiente.setVisible(true);
+            lblErrorPlanPendiente2.setVisible(true);
         }
-        this.primeraVez = false;
+        else{
+            ocultarPanelDeErrores();
+            this.btnSolicitarNuevoPlan.setEnabled(false);
+            this.lblValidarProfesionalPlan.setVisible(false);
+            this.lblDatosIncorrectos.setVisible(false);
+            this.lblDatosIncorrectos1.setVisible(false);
+            this.panelSolicitarNuevoPlan.setVisible(true);
+            List<Profesional> lstProfesionales = this.sistema.getListaProfesionales();
+            DefaultComboBoxModel modelo = new DefaultComboBoxModel();
+            this.comboProfesionalesEnSistema.setModel(modelo);
+            this.comboProfesionalesEnSistema.addItem("Seleccione...");
+            for (int i = 0; i < lstProfesionales.size(); i++) {
+                this.comboProfesionalesEnSistema.addItem(lstProfesionales.get(i).toString());
+            }
+            this.primeraVez = false;
+        }
     }//GEN-LAST:event_btnSolicitarNuevoPlanActionPerformed
 
     private void btnEditarPreferenciasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarPreferenciasActionPerformed
@@ -1384,7 +1407,6 @@ public final class VentanaMenuPrincipalUsuario extends javax.swing.JDialog {
             this.sistema.agregarPlanSolicitado(usuarioLogueado, profesionalElegido);
             this.panelSolicitarNuevoPlan.setVisible(false);
             this.panelPlanSolicitadoCorrectamente.setVisible(true);
-
         }
     }//GEN-LAST:event_btnAceptarSolicitudPlanAlimentacionActionPerformed
 
@@ -1466,6 +1488,8 @@ public final class VentanaMenuPrincipalUsuario extends javax.swing.JDialog {
         panelError.setVisible(false);
         lblError.setVisible(false);
         iconSadFace.setVisible(false);
+        lblErrorPlanPendiente.setVisible(false);
+        lblErrorPlanPendiente2.setVisible(false);
     }
 
     private void seleccionarOpcionMenu(OpcionesMenu opcion) {
@@ -1576,6 +1600,8 @@ public final class VentanaMenuPrincipalUsuario extends javax.swing.JDialog {
     private javax.swing.JLabel lblDatosIncorrectos1;
     private javax.swing.JLabel lblDatosIncorrectos2;
     private javax.swing.JLabel lblError;
+    private javax.swing.JLabel lblErrorPlanPendiente;
+    private javax.swing.JLabel lblErrorPlanPendiente2;
     private javax.swing.JLabel lblFechaAlimentoIngerido;
     private javax.swing.JLabel lblFotoProfesional;
     private javax.swing.JLabel lblIngresarAlimentoIngerido;

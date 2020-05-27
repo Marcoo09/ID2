@@ -433,9 +433,22 @@ public final class Sistema implements Serializable {
             }
         }
         return agreguePlan;
-
     }
 
+    public boolean usuarioTieneSolicitudPlanAlimentacionPendiente(Usuario usuario) {
+        boolean existePlanPendiente = false;
+        if (usuario != null) {
+            for (PlanAlimentacion planDeAlimentacion : getListaPlanesAlimentacion()) {
+                if(planDeAlimentacion.getUsuario().equals(usuario) && 
+                        !planDeAlimentacion.getFueAtendidoElPlan()){
+                    existePlanPendiente = true;
+                    break;
+                }
+            }
+        }
+        return existePlanPendiente;
+    }
+    
     public boolean atenderSolicitudDelPlan(String[][] planAlimentacion,
             Profesional profesional,
             Usuario usuario,
