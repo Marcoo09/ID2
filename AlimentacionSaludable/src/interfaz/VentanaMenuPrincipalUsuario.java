@@ -1036,17 +1036,17 @@ public final class VentanaMenuPrincipalUsuario extends javax.swing.JDialog {
                 .addGroup(panelSolicitarNuevoPlanLayout.createSequentialGroup()
                     .addGap(20, 20, 20)
                     .addComponent(lblSeleccioneProfesional1, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(98, Short.MAX_VALUE)))
+                    .addContainerGap(103, Short.MAX_VALUE)))
             .addGroup(panelSolicitarNuevoPlanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(panelSolicitarNuevoPlanLayout.createSequentialGroup()
                     .addGap(20, 20, 20)
                     .addComponent(lblCambiarPreferencias4, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(29, Short.MAX_VALUE)))
+                    .addContainerGap(34, Short.MAX_VALUE)))
             .addGroup(panelSolicitarNuevoPlanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(panelSolicitarNuevoPlanLayout.createSequentialGroup()
                     .addGap(20, 20, 20)
                     .addComponent(lblDatosIncorrectos1, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(180, Short.MAX_VALUE)))
+                    .addContainerGap(185, Short.MAX_VALUE)))
         );
         panelSolicitarNuevoPlanLayout.setVerticalGroup(
             panelSolicitarNuevoPlanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1096,7 +1096,7 @@ public final class VentanaMenuPrincipalUsuario extends javax.swing.JDialog {
         );
 
         panelPlanDeAlimentacion.add(panelSolicitarNuevoPlan);
-        panelSolicitarNuevoPlan.setBounds(35, 246, 394, 536);
+        panelSolicitarNuevoPlan.setBounds(35, 246, 399, 536);
 
         panelBuscarPlan.setBackground(new java.awt.Color(51, 51, 51));
 
@@ -1358,7 +1358,6 @@ public final class VentanaMenuPrincipalUsuario extends javax.swing.JDialog {
         }
         else{
             ocultarPanelDeErrores();
-            this.btnSolicitarNuevoPlan.setEnabled(false);
             this.lblValidarProfesionalPlan.setVisible(false);
             this.lblDatosIncorrectos.setVisible(false);
             this.lblDatosIncorrectos1.setVisible(false);
