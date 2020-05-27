@@ -59,8 +59,10 @@ public final class PlanAlimentacion implements Serializable {
     }
 
     public void setPlanDiaADia(String[][] unPlan) {
-        String [][] copia = Arrays.stream(unPlan).map(String[]::clone).toArray(String[][]::new);
-        this.planDiaADia = copia;
+        if(unPlan != null){
+            String [][] copia = Arrays.stream(unPlan).map(String[]::clone).toArray(String[][]::new);
+            this.planDiaADia = copia;
+        }
     }
 
     public String getNombreDelPlan() {

@@ -4,13 +4,12 @@ import dominio.Persona;
 import dominio.Sistema;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.awt.event.WindowEvent;
 
 public final class VentanaMenuPrincipal extends javax.swing.JDialog {
-
     private Sistema sistema;
 
     public VentanaMenuPrincipal(Sistema unSistema) {
-
         initComponents();
         this.setLocationRelativeTo(null);
         this.sistema = unSistema;
@@ -184,8 +183,9 @@ public final class VentanaMenuPrincipal extends javax.swing.JDialog {
         btnCerrarSistema.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/icons8_Close_Window_48px.png"))); // NOI18N
         btnCerrarSistema.setBorderPainted(false);
         btnCerrarSistema.setContentAreaFilled(false);
+        btnCerrarSistema.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnCerrarSistema.setFocusPainted(false);
-        btnCerrarSistema.setOpaque(false);
+        btnCerrarSistema.setInheritsPopupMenu(true);
         btnCerrarSistema.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCerrarSistemaActionPerformed(evt);
@@ -202,11 +202,12 @@ public final class VentanaMenuPrincipal extends javax.swing.JDialog {
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         this.sistema.guardarDatosSistema();
+        this.dispose();
     }//GEN-LAST:event_formWindowClosing
 
     private void listaUsuariosVentanaValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_listaUsuariosVentanaValueChanged
         this.sistema.setPersonaLogueada((Persona) listaUsuariosVentana.getSelectedValue());
-        VentanaMenuPrincipalUsuario ventanaPrincipalUsuarios = new VentanaMenuPrincipalUsuario(sistema);
+        VentanaMenuPrincipalUsuario ventanaPrincipalUsuarios = new VentanaMenuPrincipalUsuario(sistema, this);
         this.setVisible(false);
         ventanaPrincipalUsuarios.setVisible(true);
     }//GEN-LAST:event_listaUsuariosVentanaValueChanged
@@ -238,6 +239,7 @@ public final class VentanaMenuPrincipal extends javax.swing.JDialog {
 
     private void btnCerrarSistemaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarSistemaActionPerformed
         this.sistema.guardarDatosSistema();
+        this.setVisible(false);
         this.dispose();
     }//GEN-LAST:event_btnCerrarSistemaActionPerformed
 
