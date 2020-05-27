@@ -324,7 +324,6 @@ public final class VentanaMenuPrincipalUsuario extends javax.swing.JDialog {
 
         lblError.setFont(new java.awt.Font("Century Gothic", 1, 40)); // NOI18N
         lblError.setForeground(new java.awt.Color(255, 255, 255));
-        lblError.setText("No hay alimentos registrados");
         lblError.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         iconSadFace.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/iconoCaraTriste.png"))); // NOI18N
@@ -340,7 +339,7 @@ public final class VentanaMenuPrincipalUsuario extends javax.swing.JDialog {
             .addGroup(panelErrorLayout.createSequentialGroup()
                 .addGap(104, 104, 104)
                 .addComponent(lblError)
-                .addContainerGap(130, Short.MAX_VALUE))
+                .addContainerGap(696, Short.MAX_VALUE))
         );
         panelErrorLayout.setVerticalGroup(
             panelErrorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

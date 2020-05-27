@@ -4,7 +4,6 @@ import dominio.Persona;
 import dominio.Sistema;
 import java.awt.Image;
 import java.awt.Toolkit;
-import java.awt.event.WindowEvent;
 
 public final class VentanaMenuPrincipal extends javax.swing.JDialog {
     private Sistema sistema;
