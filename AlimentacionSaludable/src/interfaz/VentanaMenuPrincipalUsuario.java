@@ -1278,7 +1278,7 @@ public final class VentanaMenuPrincipalUsuario extends javax.swing.JDialog {
         this.sistema.crearConversacion(usuarioLogeado, profesional, "CONVERSACION:", true);
         actualizarConversaciones(profesional.getNombreCompleto());
         this.panelConsultaConProfesional.setVisible(true);
-        this.panelConversacion.setVisible(true);
+        this.panelConversacion.setVisible(false);
     }//GEN-LAST:event_listaElegirProfesionalesValueChanged
 
     private void listaConversacionesValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_listaConversacionesValueChanged

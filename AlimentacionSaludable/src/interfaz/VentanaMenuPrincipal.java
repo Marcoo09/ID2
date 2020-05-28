@@ -45,9 +45,9 @@ public final class VentanaMenuPrincipal extends javax.swing.JDialog {
         jScrollPane1 = new javax.swing.JScrollPane();
         listaProfesionalesVentana = new javax.swing.JList();
         btnAgregarUsuario = new javax.swing.JLabel();
-        btnAgregarProfesional = new javax.swing.JLabel();
+        iconPlus = new javax.swing.JLabel();
         lblNombre1 = new javax.swing.JLabel();
-        btnAgregarProfesional1 = new javax.swing.JLabel();
+        btnAgregarProfesional = new javax.swing.JLabel();
         btnCerrarSistema = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -153,14 +153,9 @@ public final class VentanaMenuPrincipal extends javax.swing.JDialog {
         panel2.add(btnAgregarUsuario);
         btnAgregarUsuario.setBounds(150, 600, 110, 90);
 
-        btnAgregarProfesional.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/iconoAgregarProf.png"))); // NOI18N
-        btnAgregarProfesional.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnAgregarProfesionalMouseClicked(evt);
-            }
-        });
-        panel2.add(btnAgregarProfesional);
-        btnAgregarProfesional.setBounds(570, 640, 50, 80);
+        iconPlus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/iconoAgregarProf.png"))); // NOI18N
+        panel2.add(iconPlus);
+        iconPlus.setBounds(570, 640, 50, 80);
 
         lblNombre1.setFont(new java.awt.Font("Century Gothic", 0, 30)); // NOI18N
         lblNombre1.setForeground(new java.awt.Color(255, 255, 255));
@@ -168,14 +163,14 @@ public final class VentanaMenuPrincipal extends javax.swing.JDialog {
         panel2.add(lblNombre1);
         lblNombre1.setBounds(90, 200, 181, 38);
 
-        btnAgregarProfesional1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/iconoAgregarProfesional.png"))); // NOI18N
-        btnAgregarProfesional1.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnAgregarProfesional.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/iconoAgregarProfesional.png"))); // NOI18N
+        btnAgregarProfesional.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnAgregarProfesional1MouseClicked(evt);
+                btnAgregarProfesionalMouseClicked(evt);
             }
         });
-        panel2.add(btnAgregarProfesional1);
-        btnAgregarProfesional1.setBounds(510, 600, 100, 90);
+        panel2.add(btnAgregarProfesional);
+        btnAgregarProfesional.setBounds(510, 600, 100, 90);
 
         btnCerrarSistema.setBackground(new java.awt.Color(51, 51, 51));
         btnCerrarSistema.setForeground(new java.awt.Color(51, 51, 51));
@@ -213,28 +208,22 @@ public final class VentanaMenuPrincipal extends javax.swing.JDialog {
 
     private void listaProfesionalesVentanaValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_listaProfesionalesVentanaValueChanged
         this.sistema.setPersonaLogueada((Persona) listaProfesionalesVentana.getSelectedValue());
-        VentanaMenuPrincipalProfesional ventanaPrincipalProfesionales = new VentanaMenuPrincipalProfesional(sistema);
+        VentanaMenuPrincipalProfesional ventanaPrincipalProfesionales = new VentanaMenuPrincipalProfesional(sistema, this);
         this.setVisible(false);
         ventanaPrincipalProfesionales.setVisible(true);
     }//GEN-LAST:event_listaProfesionalesVentanaValueChanged
 
     private void btnAgregarUsuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarUsuarioMouseClicked
-        VentanaRegistrarUsuario unA = new VentanaRegistrarUsuario(sistema);
+        VentanaRegistrarUsuario ventanaRegistrarUsuario = new VentanaRegistrarUsuario(sistema, this);
         this.setVisible(false);
-        unA.setVisible(true);
+        ventanaRegistrarUsuario.setVisible(true);
     }//GEN-LAST:event_btnAgregarUsuarioMouseClicked
 
     private void btnAgregarProfesionalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarProfesionalMouseClicked
-        VentanaRegistrarProfesional ventanaRegProfesional = new VentanaRegistrarProfesional(sistema);
+        VentanaRegistrarProfesional ventanaRegProfesional = new VentanaRegistrarProfesional(sistema, this);
         this.setVisible(false);
         ventanaRegProfesional.setVisible(true);
     }//GEN-LAST:event_btnAgregarProfesionalMouseClicked
-
-    private void btnAgregarProfesional1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarProfesional1MouseClicked
-        VentanaRegistrarProfesional ventanaRegProfesional = new VentanaRegistrarProfesional(sistema);
-        this.setVisible(false);
-        ventanaRegProfesional.setVisible(true);
-    }//GEN-LAST:event_btnAgregarProfesional1MouseClicked
 
     private void btnCerrarSistemaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarSistemaActionPerformed
         this.sistema.guardarDatosSistema();
@@ -245,9 +234,9 @@ public final class VentanaMenuPrincipal extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel btnAgregarProfesional;
-    private javax.swing.JLabel btnAgregarProfesional1;
     private javax.swing.JLabel btnAgregarUsuario;
     private javax.swing.JButton btnCerrarSistema;
+    private javax.swing.JLabel iconPlus;
     private javax.swing.JLabel icono;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;

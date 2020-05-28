@@ -14,8 +14,9 @@ public final class VentanaRegistrarProfesional extends javax.swing.JDialog {
     private Sistema sistema;
     private ImageIcon fotoDePerfilActual;
     private boolean primeraVez;
-
-    public VentanaRegistrarProfesional(Sistema unSistema) {
+    private VentanaMenuPrincipal ventanaMenuPrincipal;
+    
+    public VentanaRegistrarProfesional(Sistema unSistema, VentanaMenuPrincipal ventanaMenuPrincipal) {
         initComponents();
         this.setLocationRelativeTo(null);
         this.sistema = unSistema;
@@ -27,6 +28,7 @@ public final class VentanaRegistrarProfesional extends javax.swing.JDialog {
         this.dateChooserFechaNacimiento.setMaxDate(fecha);
         this.dateChooserFechaGraduacion.setMaxDate(fecha);
         this.primeraVez = false;
+        this.ventanaMenuPrincipal = ventanaMenuPrincipal;
     }
 
     @SuppressWarnings("unchecked")
@@ -380,9 +382,9 @@ public final class VentanaRegistrarProfesional extends javax.swing.JDialog {
     }//GEN-LAST:event_btnIngresarProfesionalASistemaActionPerformed
 
     private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeActionPerformed
-        VentanaMenuPrincipal vPrincipal = new VentanaMenuPrincipal(sistema);
         this.setVisible(false);
-        vPrincipal.setVisible(true);
+        this.ventanaMenuPrincipal.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnHomeActionPerformed
 
     private void btnIngresarFotoPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarFotoPerfilActionPerformed

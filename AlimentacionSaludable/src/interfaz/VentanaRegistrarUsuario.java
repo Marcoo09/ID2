@@ -16,8 +16,9 @@ public final class VentanaRegistrarUsuario extends javax.swing.JDialog {
     private Sistema sistema;
     private ImageIcon fotoDePerfilActual;
     private boolean primeraVez;
+    private VentanaMenuPrincipal ventanaMenuPrincipal;
 
-    public VentanaRegistrarUsuario(Sistema unSistema) {
+    public VentanaRegistrarUsuario(Sistema unSistema, VentanaMenuPrincipal ventanaMenuPrincipal) {
         initComponents();
         this.setLocationRelativeTo(null);
         this.sistema = unSistema;
@@ -30,6 +31,7 @@ public final class VentanaRegistrarUsuario extends javax.swing.JDialog {
         Calendar fecha = new GregorianCalendar();
         this.dateChooserFechaNacimiento.setMaxDate(fecha);
         this.primeraVez = false;
+        this.ventanaMenuPrincipal = ventanaMenuPrincipal;
     }
 
     public Sistema getSistema() {
@@ -428,9 +430,9 @@ public final class VentanaRegistrarUsuario extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeActionPerformed
-        VentanaMenuPrincipal vPrincipal = new VentanaMenuPrincipal(sistema);
         this.setVisible(false);
-        vPrincipal.setVisible(true);
+        this.ventanaMenuPrincipal.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnHomeActionPerformed
 
     private void btnIngresarUsuarioASistemaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarUsuarioASistemaActionPerformed

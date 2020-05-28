@@ -1,9 +1,11 @@
 package dominio;
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.ImageIcon;
 
 public final class Usuario extends Persona {
+
     private String nacionalidad;
     private List<String> preferencias;
     private List<String> restricciones;
@@ -44,7 +46,10 @@ public final class Usuario extends Persona {
     }
 
     public void setPreferencias(List<String> listaPreferencias) {
-            this.preferencias = listaPreferencias;
+        if (listaPreferencias == null) {
+            listaPreferencias = new ArrayList<>();
+        }
+        this.preferencias = listaPreferencias;
     }
 
     public List<String> getRestricciones() {
@@ -52,7 +57,10 @@ public final class Usuario extends Persona {
     }
 
     public void setRestricciones(List<String> listaRestricciones) {
-            this.restricciones = listaRestricciones;
+        if (listaRestricciones == null) {
+            listaRestricciones = new ArrayList<>();
+        }
+        this.restricciones = listaRestricciones;
     }
 
     public List<Ingesta> getAlimentosIngeridos() {
@@ -60,8 +68,10 @@ public final class Usuario extends Persona {
     }
 
     public void setAlimentosIngeridos(List<Ingesta> listaAlimentos) {
-            this.alimentosIngeridos = listaAlimentos;
-
+        if (listaAlimentos == null) {
+            listaAlimentos = new ArrayList<>();
+        }
+        this.alimentosIngeridos = listaAlimentos;
     }
 
     public String[] getArrayAlimentosIngeridos() {
@@ -105,5 +115,4 @@ public final class Usuario extends Persona {
         usuario.setRestricciones(restricciones);
     }
 
-    
 }
