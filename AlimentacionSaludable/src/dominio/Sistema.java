@@ -268,10 +268,10 @@ public final class Sistema implements Serializable {
         return fueAgregadaConversacion;
     }
 
-    public String[] getListaNombresProfesionalesConversaciones(String nombreUsuarioConversacion) {
+    public String[] getProfesionalesConConversacionesActivas(String nombreUsuarioConversacion) {
         String[] nombresProfesionales = new String[getListaConversaciones().size()];
         List<String> nombresIngresados = new ArrayList<>();
-        for (int i = 1; i < getListaConversaciones().size(); i++) {
+        for (int i = 0; i < getListaConversaciones().size(); i++) {
             String nombreCompleto = getListaConversaciones().get(i).getProfesional().getNombreCompleto();
             String nombreUsuarioCompleto = getListaConversaciones().get(i).getUsuario().getNombreCompleto();
             if (!nombresIngresados.contains(nombreCompleto) && nombreUsuarioCompleto.equals(nombreUsuarioConversacion)) {
@@ -433,9 +433,22 @@ public final class Sistema implements Serializable {
             }
         }
         return agreguePlan;
-
     }
 
+    public boolean usuarioTieneSolicitudPlanAlimentacionPendiente(Usuario usuario) {
+        boolean existePlanPendiente = false;
+        if (usuario != null) {
+            for (PlanAlimentacion planDeAlimentacion : getListaPlanesAlimentacion()) {
+                if(planDeAlimentacion.getUsuario().equals(usuario) && 
+                        !planDeAlimentacion.getFueAtendidoElPlan()){
+                    existePlanPendiente = true;
+                    break;
+                }
+            }
+        }
+        return existePlanPendiente;
+    }
+    
     public boolean atenderSolicitudDelPlan(String[][] planAlimentacion,
             Profesional profesional,
             Usuario usuario,
