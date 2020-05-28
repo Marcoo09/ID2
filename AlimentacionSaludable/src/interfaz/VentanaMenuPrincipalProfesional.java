@@ -22,8 +22,9 @@ public final class VentanaMenuPrincipalProfesional extends javax.swing.JDialog {
     private String diaDeLaSemanaAnterior;
     private String diaDeLaSemanaActual;
     private final String[][] planAlimentacion;
+    private VentanaMenuPrincipal ventanaMenuPrincipal;
 
-    public VentanaMenuPrincipalProfesional(Sistema unSistema) {
+    public VentanaMenuPrincipalProfesional(Sistema unSistema, VentanaMenuPrincipal ventanaMenuPrincipal) {
         initComponents();
         sistema = unSistema;
         this.setLocationRelativeTo(null);
@@ -40,6 +41,7 @@ public final class VentanaMenuPrincipalProfesional extends javax.swing.JDialog {
         lblDatosIncorrectos2.setVisible(false);
         ocultarPrincipalesNutrientes();
         this.panelVacio.setVisible(true);
+        this.ventanaMenuPrincipal = ventanaMenuPrincipal;
     }
 
     public Sistema getSistema() {
@@ -1738,9 +1740,9 @@ public final class VentanaMenuPrincipalProfesional extends javax.swing.JDialog {
     }//GEN-LAST:event_btnConsultasPendientesActionPerformed
 
     private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeActionPerformed
-        VentanaMenuPrincipal vPrincipal = new VentanaMenuPrincipal(sistema);
         this.setVisible(false);
-        vPrincipal.setVisible(true);
+        this.ventanaMenuPrincipal.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnHomeActionPerformed
 
     private void btnPlanesSolicitadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlanesSolicitadosActionPerformed
@@ -2000,7 +2002,7 @@ public final class VentanaMenuPrincipalProfesional extends javax.swing.JDialog {
                 Ingesta ingestaActual = ingeridos.get(i);
                 List<Alimento> alimentosActuales = ingestaActual.getListaAlimentosPorFecha();
                 for (int j = 0; j < alimentosActuales.size(); j++) {
-                    listaASetear.add(alimentosActuales.get(i).toString());
+                    listaASetear.add(alimentosActuales.get(j).toString());
                 }
             }
             String[] arrayASetear = new String[listaASetear.size()];
