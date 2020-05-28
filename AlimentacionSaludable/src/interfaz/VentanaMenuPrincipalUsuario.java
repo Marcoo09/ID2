@@ -20,11 +20,10 @@ public final class VentanaMenuPrincipalUsuario extends javax.swing.JDialog {
     private boolean primeraVez;
     private boolean primeraIngesta;
     private String nombreDelPlan;
-    private VentanaMenuPrincipal ventanaMenuPrincipal;
     private static final String ERROR_PROFESIONALES = "No hay profesionales registrados";
     private static final String ERROR_ALIMENTOS = "No hay alimentos registrados";
 
-    public VentanaMenuPrincipalUsuario(Sistema unSistema, VentanaMenuPrincipal ventanaMenuPrincipal) {
+    public VentanaMenuPrincipalUsuario(Sistema unSistema) {
         initComponents();
         ocultarPanelDeErrores();
         ocultarTodosLosPaneles();
@@ -32,7 +31,6 @@ public final class VentanaMenuPrincipalUsuario extends javax.swing.JDialog {
         this.sistema = unSistema;
         this.existeConversacion = false;
         this.lblValidarProfesionalPlan.setVisible(false);
-        this.lblDatosIncorrectos.setVisible(false);
         this.lblDatosIncorrectos1.setVisible(false);
         this.lblValidarNuevoAlimento.setVisible(false);
         this.lblNuevoAlimentoVacio.setVisible(false);
@@ -42,7 +40,6 @@ public final class VentanaMenuPrincipalUsuario extends javax.swing.JDialog {
         this.primeraIngesta = true;
         Calendar fecha = new GregorianCalendar();
         this.fechaIngestaUsuario.setMaxDate(fecha);
-        this.ventanaMenuPrincipal = ventanaMenuPrincipal;
         this.panelVacio.setVisible(true);
     }
 
@@ -150,19 +147,22 @@ public final class VentanaMenuPrincipalUsuario extends javax.swing.JDialog {
         lblNuevoAlimentoVacio = new javax.swing.JLabel();
         lblDatosIncorrectos2 = new javax.swing.JLabel();
         panelPlanDeAlimentacion = new javax.swing.JPanel();
-        lblErrorPlanPendiente2 = new javax.swing.JLabel();
-        lblErrorPlanPendiente = new javax.swing.JLabel();
-        lblPlanDeAlimentacion = new javax.swing.JLabel();
-        btnSolicitarNuevoPlan = new javax.swing.JButton();
         panelNoHayPlanesDisponibles = new javax.swing.JPanel();
         lblNoHayPlanes = new javax.swing.JLabel();
         lblPlanSolicitadoCorrectamente1 = new javax.swing.JLabel();
         lblNoHayPlanes1 = new javax.swing.JLabel();
+        panelBuscarPlan = new javax.swing.JPanel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        listaPlanesDelUsuario = new javax.swing.JList<>();
+        lblSeleccioneProfesional2 = new javax.swing.JLabel();
+        lblErrorPlanPendiente2 = new javax.swing.JLabel();
+        lblErrorPlanPendiente = new javax.swing.JLabel();
+        lblPlanDeAlimentacion = new javax.swing.JLabel();
+        btnSolicitarNuevoPlan = new javax.swing.JButton();
         panelPlanSolicitadoCorrectamente = new javax.swing.JPanel();
         lblPlanSolicitadoCorrectamente = new javax.swing.JLabel();
         lblPlanSolicitado = new javax.swing.JLabel();
         panelSolicitarNuevoPlan = new javax.swing.JPanel();
-        lblCambiarPreferencias = new javax.swing.JLabel();
         comboProfesionalesEnSistema = new javax.swing.JComboBox<>();
         lblSeleccioneProfesional1 = new javax.swing.JLabel();
         lblCambiarPreferencias3 = new javax.swing.JLabel();
@@ -174,22 +174,16 @@ public final class VentanaMenuPrincipalUsuario extends javax.swing.JDialog {
         lblCambiarPreferencias6 = new javax.swing.JLabel();
         btnAceptarSolicitudPlanAlimentacion = new javax.swing.JButton();
         lblValidarProfesionalPlan = new javax.swing.JLabel();
-        lblDatosIncorrectos = new javax.swing.JLabel();
         lblDatosIncorrectos1 = new javax.swing.JLabel();
-        panelBuscarPlan = new javax.swing.JPanel();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        listaPlanesDelUsuario = new javax.swing.JList<>();
-        lblSeleccioneProfesional2 = new javax.swing.JLabel();
         btnVerPlanesExistentes = new javax.swing.JButton();
         panelVacio = new javax.swing.JPanel();
         btnAyuda = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setMinimumSize(new java.awt.Dimension(1060, 800));
-        setModal(true);
+        setMinimumSize(new java.awt.Dimension(1280, 720));
         setUndecorated(true);
         setResizable(false);
-        setSize(new java.awt.Dimension(1060, 800));
+        setSize(new java.awt.Dimension(1280, 720));
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 formWindowClosing(evt);
@@ -197,9 +191,10 @@ public final class VentanaMenuPrincipalUsuario extends javax.swing.JDialog {
         });
 
         panelMenu.setBackground(new java.awt.Color(164, 211, 249));
-        panelMenu.setMaximumSize(new java.awt.Dimension(260, 800));
-        panelMenu.setMinimumSize(new java.awt.Dimension(260, 800));
-        panelMenu.setPreferredSize(new java.awt.Dimension(260, 800));
+        panelMenu.setMaximumSize(new java.awt.Dimension(260, 720));
+        panelMenu.setMinimumSize(new java.awt.Dimension(260, 720));
+        panelMenu.setPreferredSize(new java.awt.Dimension(260, 720));
+        panelMenu.setRequestFocusEnabled(false);
 
         btnConsultaConProfesional.setForeground(new java.awt.Color(255, 255, 255));
         btnConsultaConProfesional.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/iconoConsultaConProfesionales.png"))); // NOI18N
@@ -296,7 +291,7 @@ public final class VentanaMenuPrincipalUsuario extends javax.swing.JDialog {
             .addGroup(panelMenuLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btnHome)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnConsultaConProfesional, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lblConsultaConProfesional, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -307,20 +302,20 @@ public final class VentanaMenuPrincipalUsuario extends javax.swing.JDialog {
                 .addGap(42, 42, 42)
                 .addComponent(btnIngresarAlimentoIngerido, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblIngresarAlimentoIngerido, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(77, Short.MAX_VALUE))
+                .addComponent(lblIngresarAlimentoIngerido, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         panelDerecho.setBackground(new java.awt.Color(51, 51, 51));
-        panelDerecho.setMaximumSize(new java.awt.Dimension(800, 800));
-        panelDerecho.setMinimumSize(new java.awt.Dimension(800, 800));
-        panelDerecho.setPreferredSize(new java.awt.Dimension(800, 800));
+        panelDerecho.setMaximumSize(new java.awt.Dimension(1020, 720));
+        panelDerecho.setMinimumSize(new java.awt.Dimension(1020, 720));
+        panelDerecho.setPreferredSize(new java.awt.Dimension(1020, 720));
         panelDerecho.setLayout(new java.awt.CardLayout());
 
         panelError.setBackground(new java.awt.Color(51, 51, 51));
-        panelError.setMaximumSize(new java.awt.Dimension(400, 400));
-        panelError.setMinimumSize(new java.awt.Dimension(400, 400));
+        panelError.setMaximumSize(new java.awt.Dimension(1020, 720));
+        panelError.setMinimumSize(new java.awt.Dimension(1020, 720));
         panelError.setName(""); // NOI18N
+        panelError.setPreferredSize(new java.awt.Dimension(1020, 720));
 
         lblError.setFont(new java.awt.Font("Century Gothic", 1, 40)); // NOI18N
         lblError.setForeground(new java.awt.Color(255, 255, 255));
@@ -332,37 +327,37 @@ public final class VentanaMenuPrincipalUsuario extends javax.swing.JDialog {
         panelError.setLayout(panelErrorLayout);
         panelErrorLayout.setHorizontalGroup(
             panelErrorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelErrorLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(iconSadFace)
-                .addGap(332, 332, 332))
             .addGroup(panelErrorLayout.createSequentialGroup()
-                .addGap(104, 104, 104)
-                .addComponent(lblError)
-                .addContainerGap(696, Short.MAX_VALUE))
+                .addGroup(panelErrorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelErrorLayout.createSequentialGroup()
+                        .addGap(179, 179, 179)
+                        .addComponent(lblError))
+                    .addGroup(panelErrorLayout.createSequentialGroup()
+                        .addGap(443, 443, 443)
+                        .addComponent(iconSadFace)))
+                .addContainerGap(477, Short.MAX_VALUE))
         );
         panelErrorLayout.setVerticalGroup(
             panelErrorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelErrorLayout.createSequentialGroup()
-                .addGap(266, 266, 266)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelErrorLayout.createSequentialGroup()
+                .addContainerGap(175, Short.MAX_VALUE)
                 .addComponent(iconSadFace, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblError, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(327, Short.MAX_VALUE))
+                .addGap(338, 338, 338))
         );
 
         panelDerecho.add(panelError, "card2");
 
         panelCrearPrimeraConversacion.setBackground(new java.awt.Color(51, 51, 51));
-        panelCrearPrimeraConversacion.setMaximumSize(new java.awt.Dimension(800, 800));
-        panelCrearPrimeraConversacion.setMinimumSize(new java.awt.Dimension(800, 800));
-        panelCrearPrimeraConversacion.setLayout(null);
+        panelCrearPrimeraConversacion.setMaximumSize(new java.awt.Dimension(1020, 720));
+        panelCrearPrimeraConversacion.setMinimumSize(new java.awt.Dimension(1020, 720));
+        panelCrearPrimeraConversacion.setPreferredSize(new java.awt.Dimension(1020, 720));
+        panelCrearPrimeraConversacion.setRequestFocusEnabled(false);
 
         lblCrearPrimeraConversacion.setFont(new java.awt.Font("Century Gothic", 1, 40)); // NOI18N
         lblCrearPrimeraConversacion.setForeground(new java.awt.Color(255, 255, 255));
         lblCrearPrimeraConversacion.setText("Crear");
-        panelCrearPrimeraConversacion.add(lblCrearPrimeraConversacion);
-        lblCrearPrimeraConversacion.setBounds(290, 430, 120, 77);
 
         btnCrearPrimeraConversacion.setForeground(new java.awt.Color(255, 255, 255));
         btnCrearPrimeraConversacion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/iconoNuevoMensaje.png"))); // NOI18N
@@ -375,26 +370,53 @@ public final class VentanaMenuPrincipalUsuario extends javax.swing.JDialog {
                 btnCrearPrimeraConversacionActionPerformed(evt);
             }
         });
-        panelCrearPrimeraConversacion.add(btnCrearPrimeraConversacion);
-        btnCrearPrimeraConversacion.setBounds(390, 440, 93, 60);
 
         lblNoHayConversaciones.setFont(new java.awt.Font("Century Gothic", 1, 40)); // NOI18N
         lblNoHayConversaciones.setForeground(new java.awt.Color(255, 255, 255));
         lblNoHayConversaciones.setText("No hay conversaciones creadas");
-        panelCrearPrimeraConversacion.add(lblNoHayConversaciones);
-        lblNoHayConversaciones.setBounds(80, 350, 634, 77);
 
         iconSadFaceCrearPrimeraConversacion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/iconoCaraTriste.png"))); // NOI18N
-        panelCrearPrimeraConversacion.add(iconSadFaceCrearPrimeraConversacion);
-        iconSadFaceCrearPrimeraConversacion.setBounds(330, 220, 110, 130);
+
+        javax.swing.GroupLayout panelCrearPrimeraConversacionLayout = new javax.swing.GroupLayout(panelCrearPrimeraConversacion);
+        panelCrearPrimeraConversacion.setLayout(panelCrearPrimeraConversacionLayout);
+        panelCrearPrimeraConversacionLayout.setHorizontalGroup(
+            panelCrearPrimeraConversacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelCrearPrimeraConversacionLayout.createSequentialGroup()
+                .addGap(450, 450, 450)
+                .addComponent(iconSadFaceCrearPrimeraConversacion, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(panelCrearPrimeraConversacionLayout.createSequentialGroup()
+                .addGap(210, 210, 210)
+                .addComponent(lblNoHayConversaciones))
+            .addGroup(panelCrearPrimeraConversacionLayout.createSequentialGroup()
+                .addGap(430, 430, 430)
+                .addGroup(panelCrearPrimeraConversacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelCrearPrimeraConversacionLayout.createSequentialGroup()
+                        .addGap(100, 100, 100)
+                        .addComponent(btnCrearPrimeraConversacion, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblCrearPrimeraConversacion, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
+        );
+        panelCrearPrimeraConversacionLayout.setVerticalGroup(
+            panelCrearPrimeraConversacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelCrearPrimeraConversacionLayout.createSequentialGroup()
+                .addGap(220, 220, 220)
+                .addComponent(iconSadFaceCrearPrimeraConversacion, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(lblNoHayConversaciones, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(3, 3, 3)
+                .addGroup(panelCrearPrimeraConversacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelCrearPrimeraConversacionLayout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(btnCrearPrimeraConversacion, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblCrearPrimeraConversacion, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(213, Short.MAX_VALUE))
+        );
 
         panelDerecho.add(panelCrearPrimeraConversacion, "card9");
 
         panelConsultaConProfesional.setBackground(new java.awt.Color(51, 51, 51));
-        panelConsultaConProfesional.setMaximumSize(new java.awt.Dimension(800, 800));
-        panelConsultaConProfesional.setMinimumSize(new java.awt.Dimension(800, 800));
-        panelConsultaConProfesional.setPreferredSize(new java.awt.Dimension(800, 800));
-        panelConsultaConProfesional.setLayout(null);
+        panelConsultaConProfesional.setMaximumSize(new java.awt.Dimension(1020, 720));
+        panelConsultaConProfesional.setMinimumSize(new java.awt.Dimension(1020, 720));
+        panelConsultaConProfesional.setPreferredSize(new java.awt.Dimension(1020, 720));
 
         panelConversacion.setOpaque(false);
 
@@ -434,19 +456,18 @@ public final class VentanaMenuPrincipalUsuario extends javax.swing.JDialog {
         panelConversacionLayout.setHorizontalGroup(
             panelConversacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelConversacionLayout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addComponent(lblFotoProfesional, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lblNombreProfesional, javax.swing.GroupLayout.PREFERRED_SIZE, 384, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelConversacionLayout.createSequentialGroup()
-                .addContainerGap(64, Short.MAX_VALUE)
+                .addContainerGap(99, Short.MAX_VALUE)
                 .addGroup(panelConversacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelConversacionLayout.createSequentialGroup()
+                        .addComponent(lblFotoProfesional, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(lblNombreProfesional, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(142, 142, 142))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelConversacionLayout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btnEnviarMensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(53, 53, 53))
+                        .addGap(27, 27, 27))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelConversacionLayout.createSequentialGroup()
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 397, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(65, 65, 65))))
@@ -456,23 +477,22 @@ public final class VentanaMenuPrincipalUsuario extends javax.swing.JDialog {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelConversacionLayout.createSequentialGroup()
                 .addGroup(panelConversacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelConversacionLayout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addComponent(lblNombreProfesional, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelConversacionLayout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lblFotoProfesional, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                        .addContainerGap()
+                        .addComponent(lblFotoProfesional, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelConversacionLayout.createSequentialGroup()
+                        .addGap(26, 26, 26)
+                        .addComponent(lblNombreProfesional, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(78, 78, 78)
                 .addGroup(panelConversacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnEnviarMensaje, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                    .addGroup(panelConversacionLayout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelConversacionLayout.createSequentialGroup()
+                        .addGap(60, 60, 60)
+                        .addComponent(btnEnviarMensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(61, 61, 61))
         );
-
-        panelConsultaConProfesional.add(panelConversacion);
-        panelConversacion.setBounds(264, 48, 526, 656);
 
         btnNuevaConversacion.setForeground(new java.awt.Color(255, 255, 255));
         btnNuevaConversacion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/iconoNuevoMensaje.png"))); // NOI18N
@@ -485,8 +505,6 @@ public final class VentanaMenuPrincipalUsuario extends javax.swing.JDialog {
                 btnNuevaConversacionActionPerformed(evt);
             }
         });
-        panelConsultaConProfesional.add(btnNuevaConversacion);
-        btnNuevaConversacion.setBounds(100, 590, 93, 57);
 
         listaConversaciones.setBackground(new java.awt.Color(238, 238, 238));
         listaConversaciones.setFont(new java.awt.Font("Century Gothic", 0, 19)); // NOI18N
@@ -497,27 +515,60 @@ public final class VentanaMenuPrincipalUsuario extends javax.swing.JDialog {
         });
         scrollPaneListaConversaciones.setViewportView(listaConversaciones);
 
-        panelConsultaConProfesional.add(scrollPaneListaConversaciones);
-        scrollPaneListaConversaciones.setBounds(26, 158, 232, 424);
-
         lblCrearNuevaConversacion.setFont(new java.awt.Font("Century Gothic", 0, 16)); // NOI18N
         lblCrearNuevaConversacion.setForeground(new java.awt.Color(255, 255, 255));
         lblCrearNuevaConversacion.setText("Crear nueva conversacion");
-        panelConsultaConProfesional.add(lblCrearNuevaConversacion);
-        lblCrearNuevaConversacion.setBounds(40, 650, 210, 20);
 
         lblSeleccioneProfesionalConversacion.setFont(new java.awt.Font("Century Gothic", 0, 16)); // NOI18N
         lblSeleccioneProfesionalConversacion.setForeground(new java.awt.Color(255, 255, 255));
         lblSeleccioneProfesionalConversacion.setText("Seleccione al profesional");
-        panelConsultaConProfesional.add(lblSeleccioneProfesionalConversacion);
-        lblSeleccioneProfesionalConversacion.setBounds(50, 130, 190, 21);
+
+        javax.swing.GroupLayout panelConsultaConProfesionalLayout = new javax.swing.GroupLayout(panelConsultaConProfesional);
+        panelConsultaConProfesional.setLayout(panelConsultaConProfesionalLayout);
+        panelConsultaConProfesionalLayout.setHorizontalGroup(
+            panelConsultaConProfesionalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelConsultaConProfesionalLayout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addGroup(panelConsultaConProfesionalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelConsultaConProfesionalLayout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addComponent(lblSeleccioneProfesionalConversacion))
+                    .addComponent(scrollPaneListaConversaciones, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(panelConsultaConProfesionalLayout.createSequentialGroup()
+                        .addGap(74, 74, 74)
+                        .addComponent(btnNuevaConversacion, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelConsultaConProfesionalLayout.createSequentialGroup()
+                        .addGap(14, 14, 14)
+                        .addComponent(lblCrearNuevaConversacion, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(panelConversacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        panelConsultaConProfesionalLayout.setVerticalGroup(
+            panelConsultaConProfesionalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelConsultaConProfesionalLayout.createSequentialGroup()
+                .addGroup(panelConsultaConProfesionalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelConsultaConProfesionalLayout.createSequentialGroup()
+                        .addGap(130, 130, 130)
+                        .addComponent(lblSeleccioneProfesionalConversacion)
+                        .addGap(7, 7, 7)
+                        .addComponent(scrollPaneListaConversaciones, javax.swing.GroupLayout.PREFERRED_SIZE, 424, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(8, 8, 8)
+                        .addComponent(btnNuevaConversacion, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(3, 3, 3)
+                        .addComponent(lblCrearNuevaConversacion, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelConsultaConProfesionalLayout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addComponent(panelConversacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(96, 96, 96))
+        );
 
         panelDerecho.add(panelConsultaConProfesional, "card3");
 
         panelElegirProfesional.setBackground(new java.awt.Color(51, 51, 51));
-        panelElegirProfesional.setMaximumSize(new java.awt.Dimension(800, 800));
-        panelElegirProfesional.setMinimumSize(new java.awt.Dimension(800, 800));
-        panelElegirProfesional.setPreferredSize(new java.awt.Dimension(800, 800));
+        panelElegirProfesional.setMaximumSize(new java.awt.Dimension(1020, 720));
+        panelElegirProfesional.setMinimumSize(new java.awt.Dimension(1020, 720));
+        panelElegirProfesional.setPreferredSize(new java.awt.Dimension(1020, 720));
 
         listaElegirProfesionales.setFont(new java.awt.Font("Century Gothic", 0, 19)); // NOI18N
         listaElegirProfesionales.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
@@ -532,100 +583,74 @@ public final class VentanaMenuPrincipalUsuario extends javax.swing.JDialog {
         panelElegirProfesionalLayout.setHorizontalGroup(
             panelElegirProfesionalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelElegirProfesionalLayout.createSequentialGroup()
-                .addContainerGap(79, Short.MAX_VALUE)
+                .addContainerGap(204, Short.MAX_VALUE)
                 .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 624, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(97, 97, 97))
+                .addGap(192, 192, 192))
         );
         panelElegirProfesionalLayout.setVerticalGroup(
             panelElegirProfesionalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelElegirProfesionalLayout.createSequentialGroup()
-                .addGap(103, 103, 103)
+                .addGap(54, 54, 54)
                 .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 576, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(121, Short.MAX_VALUE))
+                .addContainerGap(90, Short.MAX_VALUE))
         );
 
         panelDerecho.add(panelElegirProfesional, "card4");
 
         panelVerPlanAlimentacion.setBackground(new java.awt.Color(51, 51, 51));
-        panelVerPlanAlimentacion.setMaximumSize(new java.awt.Dimension(800, 800));
-        panelVerPlanAlimentacion.setMinimumSize(new java.awt.Dimension(800, 800));
-        panelVerPlanAlimentacion.setLayout(null);
+        panelVerPlanAlimentacion.setMaximumSize(new java.awt.Dimension(1020, 720));
+        panelVerPlanAlimentacion.setMinimumSize(new java.awt.Dimension(1020, 720));
+        panelVerPlanAlimentacion.setPreferredSize(new java.awt.Dimension(1020, 720));
 
         lblPlanPropuesto1.setFont(new java.awt.Font("Levenim MT", 0, 40)); // NOI18N
         lblPlanPropuesto1.setForeground(new java.awt.Color(255, 255, 255));
         lblPlanPropuesto1.setText("Plan de alimentación propuesto");
-        panelVerPlanAlimentacion.add(lblPlanPropuesto1);
-        lblPlanPropuesto1.setBounds(137, 28, 640, 62);
 
         lblPlanPropuesto2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/iconoNuevoAlimento.png"))); // NOI18N
-        panelVerPlanAlimentacion.add(lblPlanPropuesto2);
-        lblPlanPropuesto2.setBounds(27, 11, 100, 100);
 
         lblNombreDelPlan.setFont(new java.awt.Font("Century Gothic", 0, 20)); // NOI18N
         lblNombreDelPlan.setForeground(new java.awt.Color(255, 255, 255));
         lblNombreDelPlan.setText("nombre del plan");
-        panelVerPlanAlimentacion.add(lblNombreDelPlan);
-        lblNombreDelPlan.setBounds(260, 110, 320, 26);
 
         lblAlimentoIngeridoSeleccionado2.setFont(new java.awt.Font("Century Gothic", 0, 20)); // NOI18N
         lblAlimentoIngeridoSeleccionado2.setForeground(new java.awt.Color(255, 255, 255));
         lblAlimentoIngeridoSeleccionado2.setText("Nombre:");
-        panelVerPlanAlimentacion.add(lblAlimentoIngeridoSeleccionado2);
-        lblAlimentoIngeridoSeleccionado2.setBounds(150, 110, 100, 26);
 
         lblNombreDelProfesional.setFont(new java.awt.Font("Century Gothic", 0, 20)); // NOI18N
         lblNombreDelProfesional.setForeground(new java.awt.Color(255, 255, 255));
         lblNombreDelProfesional.setText("nombre del profesional");
-        panelVerPlanAlimentacion.add(lblNombreDelProfesional);
-        lblNombreDelProfesional.setBounds(280, 150, 280, 26);
 
         lblAlimentoIngeridoSeleccionado4.setFont(new java.awt.Font("Century Gothic", 1, 20)); // NOI18N
         lblAlimentoIngeridoSeleccionado4.setForeground(new java.awt.Color(255, 255, 255));
         lblAlimentoIngeridoSeleccionado4.setText("Martes");
-        panelVerPlanAlimentacion.add(lblAlimentoIngeridoSeleccionado4);
-        lblAlimentoIngeridoSeleccionado4.setBounds(250, 260, 130, 26);
 
         lblAlimentoIngeridoSeleccionado5.setFont(new java.awt.Font("Century Gothic", 0, 20)); // NOI18N
         lblAlimentoIngeridoSeleccionado5.setForeground(new java.awt.Color(255, 255, 255));
         lblAlimentoIngeridoSeleccionado5.setText("Título del profesional:");
-        panelVerPlanAlimentacion.add(lblAlimentoIngeridoSeleccionado5);
-        lblAlimentoIngeridoSeleccionado5.setBounds(150, 190, 220, 26);
 
         lblAlimentoIngeridoSeleccionado6.setFont(new java.awt.Font("Century Gothic", 1, 20)); // NOI18N
         lblAlimentoIngeridoSeleccionado6.setForeground(new java.awt.Color(255, 255, 255));
         lblAlimentoIngeridoSeleccionado6.setText("Miércoles");
-        panelVerPlanAlimentacion.add(lblAlimentoIngeridoSeleccionado6);
-        lblAlimentoIngeridoSeleccionado6.setBounds(430, 260, 130, 26);
 
         lblAlimentoIngeridoSeleccionado7.setFont(new java.awt.Font("Century Gothic", 1, 20)); // NOI18N
         lblAlimentoIngeridoSeleccionado7.setForeground(new java.awt.Color(255, 255, 255));
         lblAlimentoIngeridoSeleccionado7.setText("Jueves");
-        panelVerPlanAlimentacion.add(lblAlimentoIngeridoSeleccionado7);
-        lblAlimentoIngeridoSeleccionado7.setBounds(600, 260, 130, 26);
 
         lblAlimentoIngeridoSeleccionado8.setFont(new java.awt.Font("Century Gothic", 1, 20)); // NOI18N
         lblAlimentoIngeridoSeleccionado8.setForeground(new java.awt.Color(255, 255, 255));
         lblAlimentoIngeridoSeleccionado8.setText("Viernes");
-        panelVerPlanAlimentacion.add(lblAlimentoIngeridoSeleccionado8);
-        lblAlimentoIngeridoSeleccionado8.setBounds(160, 530, 130, 26);
 
         lblAlimentoIngeridoSeleccionado9.setFont(new java.awt.Font("Century Gothic", 1, 20)); // NOI18N
         lblAlimentoIngeridoSeleccionado9.setForeground(new java.awt.Color(255, 255, 255));
         lblAlimentoIngeridoSeleccionado9.setText("Sábado");
-        panelVerPlanAlimentacion.add(lblAlimentoIngeridoSeleccionado9);
-        lblAlimentoIngeridoSeleccionado9.setBounds(360, 530, 130, 26);
 
         lblAlimentoIngeridoSeleccionado10.setFont(new java.awt.Font("Century Gothic", 1, 20)); // NOI18N
         lblAlimentoIngeridoSeleccionado10.setForeground(new java.awt.Color(255, 255, 255));
         lblAlimentoIngeridoSeleccionado10.setText("Domingo");
-        panelVerPlanAlimentacion.add(lblAlimentoIngeridoSeleccionado10);
-        lblAlimentoIngeridoSeleccionado10.setBounds(520, 530, 110, 26);
 
         lblAlimentoIngeridoSeleccionado14.setFont(new java.awt.Font("Century Gothic", 1, 20)); // NOI18N
         lblAlimentoIngeridoSeleccionado14.setForeground(new java.awt.Color(255, 255, 255));
         lblAlimentoIngeridoSeleccionado14.setText("Lunes");
-        panelVerPlanAlimentacion.add(lblAlimentoIngeridoSeleccionado14);
-        lblAlimentoIngeridoSeleccionado14.setBounds(50, 260, 130, 26);
 
         txtComidasMartes.setBackground(new java.awt.Color(51, 51, 51));
         txtComidasMartes.setFont(new java.awt.Font("Century Gothic", 0, 19)); // NOI18N
@@ -633,17 +658,11 @@ public final class VentanaMenuPrincipalUsuario extends javax.swing.JDialog {
         txtComidasMartes.setRows(5);
         jScrollPane34.setViewportView(txtComidasMartes);
 
-        panelVerPlanAlimentacion.add(jScrollPane34);
-        jScrollPane34.setBounds(210, 300, 160, 210);
-
         txtComidasMiercoles.setBackground(new java.awt.Color(51, 51, 51));
         txtComidasMiercoles.setFont(new java.awt.Font("Century Gothic", 0, 19)); // NOI18N
         txtComidasMiercoles.setForeground(new java.awt.Color(255, 255, 255));
         txtComidasMiercoles.setRows(5);
         jScrollPane35.setViewportView(txtComidasMiercoles);
-
-        panelVerPlanAlimentacion.add(jScrollPane35);
-        jScrollPane35.setBounds(400, 300, 160, 210);
 
         txtComidasJueves.setBackground(new java.awt.Color(51, 51, 51));
         txtComidasJueves.setFont(new java.awt.Font("Century Gothic", 0, 19)); // NOI18N
@@ -651,17 +670,11 @@ public final class VentanaMenuPrincipalUsuario extends javax.swing.JDialog {
         txtComidasJueves.setRows(5);
         jScrollPane36.setViewportView(txtComidasJueves);
 
-        panelVerPlanAlimentacion.add(jScrollPane36);
-        jScrollPane36.setBounds(580, 300, 160, 210);
-
         txtComidasSabado.setBackground(new java.awt.Color(51, 51, 51));
         txtComidasSabado.setFont(new java.awt.Font("Century Gothic", 0, 19)); // NOI18N
         txtComidasSabado.setForeground(new java.awt.Color(255, 255, 255));
         txtComidasSabado.setRows(5);
         jScrollPane37.setViewportView(txtComidasSabado);
-
-        panelVerPlanAlimentacion.add(jScrollPane37);
-        jScrollPane37.setBounds(320, 570, 160, 210);
 
         txtComidasLunes.setBackground(new java.awt.Color(51, 51, 51));
         txtComidasLunes.setFont(new java.awt.Font("Century Gothic", 0, 19)); // NOI18N
@@ -669,17 +682,11 @@ public final class VentanaMenuPrincipalUsuario extends javax.swing.JDialog {
         txtComidasLunes.setRows(5);
         jScrollPane38.setViewportView(txtComidasLunes);
 
-        panelVerPlanAlimentacion.add(jScrollPane38);
-        jScrollPane38.setBounds(20, 300, 160, 210);
-
         txtComidasDomingo.setBackground(new java.awt.Color(51, 51, 51));
         txtComidasDomingo.setFont(new java.awt.Font("Century Gothic", 0, 19)); // NOI18N
         txtComidasDomingo.setForeground(new java.awt.Color(255, 255, 255));
         txtComidasDomingo.setRows(5);
         jScrollPane39.setViewportView(txtComidasDomingo);
-
-        panelVerPlanAlimentacion.add(jScrollPane39);
-        jScrollPane39.setBounds(510, 570, 160, 210);
 
         txtComidasViernes.setBackground(new java.awt.Color(51, 51, 51));
         txtComidasViernes.setFont(new java.awt.Font("Century Gothic", 0, 19)); // NOI18N
@@ -687,73 +694,183 @@ public final class VentanaMenuPrincipalUsuario extends javax.swing.JDialog {
         txtComidasViernes.setRows(5);
         jScrollPane40.setViewportView(txtComidasViernes);
 
-        panelVerPlanAlimentacion.add(jScrollPane40);
-        jScrollPane40.setBounds(130, 570, 160, 210);
-
         lblAlimentoIngeridoSeleccionado11.setFont(new java.awt.Font("Century Gothic", 0, 20)); // NOI18N
         lblAlimentoIngeridoSeleccionado11.setForeground(new java.awt.Color(255, 255, 255));
         lblAlimentoIngeridoSeleccionado11.setText("Profesional:");
-        panelVerPlanAlimentacion.add(lblAlimentoIngeridoSeleccionado11);
-        lblAlimentoIngeridoSeleccionado11.setBounds(150, 150, 130, 26);
 
         lblTituloDelProfesional.setFont(new java.awt.Font("Century Gothic", 0, 20)); // NOI18N
         lblTituloDelProfesional.setForeground(new java.awt.Color(255, 255, 255));
         lblTituloDelProfesional.setText("titulo del profesional");
-        panelVerPlanAlimentacion.add(lblTituloDelProfesional);
-        lblTituloDelProfesional.setBounds(370, 190, 410, 26);
+
+        javax.swing.GroupLayout panelVerPlanAlimentacionLayout = new javax.swing.GroupLayout(panelVerPlanAlimentacion);
+        panelVerPlanAlimentacion.setLayout(panelVerPlanAlimentacionLayout);
+        panelVerPlanAlimentacionLayout.setHorizontalGroup(
+            panelVerPlanAlimentacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelVerPlanAlimentacionLayout.createSequentialGroup()
+                .addGroup(panelVerPlanAlimentacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelVerPlanAlimentacionLayout.createSequentialGroup()
+                        .addGap(27, 27, 27)
+                        .addComponent(lblPlanPropuesto2)
+                        .addGap(10, 10, 10)
+                        .addGroup(panelVerPlanAlimentacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblPlanPropuesto1, javax.swing.GroupLayout.PREFERRED_SIZE, 640, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(panelVerPlanAlimentacionLayout.createSequentialGroup()
+                                .addGap(13, 13, 13)
+                                .addComponent(lblAlimentoIngeridoSeleccionado2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(10, 10, 10)
+                                .addComponent(lblNombreDelPlan, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(panelVerPlanAlimentacionLayout.createSequentialGroup()
+                        .addGap(150, 150, 150)
+                        .addComponent(lblAlimentoIngeridoSeleccionado11, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, 0)
+                        .addComponent(lblNombreDelProfesional, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelVerPlanAlimentacionLayout.createSequentialGroup()
+                        .addGap(150, 150, 150)
+                        .addComponent(lblAlimentoIngeridoSeleccionado5, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, 0)
+                        .addComponent(lblTituloDelProfesional, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelVerPlanAlimentacionLayout.createSequentialGroup()
+                        .addGap(160, 160, 160)
+                        .addComponent(lblAlimentoIngeridoSeleccionado8, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(70, 70, 70)
+                        .addComponent(lblAlimentoIngeridoSeleccionado9, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(30, 30, 30)
+                        .addComponent(lblAlimentoIngeridoSeleccionado10, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelVerPlanAlimentacionLayout.createSequentialGroup()
+                        .addGap(137, 137, 137)
+                        .addComponent(jScrollPane40, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(30, 30, 30)
+                        .addComponent(jScrollPane37, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(30, 30, 30)
+                        .addComponent(jScrollPane39, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelVerPlanAlimentacionLayout.createSequentialGroup()
+                        .addGap(42, 42, 42)
+                        .addGroup(panelVerPlanAlimentacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panelVerPlanAlimentacionLayout.createSequentialGroup()
+                                .addGap(30, 30, 30)
+                                .addComponent(lblAlimentoIngeridoSeleccionado14, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(70, 70, 70)
+                                .addComponent(lblAlimentoIngeridoSeleccionado4, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(50, 50, 50)
+                                .addComponent(lblAlimentoIngeridoSeleccionado6, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(40, 40, 40)
+                                .addComponent(lblAlimentoIngeridoSeleccionado7, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(panelVerPlanAlimentacionLayout.createSequentialGroup()
+                                .addComponent(jScrollPane38, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(30, 30, 30)
+                                .addComponent(jScrollPane34, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(30, 30, 30)
+                                .addComponent(jScrollPane35, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(20, 20, 20)
+                                .addComponent(jScrollPane36, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGap(240, 240, 240))
+        );
+        panelVerPlanAlimentacionLayout.setVerticalGroup(
+            panelVerPlanAlimentacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelVerPlanAlimentacionLayout.createSequentialGroup()
+                .addGap(11, 11, 11)
+                .addGroup(panelVerPlanAlimentacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblPlanPropuesto2)
+                    .addGroup(panelVerPlanAlimentacionLayout.createSequentialGroup()
+                        .addGap(17, 17, 17)
+                        .addComponent(lblPlanPropuesto1, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(20, 20, 20)
+                        .addGroup(panelVerPlanAlimentacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblAlimentoIngeridoSeleccionado2)
+                            .addComponent(lblNombreDelPlan))))
+                .addGap(14, 14, 14)
+                .addGroup(panelVerPlanAlimentacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblAlimentoIngeridoSeleccionado11)
+                    .addComponent(lblNombreDelProfesional))
+                .addGap(14, 14, 14)
+                .addGroup(panelVerPlanAlimentacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblAlimentoIngeridoSeleccionado5)
+                    .addComponent(lblTituloDelProfesional))
+                .addGap(46, 46, 46)
+                .addGroup(panelVerPlanAlimentacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblAlimentoIngeridoSeleccionado14)
+                    .addComponent(lblAlimentoIngeridoSeleccionado4)
+                    .addComponent(lblAlimentoIngeridoSeleccionado6)
+                    .addComponent(lblAlimentoIngeridoSeleccionado7))
+                .addGap(14, 14, 14)
+                .addGroup(panelVerPlanAlimentacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane38, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane34, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane35, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane36, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(panelVerPlanAlimentacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblAlimentoIngeridoSeleccionado8)
+                    .addComponent(lblAlimentoIngeridoSeleccionado9)
+                    .addComponent(lblAlimentoIngeridoSeleccionado10))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(panelVerPlanAlimentacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane40, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane37, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane39, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
 
         panelDerecho.add(panelVerPlanAlimentacion, "card5");
 
         panelIngestaRegistradaCorrectamente.setBackground(new java.awt.Color(51, 51, 51));
-        panelIngestaRegistradaCorrectamente.setMaximumSize(new java.awt.Dimension(800, 800));
-        panelIngestaRegistradaCorrectamente.setMinimumSize(new java.awt.Dimension(800, 800));
-        panelIngestaRegistradaCorrectamente.setPreferredSize(new java.awt.Dimension(800, 800));
-        panelIngestaRegistradaCorrectamente.setLayout(null);
+        panelIngestaRegistradaCorrectamente.setMaximumSize(new java.awt.Dimension(1020, 720));
+        panelIngestaRegistradaCorrectamente.setMinimumSize(new java.awt.Dimension(1020, 720));
+        panelIngestaRegistradaCorrectamente.setPreferredSize(new java.awt.Dimension(1020, 720));
 
         lblNohayConsultas1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/iconoOK.png"))); // NOI18N
-        panelIngestaRegistradaCorrectamente.add(lblNohayConsultas1);
-        lblNohayConsultas1.setBounds(300, 200, 104, 104);
 
         lblNohayConsultasTexto1.setFont(new java.awt.Font("Century Gothic", 1, 40)); // NOI18N
         lblNohayConsultasTexto1.setForeground(new java.awt.Color(255, 255, 255));
         lblNohayConsultasTexto1.setText("Ingesta registrada");
-        panelIngestaRegistradaCorrectamente.add(lblNohayConsultasTexto1);
-        lblNohayConsultasTexto1.setBounds(190, 340, 360, 50);
+
+        javax.swing.GroupLayout panelIngestaRegistradaCorrectamenteLayout = new javax.swing.GroupLayout(panelIngestaRegistradaCorrectamente);
+        panelIngestaRegistradaCorrectamente.setLayout(panelIngestaRegistradaCorrectamenteLayout);
+        panelIngestaRegistradaCorrectamenteLayout.setHorizontalGroup(
+            panelIngestaRegistradaCorrectamenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelIngestaRegistradaCorrectamenteLayout.createSequentialGroup()
+                .addContainerGap(355, Short.MAX_VALUE)
+                .addGroup(panelIngestaRegistradaCorrectamenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelIngestaRegistradaCorrectamenteLayout.createSequentialGroup()
+                        .addGap(110, 110, 110)
+                        .addComponent(lblNohayConsultas1))
+                    .addComponent(lblNohayConsultasTexto1, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(305, 305, 305))
+        );
+        panelIngestaRegistradaCorrectamenteLayout.setVerticalGroup(
+            panelIngestaRegistradaCorrectamenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelIngestaRegistradaCorrectamenteLayout.createSequentialGroup()
+                .addGap(199, 199, 199)
+                .addComponent(lblNohayConsultas1)
+                .addGap(36, 36, 36)
+                .addComponent(lblNohayConsultasTexto1)
+                .addContainerGap(331, Short.MAX_VALUE))
+        );
 
         panelDerecho.add(panelIngestaRegistradaCorrectamente, "card10");
 
         panelIngresarAlimentoIngerido.setBackground(new java.awt.Color(51, 51, 51));
-        panelIngresarAlimentoIngerido.setMaximumSize(new java.awt.Dimension(800, 800));
-        panelIngresarAlimentoIngerido.setMinimumSize(new java.awt.Dimension(800, 800));
-        panelIngresarAlimentoIngerido.setLayout(null);
+        panelIngresarAlimentoIngerido.setMaximumSize(new java.awt.Dimension(1020, 720));
+        panelIngresarAlimentoIngerido.setMinimumSize(new java.awt.Dimension(1020, 720));
+        panelIngresarAlimentoIngerido.setPreferredSize(new java.awt.Dimension(1020, 720));
 
         fechaIngestaUsuario.setFieldFont(new java.awt.Font("Century Gothic", java.awt.Font.PLAIN, 17));
-        panelIngresarAlimentoIngerido.add(fechaIngestaUsuario);
-        fechaIngestaUsuario.setBounds(49, 477, 178, 38);
 
         lblAlimentoIngerido.setFont(new java.awt.Font("Levenim MT", 0, 50)); // NOI18N
         lblAlimentoIngerido.setForeground(new java.awt.Color(255, 255, 255));
         lblAlimentoIngerido.setText("ingerido");
-        panelIngresarAlimentoIngerido.add(lblAlimentoIngerido);
-        lblAlimentoIngerido.setBounds(320, 120, 215, 59);
 
         lblAlimentoIngerido2.setFont(new java.awt.Font("Levenim MT", 0, 50)); // NOI18N
         lblAlimentoIngerido2.setForeground(new java.awt.Color(255, 255, 255));
         lblAlimentoIngerido2.setText("Datos sobre el alimento");
-        panelIngresarAlimentoIngerido.add(lblAlimentoIngerido2);
-        lblAlimentoIngerido2.setBounds(160, 40, 596, 62);
 
         lblFechaAlimentoIngerido.setFont(new java.awt.Font("Century Gothic", 0, 30)); // NOI18N
         lblFechaAlimentoIngerido.setForeground(new java.awt.Color(255, 255, 255));
         lblFechaAlimentoIngerido.setText("Ingrese la fecha de ingesta");
-        panelIngresarAlimentoIngerido.add(lblFechaAlimentoIngerido);
-        lblFechaAlimentoIngerido.setBounds(49, 410, 624, 38);
 
         lblAlimentoIngeridoSeleccionado.setFont(new java.awt.Font("Century Gothic", 0, 30)); // NOI18N
         lblAlimentoIngeridoSeleccionado.setForeground(new java.awt.Color(255, 255, 255));
         lblAlimentoIngeridoSeleccionado.setText("Ingrese el nuevo alimento ");
-        panelIngresarAlimentoIngerido.add(lblAlimentoIngeridoSeleccionado);
-        lblAlimentoIngeridoSeleccionado.setBounds(49, 258, 624, 38);
 
         comboAlimentosEnSistema.setFont(new java.awt.Font("Century Gothic", 0, 15)); // NOI18N
         comboAlimentosEnSistema.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione..." }));
@@ -762,12 +879,8 @@ public final class VentanaMenuPrincipalUsuario extends javax.swing.JDialog {
                 comboAlimentosEnSistemaItemStateChanged(evt);
             }
         });
-        panelIngresarAlimentoIngerido.add(comboAlimentosEnSistema);
-        comboAlimentosEnSistema.setBounds(49, 314, 184, 41);
 
         lblNuevoAlimentoIngerido.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/iconoNuevoAlimento.png"))); // NOI18N
-        panelIngresarAlimentoIngerido.add(lblNuevoAlimentoIngerido);
-        lblNuevoAlimentoIngerido.setBounds(40, 60, 100, 100);
 
         btnNuevaIngesta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/iconoAgregarALaLista.png"))); // NOI18N
         btnNuevaIngesta.setBorderPainted(false);
@@ -777,328 +890,127 @@ public final class VentanaMenuPrincipalUsuario extends javax.swing.JDialog {
                 btnNuevaIngestaActionPerformed(evt);
             }
         });
-        panelIngresarAlimentoIngerido.add(btnNuevaIngesta);
-        btnNuevaIngesta.setBounds(640, 628, 124, 117);
 
         lblValidarNuevoAlimento.setForeground(new java.awt.Color(255, 255, 255));
         lblValidarNuevoAlimento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/iconoCampoIncorrecto.png"))); // NOI18N
-        panelIngresarAlimentoIngerido.add(lblValidarNuevoAlimento);
-        lblValidarNuevoAlimento.setBounds(250, 310, 32, 44);
 
         lblNuevoAlimentoVacio.setFont(new java.awt.Font("Century Gothic", 0, 19)); // NOI18N
         lblNuevoAlimentoVacio.setForeground(new java.awt.Color(240, 128, 128));
         lblNuevoAlimentoVacio.setText("Dato vacio");
-        panelIngresarAlimentoIngerido.add(lblNuevoAlimentoVacio);
-        lblNuevoAlimentoVacio.setBounds(300, 310, 120, 38);
 
         lblDatosIncorrectos2.setFont(new java.awt.Font("Century Gothic", 0, 20)); // NOI18N
         lblDatosIncorrectos2.setForeground(new java.awt.Color(255, 153, 153));
         lblDatosIncorrectos2.setText("Aún quedan datos incorrectos");
-        panelIngresarAlimentoIngerido.add(lblDatosIncorrectos2);
-        lblDatosIncorrectos2.setBounds(320, 650, 341, 40);
+
+        javax.swing.GroupLayout panelIngresarAlimentoIngeridoLayout = new javax.swing.GroupLayout(panelIngresarAlimentoIngerido);
+        panelIngresarAlimentoIngerido.setLayout(panelIngresarAlimentoIngeridoLayout);
+        panelIngresarAlimentoIngeridoLayout.setHorizontalGroup(
+            panelIngresarAlimentoIngeridoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelIngresarAlimentoIngeridoLayout.createSequentialGroup()
+                .addGroup(panelIngresarAlimentoIngeridoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelIngresarAlimentoIngeridoLayout.createSequentialGroup()
+                        .addGap(40, 40, 40)
+                        .addComponent(lblNuevoAlimentoIngerido)
+                        .addGap(20, 20, 20)
+                        .addGroup(panelIngresarAlimentoIngeridoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblAlimentoIngerido2, javax.swing.GroupLayout.PREFERRED_SIZE, 596, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(panelIngresarAlimentoIngeridoLayout.createSequentialGroup()
+                                .addGap(160, 160, 160)
+                                .addComponent(lblAlimentoIngerido, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(panelIngresarAlimentoIngeridoLayout.createSequentialGroup()
+                        .addGap(49, 49, 49)
+                        .addComponent(lblAlimentoIngeridoSeleccionado, javax.swing.GroupLayout.PREFERRED_SIZE, 624, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelIngresarAlimentoIngeridoLayout.createSequentialGroup()
+                        .addGap(49, 49, 49)
+                        .addComponent(comboAlimentosEnSistema, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(17, 17, 17)
+                        .addComponent(lblValidarNuevoAlimento)
+                        .addGap(18, 18, 18)
+                        .addComponent(lblNuevoAlimentoVacio, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelIngresarAlimentoIngeridoLayout.createSequentialGroup()
+                        .addGap(49, 49, 49)
+                        .addComponent(lblFechaAlimentoIngerido, javax.swing.GroupLayout.PREFERRED_SIZE, 624, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(panelIngresarAlimentoIngeridoLayout.createSequentialGroup()
+                .addGap(49, 49, 49)
+                .addComponent(fechaIngestaUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(panelIngresarAlimentoIngeridoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblDatosIncorrectos2, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(panelIngresarAlimentoIngeridoLayout.createSequentialGroup()
+                        .addGap(320, 320, 320)
+                        .addComponent(btnNuevaIngesta, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(166, 166, 166))
+        );
+        panelIngresarAlimentoIngeridoLayout.setVerticalGroup(
+            panelIngresarAlimentoIngeridoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelIngresarAlimentoIngeridoLayout.createSequentialGroup()
+                .addGap(40, 40, 40)
+                .addGroup(panelIngresarAlimentoIngeridoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelIngresarAlimentoIngeridoLayout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(lblNuevoAlimentoIngerido))
+                    .addGroup(panelIngresarAlimentoIngeridoLayout.createSequentialGroup()
+                        .addComponent(lblAlimentoIngerido2, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(lblAlimentoIngerido, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(79, 79, 79)
+                .addComponent(lblAlimentoIngeridoSeleccionado)
+                .addGap(14, 14, 14)
+                .addGroup(panelIngresarAlimentoIngeridoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelIngresarAlimentoIngeridoLayout.createSequentialGroup()
+                        .addGap(4, 4, 4)
+                        .addComponent(comboAlimentosEnSistema, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblValidarNuevoAlimento, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblNuevoAlimentoVacio, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(55, 55, 55)
+                .addComponent(lblFechaAlimentoIngerido)
+                .addGroup(panelIngresarAlimentoIngeridoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelIngresarAlimentoIngeridoLayout.createSequentialGroup()
+                        .addGap(29, 29, 29)
+                        .addComponent(fechaIngestaUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelIngresarAlimentoIngeridoLayout.createSequentialGroup()
+                        .addGap(46, 46, 46)
+                        .addGroup(panelIngresarAlimentoIngeridoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panelIngresarAlimentoIngeridoLayout.createSequentialGroup()
+                                .addGap(22, 22, 22)
+                                .addComponent(lblDatosIncorrectos2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btnNuevaIngesta, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(132, 132, 132))
+        );
 
         panelDerecho.add(panelIngresarAlimentoIngerido, "card5");
 
         panelPlanDeAlimentacion.setBackground(new java.awt.Color(51, 51, 51));
-        panelPlanDeAlimentacion.setMaximumSize(new java.awt.Dimension(800, 800));
-        panelPlanDeAlimentacion.setMinimumSize(new java.awt.Dimension(800, 800));
+        panelPlanDeAlimentacion.setMaximumSize(new java.awt.Dimension(1020, 720));
+        panelPlanDeAlimentacion.setMinimumSize(new java.awt.Dimension(1020, 720));
+        panelPlanDeAlimentacion.setPreferredSize(new java.awt.Dimension(1020, 720));
         panelPlanDeAlimentacion.setLayout(null);
 
-        lblErrorPlanPendiente2.setFont(new java.awt.Font("Century Gothic", 0, 19)); // NOI18N
-        lblErrorPlanPendiente2.setForeground(new java.awt.Color(255, 102, 102));
-        lblErrorPlanPendiente2.setText("Ya tiene un plan solicitado pendiente");
-        panelPlanDeAlimentacion.add(lblErrorPlanPendiente2);
-        lblErrorPlanPendiente2.setBounds(40, 190, 354, 25);
-
-        lblErrorPlanPendiente.setFont(new java.awt.Font("Century Gothic", 0, 19)); // NOI18N
-        lblErrorPlanPendiente.setForeground(new java.awt.Color(255, 102, 102));
-        lblErrorPlanPendiente.setText("espere a que sea atendido");
-        panelPlanDeAlimentacion.add(lblErrorPlanPendiente);
-        lblErrorPlanPendiente.setBounds(80, 220, 260, 25);
-
-        lblPlanDeAlimentacion.setFont(new java.awt.Font("Levenim MT", 0, 50)); // NOI18N
-        lblPlanDeAlimentacion.setForeground(new java.awt.Color(255, 255, 255));
-        lblPlanDeAlimentacion.setText("Plan de alimentación");
-        panelPlanDeAlimentacion.add(lblPlanDeAlimentacion);
-        lblPlanDeAlimentacion.setBounds(160, 20, 596, 62);
-
-        btnSolicitarNuevoPlan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/iconoNuevoPlanAlimentacion.png"))); // NOI18N
-        btnSolicitarNuevoPlan.setBorderPainted(false);
-        btnSolicitarNuevoPlan.setContentAreaFilled(false);
-        btnSolicitarNuevoPlan.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSolicitarNuevoPlanActionPerformed(evt);
-            }
-        });
-        panelPlanDeAlimentacion.add(btnSolicitarNuevoPlan);
-        btnSolicitarNuevoPlan.setBounds(150, 80, 124, 117);
-
         panelNoHayPlanesDisponibles.setBackground(new java.awt.Color(51, 52, 52));
+        panelNoHayPlanesDisponibles.setLayout(null);
 
         lblNoHayPlanes.setFont(new java.awt.Font("Century Gothic", 1, 40)); // NOI18N
         lblNoHayPlanes.setForeground(new java.awt.Color(255, 255, 255));
         lblNoHayPlanes.setText("disponibles");
+        panelNoHayPlanesDisponibles.add(lblNoHayPlanes);
+        lblNoHayPlanes.setBounds(63, 251, 220, 65);
 
         lblPlanSolicitadoCorrectamente1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/iconoCaraTriste.png"))); // NOI18N
+        panelNoHayPlanesDisponibles.add(lblPlanSolicitadoCorrectamente1);
+        lblPlanSolicitadoCorrectamente1.setBounds(116, 62, 100, 100);
 
         lblNoHayPlanes1.setFont(new java.awt.Font("Century Gothic", 1, 40)); // NOI18N
         lblNoHayPlanes1.setForeground(new java.awt.Color(255, 255, 255));
         lblNoHayPlanes1.setText("No hay planes");
-
-        javax.swing.GroupLayout panelNoHayPlanesDisponiblesLayout = new javax.swing.GroupLayout(panelNoHayPlanesDisponibles);
-        panelNoHayPlanesDisponibles.setLayout(panelNoHayPlanesDisponiblesLayout);
-        panelNoHayPlanesDisponiblesLayout.setHorizontalGroup(
-            panelNoHayPlanesDisponiblesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelNoHayPlanesDisponiblesLayout.createSequentialGroup()
-                .addGap(110, 110, 110)
-                .addComponent(lblPlanSolicitadoCorrectamente1, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(84, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelNoHayPlanesDisponiblesLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lblNoHayPlanes)
-                .addGap(43, 43, 43))
-            .addGroup(panelNoHayPlanesDisponiblesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelNoHayPlanesDisponiblesLayout.createSequentialGroup()
-                    .addContainerGap(29, Short.MAX_VALUE)
-                    .addComponent(lblNoHayPlanes1)
-                    .addContainerGap()))
-        );
-        panelNoHayPlanesDisponiblesLayout.setVerticalGroup(
-            panelNoHayPlanesDisponiblesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelNoHayPlanesDisponiblesLayout.createSequentialGroup()
-                .addGap(79, 79, 79)
-                .addComponent(lblPlanSolicitadoCorrectamente1, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 111, Short.MAX_VALUE)
-                .addComponent(lblNoHayPlanes, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(109, 109, 109))
-            .addGroup(panelNoHayPlanesDisponiblesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelNoHayPlanesDisponiblesLayout.createSequentialGroup()
-                    .addContainerGap(244, Short.MAX_VALUE)
-                    .addComponent(lblNoHayPlanes1, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(179, 179, 179)))
-        );
+        panelNoHayPlanesDisponibles.add(lblNoHayPlanes1);
+        lblNoHayPlanes1.setBounds(29, 168, 281, 77);
 
         panelPlanDeAlimentacion.add(panelNoHayPlanesDisponibles);
-        panelNoHayPlanesDisponibles.setBounds(410, 240, 320, 500);
-
-        panelPlanSolicitadoCorrectamente.setBackground(new java.awt.Color(51, 51, 51));
-        panelPlanSolicitadoCorrectamente.setMaximumSize(new java.awt.Dimension(390, 500));
-
-        lblPlanSolicitadoCorrectamente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/iconoOK.png"))); // NOI18N
-
-        lblPlanSolicitado.setFont(new java.awt.Font("Century Gothic", 1, 40)); // NOI18N
-        lblPlanSolicitado.setForeground(new java.awt.Color(255, 255, 255));
-        lblPlanSolicitado.setText("Plan solicitado");
-
-        javax.swing.GroupLayout panelPlanSolicitadoCorrectamenteLayout = new javax.swing.GroupLayout(panelPlanSolicitadoCorrectamente);
-        panelPlanSolicitadoCorrectamente.setLayout(panelPlanSolicitadoCorrectamenteLayout);
-        panelPlanSolicitadoCorrectamenteLayout.setHorizontalGroup(
-            panelPlanSolicitadoCorrectamenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelPlanSolicitadoCorrectamenteLayout.createSequentialGroup()
-                .addGroup(panelPlanSolicitadoCorrectamenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelPlanSolicitadoCorrectamenteLayout.createSequentialGroup()
-                        .addGap(110, 110, 110)
-                        .addComponent(lblPlanSolicitadoCorrectamente, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(panelPlanSolicitadoCorrectamenteLayout.createSequentialGroup()
-                        .addGap(36, 36, 36)
-                        .addComponent(lblPlanSolicitado)))
-                .addContainerGap(71, Short.MAX_VALUE))
-        );
-        panelPlanSolicitadoCorrectamenteLayout.setVerticalGroup(
-            panelPlanSolicitadoCorrectamenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelPlanSolicitadoCorrectamenteLayout.createSequentialGroup()
-                .addGap(80, 80, 80)
-                .addComponent(lblPlanSolicitadoCorrectamente, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31)
-                .addComponent(lblPlanSolicitado, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(198, Short.MAX_VALUE))
-        );
-
-        panelPlanDeAlimentacion.add(panelPlanSolicitadoCorrectamente);
-        panelPlanSolicitadoCorrectamente.setBounds(40, 250, 390, 510);
-
-        panelSolicitarNuevoPlan.setBackground(new java.awt.Color(51, 51, 51));
-
-        lblCambiarPreferencias.setFont(new java.awt.Font("Century Gothic", 0, 20)); // NOI18N
-        lblCambiarPreferencias.setForeground(new java.awt.Color(255, 255, 255));
-        lblCambiarPreferencias.setText("personal?");
-
-        comboProfesionalesEnSistema.setFont(new java.awt.Font("Century Gothic", 0, 15)); // NOI18N
-        comboProfesionalesEnSistema.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione..." }));
-        comboProfesionalesEnSistema.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                comboProfesionalesEnSistemaActionPerformed(evt);
-            }
-        });
-
-        lblSeleccioneProfesional1.setFont(new java.awt.Font("Century Gothic", 0, 20)); // NOI18N
-        lblSeleccioneProfesional1.setForeground(new java.awt.Color(255, 255, 255));
-        lblSeleccioneProfesional1.setText("Seleccione el Profesional");
-
-        lblCambiarPreferencias3.setFont(new java.awt.Font("Century Gothic", 0, 20)); // NOI18N
-        lblCambiarPreferencias3.setForeground(new java.awt.Color(255, 255, 255));
-        lblCambiarPreferencias3.setText("basará en ella para elaborar el plan");
-
-        lblCambiarPreferencias2.setFont(new java.awt.Font("Century Gothic", 0, 20)); // NOI18N
-        lblCambiarPreferencias2.setForeground(new java.awt.Color(255, 255, 255));
-        lblCambiarPreferencias2.setText("Recuerde que el profesional se ");
-
-        btnEditarPreferencias.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/iconoEditarPreferencias.png"))); // NOI18N
-        btnEditarPreferencias.setBorderPainted(false);
-        btnEditarPreferencias.setContentAreaFilled(false);
-        btnEditarPreferencias.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEditarPreferenciasActionPerformed(evt);
-            }
-        });
-
-        lblCambiarPreferencias4.setFont(new java.awt.Font("Century Gothic", 0, 20)); // NOI18N
-        lblCambiarPreferencias4.setForeground(new java.awt.Color(255, 255, 255));
-        lblCambiarPreferencias4.setText("¿Desea cambiar su información");
-
-        btnEditarRestricciones.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/iconoEditarRestricciones.png"))); // NOI18N
-        btnEditarRestricciones.setBorderPainted(false);
-        btnEditarRestricciones.setContentAreaFilled(false);
-        btnEditarRestricciones.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEditarRestriccionesActionPerformed(evt);
-            }
-        });
-
-        lblCambiarPreferencias5.setFont(new java.awt.Font("Century Gothic", 0, 16)); // NOI18N
-        lblCambiarPreferencias5.setForeground(new java.awt.Color(255, 255, 255));
-        lblCambiarPreferencias5.setText("Restricciones");
-
-        lblCambiarPreferencias6.setFont(new java.awt.Font("Century Gothic", 0, 16)); // NOI18N
-        lblCambiarPreferencias6.setForeground(new java.awt.Color(255, 255, 255));
-        lblCambiarPreferencias6.setText("Preferencias");
-
-        btnAceptarSolicitudPlanAlimentacion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fotoConfirmar.png"))); // NOI18N
-        btnAceptarSolicitudPlanAlimentacion.setBorderPainted(false);
-        btnAceptarSolicitudPlanAlimentacion.setContentAreaFilled(false);
-        btnAceptarSolicitudPlanAlimentacion.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAceptarSolicitudPlanAlimentacionActionPerformed(evt);
-            }
-        });
-
-        lblValidarProfesionalPlan.setForeground(new java.awt.Color(255, 255, 255));
-        lblValidarProfesionalPlan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/iconoCampoIncorrecto.png"))); // NOI18N
-        lblValidarProfesionalPlan.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                lblValidarProfesionalPlanFocusGained(evt);
-            }
-        });
-
-        lblDatosIncorrectos.setFont(new java.awt.Font("Century Gothic", 0, 20)); // NOI18N
-        lblDatosIncorrectos.setForeground(new java.awt.Color(255, 153, 153));
-        lblDatosIncorrectos.setText("completar");
-
-        lblDatosIncorrectos1.setFont(new java.awt.Font("Century Gothic", 0, 20)); // NOI18N
-        lblDatosIncorrectos1.setForeground(new java.awt.Color(255, 153, 153));
-        lblDatosIncorrectos1.setText("Quedan datos sin");
-
-        javax.swing.GroupLayout panelSolicitarNuevoPlanLayout = new javax.swing.GroupLayout(panelSolicitarNuevoPlan);
-        panelSolicitarNuevoPlan.setLayout(panelSolicitarNuevoPlanLayout);
-        panelSolicitarNuevoPlanLayout.setHorizontalGroup(
-            panelSolicitarNuevoPlanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelSolicitarNuevoPlanLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(panelSolicitarNuevoPlanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelSolicitarNuevoPlanLayout.createSequentialGroup()
-                        .addGroup(panelSolicitarNuevoPlanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblCambiarPreferencias2, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblCambiarPreferencias3)
-                            .addGroup(panelSolicitarNuevoPlanLayout.createSequentialGroup()
-                                .addGroup(panelSolicitarNuevoPlanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(btnEditarPreferencias, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblCambiarPreferencias6, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(89, 89, 89)
-                                .addGroup(panelSolicitarNuevoPlanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblCambiarPreferencias5, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btnEditarRestricciones, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(panelSolicitarNuevoPlanLayout.createSequentialGroup()
-                                .addGap(8, 8, 8)
-                                .addGroup(panelSolicitarNuevoPlanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(panelSolicitarNuevoPlanLayout.createSequentialGroup()
-                                        .addComponent(comboProfesionalesEnSistema, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(30, 30, 30)
-                                        .addComponent(lblValidarProfesionalPlan))
-                                    .addComponent(lblCambiarPreferencias, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addContainerGap(25, Short.MAX_VALUE))
-                    .addGroup(panelSolicitarNuevoPlanLayout.createSequentialGroup()
-                        .addGap(9, 9, 9)
-                        .addComponent(lblDatosIncorrectos, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnAceptarSolicitudPlanAlimentacion)
-                        .addGap(18, 18, 18))))
-            .addGroup(panelSolicitarNuevoPlanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(panelSolicitarNuevoPlanLayout.createSequentialGroup()
-                    .addGap(20, 20, 20)
-                    .addComponent(lblSeleccioneProfesional1, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(103, Short.MAX_VALUE)))
-            .addGroup(panelSolicitarNuevoPlanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(panelSolicitarNuevoPlanLayout.createSequentialGroup()
-                    .addGap(20, 20, 20)
-                    .addComponent(lblCambiarPreferencias4, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(34, Short.MAX_VALUE)))
-            .addGroup(panelSolicitarNuevoPlanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(panelSolicitarNuevoPlanLayout.createSequentialGroup()
-                    .addGap(20, 20, 20)
-                    .addComponent(lblDatosIncorrectos1, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(185, Short.MAX_VALUE)))
-        );
-        panelSolicitarNuevoPlanLayout.setVerticalGroup(
-            panelSolicitarNuevoPlanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelSolicitarNuevoPlanLayout.createSequentialGroup()
-                .addGap(55, 55, 55)
-                .addGroup(panelSolicitarNuevoPlanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(comboProfesionalesEnSistema, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblValidarProfesionalPlan, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(74, 74, 74)
-                .addGroup(panelSolicitarNuevoPlanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnEditarRestricciones)
-                    .addGroup(panelSolicitarNuevoPlanLayout.createSequentialGroup()
-                        .addComponent(lblCambiarPreferencias)
-                        .addGap(18, 18, 18)
-                        .addComponent(lblCambiarPreferencias2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(lblCambiarPreferencias3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnEditarPreferencias)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(panelSolicitarNuevoPlanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblCambiarPreferencias5)
-                    .addComponent(lblCambiarPreferencias6))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
-                .addGroup(panelSolicitarNuevoPlanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelSolicitarNuevoPlanLayout.createSequentialGroup()
-                        .addComponent(btnAceptarSolicitudPlanAlimentacion, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelSolicitarNuevoPlanLayout.createSequentialGroup()
-                        .addComponent(lblDatosIncorrectos)
-                        .addGap(23, 23, 23))))
-            .addGroup(panelSolicitarNuevoPlanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(panelSolicitarNuevoPlanLayout.createSequentialGroup()
-                    .addGap(21, 21, 21)
-                    .addComponent(lblSeleccioneProfesional1)
-                    .addContainerGap(489, Short.MAX_VALUE)))
-            .addGroup(panelSolicitarNuevoPlanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(panelSolicitarNuevoPlanLayout.createSequentialGroup()
-                    .addGap(139, 139, 139)
-                    .addComponent(lblCambiarPreferencias4)
-                    .addContainerGap(371, Short.MAX_VALUE)))
-            .addGroup(panelSolicitarNuevoPlanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelSolicitarNuevoPlanLayout.createSequentialGroup()
-                    .addContainerGap(457, Short.MAX_VALUE)
-                    .addComponent(lblDatosIncorrectos1)
-                    .addGap(53, 53, 53)))
-        );
-
-        panelPlanDeAlimentacion.add(panelSolicitarNuevoPlan);
-        panelSolicitarNuevoPlan.setBounds(35, 246, 399, 536);
+        panelNoHayPlanesDisponibles.setBounds(530, 220, 340, 430);
 
         panelBuscarPlan.setBackground(new java.awt.Color(51, 51, 51));
+        panelBuscarPlan.setLayout(null);
 
         listaPlanesDelUsuario.setBackground(new java.awt.Color(51, 51, 51));
         listaPlanesDelUsuario.setFont(new java.awt.Font("Century Gothic", 0, 19)); // NOI18N
@@ -1110,33 +1022,164 @@ public final class VentanaMenuPrincipalUsuario extends javax.swing.JDialog {
         });
         jScrollPane4.setViewportView(listaPlanesDelUsuario);
 
+        panelBuscarPlan.add(jScrollPane4);
+        jScrollPane4.setBounds(50, 70, 220, 343);
+
         lblSeleccioneProfesional2.setFont(new java.awt.Font("Century Gothic", 0, 20)); // NOI18N
         lblSeleccioneProfesional2.setForeground(new java.awt.Color(255, 255, 255));
         lblSeleccioneProfesional2.setText("Seleccione el plan");
-
-        javax.swing.GroupLayout panelBuscarPlanLayout = new javax.swing.GroupLayout(panelBuscarPlan);
-        panelBuscarPlan.setLayout(panelBuscarPlanLayout);
-        panelBuscarPlanLayout.setHorizontalGroup(
-            panelBuscarPlanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelBuscarPlanLayout.createSequentialGroup()
-                .addGap(49, 49, 49)
-                .addGroup(panelBuscarPlanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblSeleccioneProfesional2, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(70, Short.MAX_VALUE))
-        );
-        panelBuscarPlanLayout.setVerticalGroup(
-            panelBuscarPlanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelBuscarPlanLayout.createSequentialGroup()
-                .addGap(33, 33, 33)
-                .addComponent(lblSeleccioneProfesional2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 343, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(111, Short.MAX_VALUE))
-        );
+        panelBuscarPlan.add(lblSeleccioneProfesional2);
+        lblSeleccioneProfesional2.setBounds(49, 33, 204, 26);
 
         panelPlanDeAlimentacion.add(panelBuscarPlan);
-        panelBuscarPlan.setBounds(435, 254, 339, 524);
+        panelBuscarPlan.setBounds(530, 200, 340, 470);
+
+        lblErrorPlanPendiente2.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        lblErrorPlanPendiente2.setForeground(new java.awt.Color(255, 102, 102));
+        lblErrorPlanPendiente2.setText("Ya tiene un plan solicitado pendiente");
+        panelPlanDeAlimentacion.add(lblErrorPlanPendiente2);
+        lblErrorPlanPendiente2.setBounds(90, 190, 270, 19);
+
+        lblErrorPlanPendiente.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        lblErrorPlanPendiente.setForeground(new java.awt.Color(255, 102, 102));
+        lblErrorPlanPendiente.setText("espere a que sea atendido");
+        panelPlanDeAlimentacion.add(lblErrorPlanPendiente);
+        lblErrorPlanPendiente.setBounds(130, 210, 190, 19);
+
+        lblPlanDeAlimentacion.setFont(new java.awt.Font("Levenim MT", 0, 50)); // NOI18N
+        lblPlanDeAlimentacion.setForeground(new java.awt.Color(255, 255, 255));
+        lblPlanDeAlimentacion.setText("Plan de alimentación");
+        panelPlanDeAlimentacion.add(lblPlanDeAlimentacion);
+        lblPlanDeAlimentacion.setBounds(230, 20, 480, 62);
+
+        btnSolicitarNuevoPlan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/iconoNuevoPlanAlimentacion.png"))); // NOI18N
+        btnSolicitarNuevoPlan.setBorderPainted(false);
+        btnSolicitarNuevoPlan.setContentAreaFilled(false);
+        btnSolicitarNuevoPlan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSolicitarNuevoPlanActionPerformed(evt);
+            }
+        });
+        panelPlanDeAlimentacion.add(btnSolicitarNuevoPlan);
+        btnSolicitarNuevoPlan.setBounds(160, 80, 124, 117);
+
+        panelPlanSolicitadoCorrectamente.setBackground(new java.awt.Color(51, 51, 51));
+        panelPlanSolicitadoCorrectamente.setMaximumSize(new java.awt.Dimension(1020, 720));
+        panelPlanSolicitadoCorrectamente.setLayout(null);
+
+        lblPlanSolicitadoCorrectamente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/iconoOK.png"))); // NOI18N
+        panelPlanSolicitadoCorrectamente.add(lblPlanSolicitadoCorrectamente);
+        lblPlanSolicitadoCorrectamente.setBounds(130, 78, 126, 124);
+
+        lblPlanSolicitado.setFont(new java.awt.Font("Century Gothic", 1, 40)); // NOI18N
+        lblPlanSolicitado.setForeground(new java.awt.Color(255, 255, 255));
+        lblPlanSolicitado.setText("Plan solicitado");
+        panelPlanSolicitadoCorrectamente.add(lblPlanSolicitado);
+        lblPlanSolicitado.setBounds(56, 208, 283, 77);
+
+        panelPlanDeAlimentacion.add(panelPlanSolicitadoCorrectamente);
+        panelPlanSolicitadoCorrectamente.setBounds(40, 280, 460, 330);
+
+        panelSolicitarNuevoPlan.setBackground(new java.awt.Color(51, 51, 51));
+        panelSolicitarNuevoPlan.setLayout(null);
+
+        comboProfesionalesEnSistema.setFont(new java.awt.Font("Century Gothic", 0, 15)); // NOI18N
+        comboProfesionalesEnSistema.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione..." }));
+        comboProfesionalesEnSistema.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboProfesionalesEnSistemaActionPerformed(evt);
+            }
+        });
+        panelSolicitarNuevoPlan.add(comboProfesionalesEnSistema);
+        comboProfesionalesEnSistema.setBounds(90, 60, 190, 41);
+
+        lblSeleccioneProfesional1.setFont(new java.awt.Font("Century Gothic", 0, 20)); // NOI18N
+        lblSeleccioneProfesional1.setForeground(new java.awt.Color(255, 255, 255));
+        lblSeleccioneProfesional1.setText("Seleccione el Profesional");
+        panelSolicitarNuevoPlan.add(lblSeleccioneProfesional1);
+        lblSeleccioneProfesional1.setBounds(60, 20, 276, 26);
+
+        lblCambiarPreferencias3.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        lblCambiarPreferencias3.setForeground(new java.awt.Color(255, 255, 255));
+        lblCambiarPreferencias3.setText("basará en ella para elaborar el plan");
+        panelSolicitarNuevoPlan.add(lblCambiarPreferencias3);
+        lblCambiarPreferencias3.setBounds(60, 190, 260, 19);
+
+        lblCambiarPreferencias2.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        lblCambiarPreferencias2.setForeground(new java.awt.Color(255, 255, 255));
+        lblCambiarPreferencias2.setText("Recuerde que el profesional se ");
+        panelSolicitarNuevoPlan.add(lblCambiarPreferencias2);
+        lblCambiarPreferencias2.setBounds(80, 170, 220, 20);
+
+        btnEditarPreferencias.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/iconoEditarPreferencias.png"))); // NOI18N
+        btnEditarPreferencias.setBorderPainted(false);
+        btnEditarPreferencias.setContentAreaFilled(false);
+        btnEditarPreferencias.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarPreferenciasActionPerformed(evt);
+            }
+        });
+        panelSolicitarNuevoPlan.add(btnEditarPreferencias);
+        btnEditarPreferencias.setBounds(60, 230, 67, 69);
+
+        lblCambiarPreferencias4.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        lblCambiarPreferencias4.setForeground(new java.awt.Color(255, 255, 255));
+        lblCambiarPreferencias4.setText("¿Desea cambiar su información personal?");
+        panelSolicitarNuevoPlan.add(lblCambiarPreferencias4);
+        lblCambiarPreferencias4.setBounds(40, 140, 300, 19);
+
+        btnEditarRestricciones.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/iconoEditarRestricciones.png"))); // NOI18N
+        btnEditarRestricciones.setBorderPainted(false);
+        btnEditarRestricciones.setContentAreaFilled(false);
+        btnEditarRestricciones.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarRestriccionesActionPerformed(evt);
+            }
+        });
+        panelSolicitarNuevoPlan.add(btnEditarRestricciones);
+        btnEditarRestricciones.setBounds(260, 230, 67, 69);
+
+        lblCambiarPreferencias5.setFont(new java.awt.Font("Century Gothic", 0, 16)); // NOI18N
+        lblCambiarPreferencias5.setForeground(new java.awt.Color(255, 255, 255));
+        lblCambiarPreferencias5.setText("Restricciones");
+        panelSolicitarNuevoPlan.add(lblCambiarPreferencias5);
+        lblCambiarPreferencias5.setBounds(250, 310, 105, 21);
+
+        lblCambiarPreferencias6.setFont(new java.awt.Font("Century Gothic", 0, 16)); // NOI18N
+        lblCambiarPreferencias6.setForeground(new java.awt.Color(255, 255, 255));
+        lblCambiarPreferencias6.setText("Preferencias");
+        panelSolicitarNuevoPlan.add(lblCambiarPreferencias6);
+        lblCambiarPreferencias6.setBounds(40, 310, 105, 21);
+
+        btnAceptarSolicitudPlanAlimentacion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fotoConfirmar.png"))); // NOI18N
+        btnAceptarSolicitudPlanAlimentacion.setBorderPainted(false);
+        btnAceptarSolicitudPlanAlimentacion.setContentAreaFilled(false);
+        btnAceptarSolicitudPlanAlimentacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAceptarSolicitudPlanAlimentacionActionPerformed(evt);
+            }
+        });
+        panelSolicitarNuevoPlan.add(btnAceptarSolicitudPlanAlimentacion);
+        btnAceptarSolicitudPlanAlimentacion.setBounds(150, 330, 99, 94);
+
+        lblValidarProfesionalPlan.setForeground(new java.awt.Color(255, 255, 255));
+        lblValidarProfesionalPlan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/iconoCampoIncorrecto.png"))); // NOI18N
+        lblValidarProfesionalPlan.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                lblValidarProfesionalPlanFocusGained(evt);
+            }
+        });
+        panelSolicitarNuevoPlan.add(lblValidarProfesionalPlan);
+        lblValidarProfesionalPlan.setBounds(300, 60, 32, 44);
+
+        lblDatosIncorrectos1.setFont(new java.awt.Font("Century Gothic", 0, 20)); // NOI18N
+        lblDatosIncorrectos1.setForeground(new java.awt.Color(255, 153, 153));
+        lblDatosIncorrectos1.setText("Quedan datos sin completar");
+        panelSolicitarNuevoPlan.add(lblDatosIncorrectos1);
+        lblDatosIncorrectos1.setBounds(50, 420, 300, 26);
+
+        panelPlanDeAlimentacion.add(panelSolicitarNuevoPlan);
+        panelSolicitarNuevoPlan.setBounds(40, 250, 403, 460);
 
         btnVerPlanesExistentes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/iconoVerPlanesAlimentacion.png"))); // NOI18N
         btnVerPlanesExistentes.setBorderPainted(false);
@@ -1147,13 +1190,14 @@ public final class VentanaMenuPrincipalUsuario extends javax.swing.JDialog {
             }
         });
         panelPlanDeAlimentacion.add(btnVerPlanesExistentes);
-        btnVerPlanesExistentes.setBounds(510, 80, 124, 117);
+        btnVerPlanesExistentes.setBounds(620, 80, 124, 117);
 
         panelDerecho.add(panelPlanDeAlimentacion, "card6");
 
         panelVacio.setBackground(new java.awt.Color(51, 51, 51));
-        panelVacio.setMaximumSize(new java.awt.Dimension(800, 800));
-        panelVacio.setMinimumSize(new java.awt.Dimension(800, 800));
+        panelVacio.setMaximumSize(new java.awt.Dimension(1020, 720));
+        panelVacio.setMinimumSize(new java.awt.Dimension(1020, 720));
+        panelVacio.setPreferredSize(new java.awt.Dimension(1020, 720));
 
         btnAyuda.setForeground(new java.awt.Color(255, 255, 255));
         btnAyuda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/icons8_Question_Mark_64px.png"))); // NOI18N
@@ -1172,16 +1216,16 @@ public final class VentanaMenuPrincipalUsuario extends javax.swing.JDialog {
         panelVacioLayout.setHorizontalGroup(
             panelVacioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelVacioLayout.createSequentialGroup()
-                .addContainerGap(704, Short.MAX_VALUE)
+                .addContainerGap(891, Short.MAX_VALUE)
                 .addComponent(btnAyuda, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(43, 43, 43))
         );
         panelVacioLayout.setVerticalGroup(
             panelVacioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelVacioLayout.createSequentialGroup()
-                .addContainerGap(708, Short.MAX_VALUE)
+            .addGroup(panelVacioLayout.createSequentialGroup()
+                .addGap(36, 36, 36)
                 .addComponent(btnAyuda, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(603, Short.MAX_VALUE))
         );
 
         panelDerecho.add(panelVacio, "card7");
@@ -1197,15 +1241,17 @@ public final class VentanaMenuPrincipalUsuario extends javax.swing.JDialog {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelDerecho, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(panelMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(panelMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(panelDerecho, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeActionPerformed
-        this.ventanaMenuPrincipal.setVisible(true);
+        VentanaMenuPrincipal vPrincipal = new VentanaMenuPrincipal(sistema);
+        this.setVisible(false);
+        vPrincipal.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnHomeActionPerformed
 
@@ -1359,7 +1405,6 @@ public final class VentanaMenuPrincipalUsuario extends javax.swing.JDialog {
         else{
             ocultarPanelDeErrores();
             this.lblValidarProfesionalPlan.setVisible(false);
-            this.lblDatosIncorrectos.setVisible(false);
             this.lblDatosIncorrectos1.setVisible(false);
             this.panelSolicitarNuevoPlan.setVisible(true);
             List<Profesional> lstProfesionales = this.sistema.getListaProfesionales();
@@ -1394,10 +1439,8 @@ public final class VentanaMenuPrincipalUsuario extends javax.swing.JDialog {
     private void btnAceptarSolicitudPlanAlimentacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarSolicitudPlanAlimentacionActionPerformed
         String nombreProfesionalElegido = (String) this.comboProfesionalesEnSistema.getSelectedItem();
         if (nombreProfesionalElegido.equals("Seleccione...")) {
-            this.lblDatosIncorrectos.setVisible(true);
             this.lblDatosIncorrectos1.setVisible(true);
         } else {
-            this.lblDatosIncorrectos.setVisible(false);
             this.lblDatosIncorrectos1.setVisible(false);
             Profesional profesionalElegido = sistema.getProfesionalPorNombre(nombreProfesionalElegido);
             String nombreUsuarioLoguedo = this.sistema.getPersonaLogueada().getNombreCompleto();
@@ -1585,7 +1628,6 @@ public final class VentanaMenuPrincipalUsuario extends javax.swing.JDialog {
     private javax.swing.JLabel lblAlimentoIngeridoSeleccionado7;
     private javax.swing.JLabel lblAlimentoIngeridoSeleccionado8;
     private javax.swing.JLabel lblAlimentoIngeridoSeleccionado9;
-    private javax.swing.JLabel lblCambiarPreferencias;
     private javax.swing.JLabel lblCambiarPreferencias2;
     private javax.swing.JLabel lblCambiarPreferencias3;
     private javax.swing.JLabel lblCambiarPreferencias4;
@@ -1594,7 +1636,6 @@ public final class VentanaMenuPrincipalUsuario extends javax.swing.JDialog {
     private javax.swing.JLabel lblConsultaConProfesional;
     private javax.swing.JLabel lblCrearNuevaConversacion;
     private javax.swing.JLabel lblCrearPrimeraConversacion;
-    private javax.swing.JLabel lblDatosIncorrectos;
     private javax.swing.JLabel lblDatosIncorrectos1;
     private javax.swing.JLabel lblDatosIncorrectos2;
     private javax.swing.JLabel lblError;
