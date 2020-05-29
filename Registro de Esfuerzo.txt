@@ -9,3 +9,9 @@ Correccion code smells baja prioridad - 1hora 30min
 Netbeans sin errores - 0hs
 Correccion solicitud de plan de alimentacion - 10hs (TN2 9hs / TN3 1h)
 Visualizacion de ingestas - 1hora 30min
+
+
+-----------------------------------------------------
+
+Capacidad de tener una resoluci´on diferente
+a la que tiene por defecto el programa (SOLUCION DISTINTA A LA DE LA TAREA) - 8hs
