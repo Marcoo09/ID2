@@ -36,7 +36,7 @@ PM:
 
 Gestionar avanze semana a semana - 2hs
 Planear acciones preventivas para el próximo período - 1h
-Actualizar tablero de JIRA con los cambios para el próximo período
+Actualizar tablero de JIRA con los cambios para el próximo período - 1h
 
 -----------------------------------------------------
 
