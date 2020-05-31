@@ -38,6 +38,7 @@ public final class VentanaMenuPrincipal extends javax.swing.JDialog {
         lblTituloVentana = new javax.swing.JLabel();
         icono = new javax.swing.JLabel();
         lblTituloVentana1 = new javax.swing.JLabel();
+        btnCerrarSistema = new javax.swing.JButton();
         panel2 = new javax.swing.JPanel();
         lblNuevoUsuario = new javax.swing.JLabel();
         lblIconoNuevoUsuario = new javax.swing.JLabel();
@@ -50,7 +51,6 @@ public final class VentanaMenuPrincipal extends javax.swing.JDialog {
         iconPlus = new javax.swing.JLabel();
         lblRegistrarProfesional = new javax.swing.JLabel();
         btnAgregarProfesional = new javax.swing.JLabel();
-        btnCerrarSistema = new javax.swing.JButton();
         lblNombre2 = new javax.swing.JLabel();
         lblRegistrarUsuario = new javax.swing.JLabel();
 
@@ -78,18 +78,37 @@ public final class VentanaMenuPrincipal extends javax.swing.JDialog {
         lblTituloVentana1.setForeground(new java.awt.Color(0, 51, 153));
         lblTituloVentana1.setText("Alimentación");
 
+        btnCerrarSistema.setBackground(new java.awt.Color(51, 51, 51));
+        btnCerrarSistema.setForeground(new java.awt.Color(51, 51, 51));
+        btnCerrarSistema.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/icons8_Close_Window_48px.png"))); // NOI18N
+        btnCerrarSistema.setBorderPainted(false);
+        btnCerrarSistema.setContentAreaFilled(false);
+        btnCerrarSistema.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnCerrarSistema.setFocusPainted(false);
+        btnCerrarSistema.setInheritsPopupMenu(true);
+        btnCerrarSistema.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCerrarSistemaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panel1Layout = new javax.swing.GroupLayout(panel1);
         panel1.setLayout(panel1Layout);
         panel1Layout.setHorizontalGroup(
             panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panel1Layout.createSequentialGroup()
-                .addGap(57, 57, 57)
-                .addComponent(lblTituloVentana)
-                .addContainerGap(59, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(icono, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(86, 86, 86))
+            .addGroup(panel1Layout.createSequentialGroup()
+                .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panel1Layout.createSequentialGroup()
+                        .addGap(57, 57, 57)
+                        .addComponent(lblTituloVentana))
+                    .addGroup(panel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(btnCerrarSistema, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(59, Short.MAX_VALUE))
             .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(panel1Layout.createSequentialGroup()
                     .addContainerGap()
@@ -99,7 +118,9 @@ public final class VentanaMenuPrincipal extends javax.swing.JDialog {
         panel1Layout.setVerticalGroup(
             panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panel1Layout.createSequentialGroup()
-                .addGap(264, 264, 264)
+                .addContainerGap()
+                .addComponent(btnCerrarSistema, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(203, 203, 203)
                 .addComponent(lblTituloVentana, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(icono, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -189,22 +210,6 @@ public final class VentanaMenuPrincipal extends javax.swing.JDialog {
         panel2.add(btnAgregarProfesional);
         btnAgregarProfesional.setBounds(620, 540, 100, 90);
 
-        btnCerrarSistema.setBackground(new java.awt.Color(51, 51, 51));
-        btnCerrarSistema.setForeground(new java.awt.Color(51, 51, 51));
-        btnCerrarSistema.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/icons8_Close_Window_48px.png"))); // NOI18N
-        btnCerrarSistema.setBorderPainted(false);
-        btnCerrarSistema.setContentAreaFilled(false);
-        btnCerrarSistema.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnCerrarSistema.setFocusPainted(false);
-        btnCerrarSistema.setInheritsPopupMenu(true);
-        btnCerrarSistema.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCerrarSistemaActionPerformed(evt);
-            }
-        });
-        panel2.add(btnCerrarSistema);
-        btnCerrarSistema.setBounds(820, 10, 50, 50);
-
         lblNombre2.setFont(new java.awt.Font("Century Gothic", 0, 30)); // NOI18N
         lblNombre2.setForeground(new java.awt.Color(255, 255, 255));
         lblNombre2.setText("Usuario");
@@ -261,7 +266,7 @@ public final class VentanaMenuPrincipal extends javax.swing.JDialog {
     private void btnCerrarSistemaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarSistemaActionPerformed
         this.sistema.guardarDatosSistema();
         this.setVisible(false);
-        this.dispose();
+        System.exit(0);
     }//GEN-LAST:event_btnCerrarSistemaActionPerformed
 
     
