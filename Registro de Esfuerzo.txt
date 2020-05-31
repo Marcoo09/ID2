@@ -28,6 +28,10 @@ Tener visibilidad de usuario logueado en la aplicación - 1hs
 
 -----------------------------------------------------
 
+Reordenamiento de la pantalla del login - 2hs
+
+-----------------------------------------------------
+
 PM:
 
 Gestionar avanze semana a semana - 2hs
@@ -41,3 +45,6 @@ QA:
 Testing primer entregable - 2hs
 Testing segundo entregable - 2hs
 Testing tercer entregable - 2hs
+
+-----------------------------------------------------
+

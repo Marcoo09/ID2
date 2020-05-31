@@ -5,6 +5,12 @@ import java.io.Serializable;
 import javax.swing.ImageIcon;
 
 public abstract class Persona implements Serializable {
+    
+    public enum TipoPersona {
+        PROFESIONAL,
+        USUARIO,
+    }
+        
     protected String nombre;
     protected String apellido;
     protected String fechaNacimiento;
