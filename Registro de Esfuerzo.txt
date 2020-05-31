@@ -15,3 +15,7 @@ Visualizacion de ingestas - 1hora 30min
 
 Capacidad de tener una resoluci´on diferente
 a la que tiene por defecto el programa (SOLUCION DISTINTA A LA DE LA TAREA) - 8hs
+
+-----------------------------------------------------
+
+Capacidad de cerrar la aplicación desde cualquier lugar de la aplicación - 2hs
