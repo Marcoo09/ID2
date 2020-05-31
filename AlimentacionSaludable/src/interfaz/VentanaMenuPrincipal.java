@@ -254,17 +254,21 @@ public final class VentanaMenuPrincipal extends javax.swing.JDialog {
     }//GEN-LAST:event_formWindowClosing
 
     private void listaUsuariosVentanaValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_listaUsuariosVentanaValueChanged
-        personaALoguearse = (Persona) listaUsuariosVentana.getSelectedValue();
-        listaProfesionalesVentana.clearSelection();
-        tipoPersonaSeleccionada = TipoPersona.USUARIO;
-        toggleBotonLogin(true);
+        if(listaUsuariosVentana.isFocusOwner()){
+            personaALoguearse = (Persona) listaUsuariosVentana.getSelectedValue();
+            listaProfesionalesVentana.clearSelection();
+            tipoPersonaSeleccionada = TipoPersona.USUARIO;
+            toggleBotonLogin(true);
+        }
     }//GEN-LAST:event_listaUsuariosVentanaValueChanged
 
     private void listaProfesionalesVentanaValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_listaProfesionalesVentanaValueChanged
-        personaALoguearse = (Persona) listaProfesionalesVentana.getSelectedValue();
-        listaUsuariosVentana.clearSelection();
-        tipoPersonaSeleccionada = TipoPersona.PROFESIONAL;
-        toggleBotonLogin(true);
+        if(listaProfesionalesVentana.isFocusOwner()){
+            personaALoguearse = (Persona) listaProfesionalesVentana.getSelectedValue();
+            listaUsuariosVentana.clearSelection();
+            tipoPersonaSeleccionada = TipoPersona.PROFESIONAL;
+            toggleBotonLogin(true);
+        }
     }//GEN-LAST:event_listaProfesionalesVentanaValueChanged
 
     private void btnAgregarUsuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarUsuarioMouseClicked
