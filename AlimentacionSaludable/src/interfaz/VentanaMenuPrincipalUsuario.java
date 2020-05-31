@@ -35,6 +35,7 @@ public final class VentanaMenuPrincipalUsuario extends javax.swing.JDialog {
         this.lblValidarNuevoAlimento.setVisible(false);
         this.lblNuevoAlimentoVacio.setVisible(false);
         this.lblDatosIncorrectos2.setVisible(false);
+        this.lblNombreUsuarioLogueado.setText(this.sistema.getPersonaLogueada().toString());
         this.nombreDelPlan = "";
         this.primeraVez = true;
         this.primeraIngesta = true;
@@ -76,6 +77,7 @@ public final class VentanaMenuPrincipalUsuario extends javax.swing.JDialog {
         btnIngresarAlimentoIngerido = new javax.swing.JButton();
         lblIngresarAlimentoIngerido = new javax.swing.JLabel();
         btnCerrarSistema = new javax.swing.JButton();
+        lblNombreUsuarioLogueado = new javax.swing.JLabel();
         panelDerecho = new javax.swing.JPanel();
         panelError = new javax.swing.JPanel();
         lblError = new javax.swing.JLabel();
@@ -269,10 +271,18 @@ public final class VentanaMenuPrincipalUsuario extends javax.swing.JDialog {
             }
         });
 
+        lblNombreUsuarioLogueado.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
+        lblNombreUsuarioLogueado.setForeground(new java.awt.Color(255, 255, 255));
+        lblNombreUsuarioLogueado.setText("Nombre persona");
+
         javax.swing.GroupLayout panelMenuLayout = new javax.swing.GroupLayout(panelMenu);
         panelMenu.setLayout(panelMenuLayout);
         panelMenuLayout.setHorizontalGroup(
             panelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelMenuLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(lblSolicitarPlanAlimentacion, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(panelMenuLayout.createSequentialGroup()
                 .addGroup(panelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelMenuLayout.createSequentialGroup()
@@ -292,16 +302,16 @@ public final class VentanaMenuPrincipalUsuario extends javax.swing.JDialog {
                                 .addGap(20, 20, 20)
                                 .addComponent(lblIngresarAlimentoIngerido, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(panelMenuLayout.createSequentialGroup()
-                                .addGap(42, 42, 42)
-                                .addComponent(btnConsultaConProfesional, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(panelMenuLayout.createSequentialGroup()
                                 .addGap(56, 56, 56)
-                                .addComponent(btnSolicitarPlanAlimentacion, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(btnSolicitarPlanAlimentacion, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(panelMenuLayout.createSequentialGroup()
+                                .addGap(42, 42, 42)
+                                .addComponent(btnConsultaConProfesional, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelMenuLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(lblSolicitarPlanAlimentacion, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+            .addGroup(panelMenuLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblNombreUsuarioLogueado)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panelMenuLayout.setVerticalGroup(
@@ -311,6 +321,8 @@ public final class VentanaMenuPrincipalUsuario extends javax.swing.JDialog {
                 .addGroup(panelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(btnHome)
                     .addComponent(btnCerrarSistema, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblNombreUsuarioLogueado)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnConsultaConProfesional, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -1687,6 +1699,7 @@ public final class VentanaMenuPrincipalUsuario extends javax.swing.JDialog {
     private javax.swing.JLabel lblNombreDelPlan;
     private javax.swing.JLabel lblNombreDelProfesional;
     private javax.swing.JLabel lblNombreProfesional;
+    private javax.swing.JLabel lblNombreUsuarioLogueado;
     private javax.swing.JLabel lblNuevoAlimentoIngerido;
     private javax.swing.JLabel lblNuevoAlimentoVacio;
     private javax.swing.JLabel lblPlanDeAlimentacion;

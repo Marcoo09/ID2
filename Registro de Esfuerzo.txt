@@ -19,3 +19,7 @@ a la que tiene por defecto el programa (SOLUCION DISTINTA A LA DE LA TAREA) - 8h
 -----------------------------------------------------
 
 Capacidad de cerrar la aplicación desde cualquier lugar de la aplicación - 2hs
+
+-----------------------------------------------------
+
+Tener visibilidad de usuario logueado en la aplicación - 1hs
