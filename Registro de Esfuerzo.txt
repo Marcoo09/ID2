@@ -1,3 +1,5 @@
+Desarrollo:
+
 Correccion de bugs de alta prioridad - 45 min
 Correccion de bugs de baja prioridad - 1hora 30min
 Correccion vulnerabilidades - 1 hora
@@ -27,3 +29,22 @@ Tener visibilidad de usuario logueado en la aplicación - 1hs
 -----------------------------------------------------
 
 Reordenamiento de la pantalla del login - 2hs
+
+-----------------------------------------------------
+
+PM:
+
+Gestionar avanze semana a semana - 2hs
+Planear acciones preventivas para el próximo período - 1h
+Actualizar tablero de JIRA con los cambios para el próximo período - 1h
+
+-----------------------------------------------------
+
+QA:
+
+Testing primer entregable - 2hs
+Testing segundo entregable - 2hs
+Testing tercer entregable - 2hs
+
+-----------------------------------------------------
+
