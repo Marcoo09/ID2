@@ -23,3 +23,7 @@ Capacidad de cerrar la aplicación desde cualquier lugar de la aplicación - 2hs
 -----------------------------------------------------
 
 Tener visibilidad de usuario logueado en la aplicación - 1hs
+
+-----------------------------------------------------
+
+Reordenamiento de la pantalla del login - 2hs
