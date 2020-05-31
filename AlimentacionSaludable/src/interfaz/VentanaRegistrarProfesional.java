@@ -36,6 +36,7 @@ public final class VentanaRegistrarProfesional extends javax.swing.JDialog {
         panel1 = new javax.swing.JPanel();
         btnHome = new javax.swing.JButton();
         icono = new javax.swing.JLabel();
+        btnCerrarSistema = new javax.swing.JButton();
         panel2 = new javax.swing.JPanel();
         lblNuevoProfesional = new javax.swing.JLabel();
         lblIconoNuevoProfesional = new javax.swing.JLabel();
@@ -63,7 +64,6 @@ public final class VentanaRegistrarProfesional extends javax.swing.JDialog {
         lblPaisVacio = new javax.swing.JLabel();
         lblApellidoVacio = new javax.swing.JLabel();
         lbRegistrarProfesional = new javax.swing.JLabel();
-        btnCerrarSistema = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setAlwaysOnTop(true);
@@ -97,28 +97,45 @@ public final class VentanaRegistrarProfesional extends javax.swing.JDialog {
 
         icono.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/IconoBrocoli.png"))); // NOI18N
 
+        btnCerrarSistema.setBackground(new java.awt.Color(51, 51, 51));
+        btnCerrarSistema.setForeground(new java.awt.Color(51, 51, 51));
+        btnCerrarSistema.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/icons8_Close_Window_48px.png"))); // NOI18N
+        btnCerrarSistema.setBorderPainted(false);
+        btnCerrarSistema.setContentAreaFilled(false);
+        btnCerrarSistema.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnCerrarSistema.setFocusPainted(false);
+        btnCerrarSistema.setInheritsPopupMenu(true);
+        btnCerrarSistema.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCerrarSistemaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panel1Layout = new javax.swing.GroupLayout(panel1);
         panel1.setLayout(panel1Layout);
         panel1Layout.setHorizontalGroup(
             panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panel1Layout.createSequentialGroup()
-                .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(btnHome, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(panel1Layout.createSequentialGroup()
-                        .addGap(28, 28, 28)
-                        .addComponent(icono)))
+                .addGap(28, 28, 28)
+                .addComponent(icono)
                 .addContainerGap(41, Short.MAX_VALUE))
+            .addGroup(panel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btnHome, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnCerrarSistema, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         panel1Layout.setVerticalGroup(
             panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panel1Layout.createSequentialGroup()
-                .addGap(43, 43, 43)
-                .addComponent(btnHome)
-                .addGap(167, 167, 167)
+                .addContainerGap()
+                .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnHome)
+                    .addComponent(btnCerrarSistema, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(199, 199, 199)
                 .addComponent(icono)
-                .addContainerGap(264, Short.MAX_VALUE))
+                .addContainerGap(259, Short.MAX_VALUE))
         );
 
         panel2.setBackground(new java.awt.Color(51, 51, 51));
@@ -253,20 +270,6 @@ public final class VentanaRegistrarProfesional extends javax.swing.JDialog {
         lbRegistrarProfesional.setForeground(new java.awt.Color(255, 255, 255));
         lbRegistrarProfesional.setText("Registrar Profesional");
 
-        btnCerrarSistema.setBackground(new java.awt.Color(51, 51, 51));
-        btnCerrarSistema.setForeground(new java.awt.Color(51, 51, 51));
-        btnCerrarSistema.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/icons8_Close_Window_48px.png"))); // NOI18N
-        btnCerrarSistema.setBorderPainted(false);
-        btnCerrarSistema.setContentAreaFilled(false);
-        btnCerrarSistema.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnCerrarSistema.setFocusPainted(false);
-        btnCerrarSistema.setInheritsPopupMenu(true);
-        btnCerrarSistema.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCerrarSistemaActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout panel2Layout = new javax.swing.GroupLayout(panel2);
         panel2.setLayout(panel2Layout);
         panel2Layout.setHorizontalGroup(
@@ -341,22 +344,15 @@ public final class VentanaRegistrarProfesional extends javax.swing.JDialog {
                         .addComponent(lblIconoNuevoProfesional)
                         .addGap(18, 18, 18)
                         .addComponent(lblNuevoProfesional)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnCerrarSistema, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         panel2Layout.setVerticalGroup(
             panel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panel2Layout.createSequentialGroup()
+                .addGap(27, 27, 27)
                 .addGroup(panel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panel2Layout.createSequentialGroup()
-                        .addGap(27, 27, 27)
-                        .addGroup(panel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblIconoNuevoProfesional)
-                            .addComponent(lblNuevoProfesional, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(panel2Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(btnCerrarSistema, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(lblIconoNuevoProfesional)
+                    .addComponent(lblNuevoProfesional, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
                 .addGroup(panel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panel2Layout.createSequentialGroup()

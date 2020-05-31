@@ -63,6 +63,7 @@ public final class VentanaRegistrarUsuario extends javax.swing.JDialog {
         panel1 = new javax.swing.JPanel();
         btnHome = new javax.swing.JButton();
         icono = new javax.swing.JLabel();
+        btnCerrarSistema = new javax.swing.JButton();
         panel2 = new javax.swing.JPanel();
         lblNuevoUsuario = new javax.swing.JLabel();
         lblIconoNuevoUsuario = new javax.swing.JLabel();
@@ -95,7 +96,6 @@ public final class VentanaRegistrarUsuario extends javax.swing.JDialog {
         lblApellidoVacio = new javax.swing.JLabel();
         lblPaisVacio = new javax.swing.JLabel();
         lblRegistrarUsuario = new javax.swing.JLabel();
-        btnCerrarSistema = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1280, 720));
@@ -126,6 +126,20 @@ public final class VentanaRegistrarUsuario extends javax.swing.JDialog {
 
         icono.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/IconoBrocoli.png"))); // NOI18N
 
+        btnCerrarSistema.setBackground(new java.awt.Color(51, 51, 51));
+        btnCerrarSistema.setForeground(new java.awt.Color(51, 51, 51));
+        btnCerrarSistema.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/icons8_Close_Window_48px.png"))); // NOI18N
+        btnCerrarSistema.setBorderPainted(false);
+        btnCerrarSistema.setContentAreaFilled(false);
+        btnCerrarSistema.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnCerrarSistema.setFocusPainted(false);
+        btnCerrarSistema.setInheritsPopupMenu(true);
+        btnCerrarSistema.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCerrarSistemaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panel1Layout = new javax.swing.GroupLayout(panel1);
         panel1.setLayout(panel1Layout);
         panel1Layout.setHorizontalGroup(
@@ -135,7 +149,9 @@ public final class VentanaRegistrarUsuario extends javax.swing.JDialog {
                 .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panel1Layout.createSequentialGroup()
                         .addComponent(btnHome)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnCerrarSistema, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
                         .addGap(0, 22, Short.MAX_VALUE)
                         .addComponent(icono, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -145,10 +161,12 @@ public final class VentanaRegistrarUsuario extends javax.swing.JDialog {
             panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(btnHome)
+                .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnHome)
+                    .addComponent(btnCerrarSistema, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(206, 206, 206)
                 .addComponent(icono, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(269, Short.MAX_VALUE))
+                .addContainerGap(264, Short.MAX_VALUE))
         );
 
         panel2.setBackground(new java.awt.Color(51, 51, 51));
@@ -311,20 +329,6 @@ public final class VentanaRegistrarUsuario extends javax.swing.JDialog {
         lblRegistrarUsuario.setForeground(new java.awt.Color(255, 255, 255));
         lblRegistrarUsuario.setText("Registrar Usuario");
 
-        btnCerrarSistema.setBackground(new java.awt.Color(51, 51, 51));
-        btnCerrarSistema.setForeground(new java.awt.Color(51, 51, 51));
-        btnCerrarSistema.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/icons8_Close_Window_48px.png"))); // NOI18N
-        btnCerrarSistema.setBorderPainted(false);
-        btnCerrarSistema.setContentAreaFilled(false);
-        btnCerrarSistema.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnCerrarSistema.setFocusPainted(false);
-        btnCerrarSistema.setInheritsPopupMenu(true);
-        btnCerrarSistema.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCerrarSistemaActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout panel2Layout = new javax.swing.GroupLayout(panel2);
         panel2.setLayout(panel2Layout);
         panel2Layout.setHorizontalGroup(
@@ -343,9 +347,7 @@ public final class VentanaRegistrarUsuario extends javax.swing.JDialog {
                             .addGroup(panel2Layout.createSequentialGroup()
                                 .addComponent(lblIconoNuevoUsuario)
                                 .addGap(18, 18, 18)
-                                .addComponent(lblNuevoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 475, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnCerrarSistema, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(lblNuevoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 475, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(panel2Layout.createSequentialGroup()
                                 .addGroup(panel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lblNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -362,7 +364,7 @@ public final class VentanaRegistrarUsuario extends javax.swing.JDialog {
                                 .addGroup(panel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lblNombreVacio, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(lblApellidoVacio, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addContainerGap())
+                        .addContainerGap(386, Short.MAX_VALUE))
                     .addGroup(panel2Layout.createSequentialGroup()
                         .addGroup(panel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(rdBtnCarnesBlancas, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -414,17 +416,12 @@ public final class VentanaRegistrarUsuario extends javax.swing.JDialog {
         panel2Layout.setVerticalGroup(
             panel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panel2Layout.createSequentialGroup()
+                .addGap(25, 25, 25)
                 .addGroup(panel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblIconoNuevoUsuario)
                     .addGroup(panel2Layout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addGroup(panel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblIconoNuevoUsuario)
-                            .addGroup(panel2Layout.createSequentialGroup()
-                                .addGap(9, 9, 9)
-                                .addComponent(lblNuevoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(panel2Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(btnCerrarSistema, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(9, 9, 9)
+                        .addComponent(lblNuevoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGroup(panel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panel2Layout.createSequentialGroup()
                         .addGroup(panel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
