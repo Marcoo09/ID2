@@ -1,6 +1,7 @@
 package interfaz;
 
 import dominio.Persona;
+import dominio.Persona.TipoPersona;
 import dominio.Sistema;
 import java.awt.Image;
 import java.awt.Toolkit;
@@ -8,13 +9,16 @@ import java.awt.Toolkit;
 public final class VentanaMenuPrincipal extends javax.swing.JDialog {
 
     private Sistema sistema;
-
+    private Persona personaALoguearse;
+    private TipoPersona tipoPersonaSeleccionada;
+    
     public VentanaMenuPrincipal(Sistema unSistema) {
         initComponents();
         this.setLocationRelativeTo(null);
         this.sistema = unSistema;
         this.listaUsuariosVentana.setListData(sistema.getListaUsuarios().toArray());
         this.listaProfesionalesVentana.setListData(sistema.getListaProfesionales().toArray());
+        toggleBotonLogin(false);
     }
 
     public Image getIconImage() {
@@ -29,7 +33,11 @@ public final class VentanaMenuPrincipal extends javax.swing.JDialog {
     public void setSistema(Sistema unSistema) {
         this.sistema = unSistema;
     }
-
+    public void toggleBotonLogin(boolean nuevoValor){
+        this.lblLogin.setVisible(nuevoValor);
+        this.btnLoguearse.setVisible(nuevoValor);
+    }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -38,7 +46,6 @@ public final class VentanaMenuPrincipal extends javax.swing.JDialog {
         lblTituloVentana = new javax.swing.JLabel();
         icono = new javax.swing.JLabel();
         lblTituloVentana1 = new javax.swing.JLabel();
-        btnCerrarSistema = new javax.swing.JButton();
         panel2 = new javax.swing.JPanel();
         lblNuevoUsuario = new javax.swing.JLabel();
         lblIconoNuevoUsuario = new javax.swing.JLabel();
@@ -51,8 +58,11 @@ public final class VentanaMenuPrincipal extends javax.swing.JDialog {
         iconPlus = new javax.swing.JLabel();
         lblRegistrarProfesional = new javax.swing.JLabel();
         btnAgregarProfesional = new javax.swing.JLabel();
+        btnCerrarSistema = new javax.swing.JButton();
         lblNombre2 = new javax.swing.JLabel();
+        lblLogin = new javax.swing.JLabel();
         lblRegistrarUsuario = new javax.swing.JLabel();
+        btnLoguearse = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1280, 720));
@@ -78,37 +88,18 @@ public final class VentanaMenuPrincipal extends javax.swing.JDialog {
         lblTituloVentana1.setForeground(new java.awt.Color(0, 51, 153));
         lblTituloVentana1.setText("Alimentación");
 
-        btnCerrarSistema.setBackground(new java.awt.Color(51, 51, 51));
-        btnCerrarSistema.setForeground(new java.awt.Color(51, 51, 51));
-        btnCerrarSistema.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/icons8_Close_Window_48px.png"))); // NOI18N
-        btnCerrarSistema.setBorderPainted(false);
-        btnCerrarSistema.setContentAreaFilled(false);
-        btnCerrarSistema.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnCerrarSistema.setFocusPainted(false);
-        btnCerrarSistema.setInheritsPopupMenu(true);
-        btnCerrarSistema.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCerrarSistemaActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout panel1Layout = new javax.swing.GroupLayout(panel1);
         panel1.setLayout(panel1Layout);
         panel1Layout.setHorizontalGroup(
             panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panel1Layout.createSequentialGroup()
+                .addGap(57, 57, 57)
+                .addComponent(lblTituloVentana)
+                .addContainerGap(59, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(icono, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(86, 86, 86))
-            .addGroup(panel1Layout.createSequentialGroup()
-                .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panel1Layout.createSequentialGroup()
-                        .addGap(57, 57, 57)
-                        .addComponent(lblTituloVentana))
-                    .addGroup(panel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(btnCerrarSistema, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(59, Short.MAX_VALUE))
             .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(panel1Layout.createSequentialGroup()
                     .addContainerGap()
@@ -118,9 +109,7 @@ public final class VentanaMenuPrincipal extends javax.swing.JDialog {
         panel1Layout.setVerticalGroup(
             panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btnCerrarSistema, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(203, 203, 203)
+                .addGap(264, 264, 264)
                 .addComponent(lblTituloVentana, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(icono, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -210,17 +199,48 @@ public final class VentanaMenuPrincipal extends javax.swing.JDialog {
         panel2.add(btnAgregarProfesional);
         btnAgregarProfesional.setBounds(620, 540, 100, 90);
 
+        btnCerrarSistema.setBackground(new java.awt.Color(51, 51, 51));
+        btnCerrarSistema.setForeground(new java.awt.Color(51, 51, 51));
+        btnCerrarSistema.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/icons8_Close_Window_48px.png"))); // NOI18N
+        btnCerrarSistema.setBorderPainted(false);
+        btnCerrarSistema.setContentAreaFilled(false);
+        btnCerrarSistema.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnCerrarSistema.setFocusPainted(false);
+        btnCerrarSistema.setInheritsPopupMenu(true);
+        btnCerrarSistema.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCerrarSistemaActionPerformed(evt);
+            }
+        });
+        panel2.add(btnCerrarSistema);
+        btnCerrarSistema.setBounds(820, 10, 50, 50);
+
         lblNombre2.setFont(new java.awt.Font("Century Gothic", 0, 30)); // NOI18N
         lblNombre2.setForeground(new java.awt.Color(255, 255, 255));
         lblNombre2.setText("Usuario");
         panel2.add(lblNombre2);
         lblNombre2.setBounds(140, 150, 110, 38);
 
+        lblLogin.setFont(new java.awt.Font("Century Gothic", 0, 20)); // NOI18N
+        lblLogin.setForeground(new java.awt.Color(255, 255, 255));
+        lblLogin.setText("Loguearse");
+        panel2.add(lblLogin);
+        lblLogin.setBounds(380, 640, 110, 38);
+
         lblRegistrarUsuario.setFont(new java.awt.Font("Century Gothic", 0, 20)); // NOI18N
         lblRegistrarUsuario.setForeground(new java.awt.Color(255, 255, 255));
         lblRegistrarUsuario.setText("Regístrate como usuario");
         panel2.add(lblRegistrarUsuario);
         lblRegistrarUsuario.setBounds(80, 640, 260, 38);
+
+        btnLoguearse.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/login.png"))); // NOI18N
+        btnLoguearse.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnLoguearseMouseClicked(evt);
+            }
+        });
+        panel2.add(btnLoguearse);
+        btnLoguearse.setBounds(390, 540, 110, 90);
 
         getContentPane().add(panel2);
         panel2.setBounds(395, 0, 900, 750);
@@ -234,19 +254,17 @@ public final class VentanaMenuPrincipal extends javax.swing.JDialog {
     }//GEN-LAST:event_formWindowClosing
 
     private void listaUsuariosVentanaValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_listaUsuariosVentanaValueChanged
-        this.sistema.setPersonaLogueada((Persona) listaUsuariosVentana.getSelectedValue());
-        VentanaMenuPrincipalUsuario ventanaPrincipalUsuarios = new VentanaMenuPrincipalUsuario(sistema);
-        this.setVisible(false);
-        ventanaPrincipalUsuarios.setVisible(true);
-        this.dispose();
+        personaALoguearse = (Persona) listaUsuariosVentana.getSelectedValue();
+        listaProfesionalesVentana.clearSelection();
+        tipoPersonaSeleccionada = TipoPersona.USUARIO;
+        toggleBotonLogin(true);
     }//GEN-LAST:event_listaUsuariosVentanaValueChanged
 
     private void listaProfesionalesVentanaValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_listaProfesionalesVentanaValueChanged
-        this.sistema.setPersonaLogueada((Persona) listaProfesionalesVentana.getSelectedValue());
-        VentanaMenuPrincipalProfesional ventanaPrincipalProfesionales = new VentanaMenuPrincipalProfesional(sistema);
-        this.setVisible(false);
-        ventanaPrincipalProfesionales.setVisible(true);
-        this.dispose();
+        personaALoguearse = (Persona) listaProfesionalesVentana.getSelectedValue();
+        listaUsuariosVentana.clearSelection();
+        tipoPersonaSeleccionada = TipoPersona.PROFESIONAL;
+        toggleBotonLogin(true);
     }//GEN-LAST:event_listaProfesionalesVentanaValueChanged
 
     private void btnAgregarUsuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarUsuarioMouseClicked
@@ -266,19 +284,34 @@ public final class VentanaMenuPrincipal extends javax.swing.JDialog {
     private void btnCerrarSistemaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarSistemaActionPerformed
         this.sistema.guardarDatosSistema();
         this.setVisible(false);
-        System.exit(0);
+        this.dispose();
     }//GEN-LAST:event_btnCerrarSistemaActionPerformed
+
+    private void btnLoguearseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLoguearseMouseClicked
+        this.sistema.setPersonaLogueada(personaALoguearse);
+        this.setVisible(false);
+        if(tipoPersonaSeleccionada.equals(TipoPersona.USUARIO)){
+            VentanaMenuPrincipalUsuario ventanaPrincipalUsuarios = new VentanaMenuPrincipalUsuario(sistema);
+            ventanaPrincipalUsuarios.setVisible(true);
+        }else{
+            VentanaMenuPrincipalProfesional ventanaPrincipalProfesionales = new VentanaMenuPrincipalProfesional(sistema);
+            ventanaPrincipalProfesionales.setVisible(true);
+        }
+        this.dispose();
+    }//GEN-LAST:event_btnLoguearseMouseClicked
 
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel btnAgregarProfesional;
     private javax.swing.JLabel btnAgregarUsuario;
     private javax.swing.JButton btnCerrarSistema;
+    private javax.swing.JLabel btnLoguearse;
     private javax.swing.JLabel iconPlus;
     private javax.swing.JLabel icono;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblIconoNuevoUsuario;
+    private javax.swing.JLabel lblLogin;
     private javax.swing.JLabel lblNombre;
     private javax.swing.JLabel lblNombre2;
     private javax.swing.JLabel lblNuevoUsuario;
