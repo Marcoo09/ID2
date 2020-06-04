@@ -258,7 +258,7 @@
             <Property name="borderPainted" type="boolean" value="false"/>
             <Property name="contentAreaFilled" type="boolean" value="false"/>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-              <Color id="Cursor Por defecto"/>
+              <Color id="Default Cursor"/>
             </Property>
             <Property name="focusPainted" type="boolean" value="false"/>
             <Property name="inheritsPopupMenu" type="boolean" value="true"/>
@@ -897,25 +897,25 @@
                               <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                               <Component id="lblTituloDelProfesional" min="-2" pref="410" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="102" attributes="0">
-                              <EmptySpace min="160" pref="160" max="-2" attributes="0"/>
-                              <Component id="lblAlimentoIngeridoSeleccionado8" min="-2" pref="130" max="-2" attributes="0"/>
-                              <EmptySpace min="70" pref="70" max="-2" attributes="0"/>
-                              <Component id="lblAlimentoIngeridoSeleccionado9" min="-2" pref="130" max="-2" attributes="0"/>
-                              <EmptySpace min="30" pref="30" max="-2" attributes="0"/>
-                              <Component id="lblAlimentoIngeridoSeleccionado10" min="-2" pref="110" max="-2" attributes="0"/>
-                          </Group>
                           <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="137" max="-2" attributes="0"/>
-                              <Component id="jScrollPane40" min="-2" pref="160" max="-2" attributes="0"/>
-                              <EmptySpace min="30" pref="30" max="-2" attributes="0"/>
-                              <Component id="jScrollPane37" min="-2" pref="160" max="-2" attributes="0"/>
-                              <EmptySpace min="30" pref="30" max="-2" attributes="0"/>
-                              <Component id="jScrollPane39" min="-2" pref="160" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace min="-2" pref="118" max="-2" attributes="0"/>
+                                      <Component id="lblAlimentoIngeridoSeleccionado8" min="-2" pref="130" max="-2" attributes="0"/>
+                                      <EmptySpace min="70" pref="70" max="-2" attributes="0"/>
+                                      <Component id="lblAlimentoIngeridoSeleccionado9" min="-2" pref="130" max="-2" attributes="0"/>
+                                      <EmptySpace min="30" pref="30" max="-2" attributes="0"/>
+                                      <Component id="lblAlimentoIngeridoSeleccionado10" min="-2" pref="110" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace min="-2" pref="95" max="-2" attributes="0"/>
+                                      <Component id="jScrollPane40" min="-2" pref="160" max="-2" attributes="0"/>
+                                      <EmptySpace min="30" pref="30" max="-2" attributes="0"/>
+                                      <Component id="jScrollPane37" min="-2" pref="160" max="-2" attributes="0"/>
+                                      <EmptySpace min="30" pref="30" max="-2" attributes="0"/>
+                                      <Component id="jScrollPane39" min="-2" pref="160" max="-2" attributes="0"/>
+                                  </Group>
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                                       <Component id="lblAlimentoIngeridoSeleccionado14" min="-2" pref="130" max="-2" attributes="0"/>
@@ -968,7 +968,7 @@
                           <Component id="lblAlimentoIngeridoSeleccionado5" min="-2" max="-2" attributes="0"/>
                           <Component id="lblTituloDelProfesional" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="lblAlimentoIngeridoSeleccionado14" min="-2" max="-2" attributes="0"/>
                           <Component id="lblAlimentoIngeridoSeleccionado4" min="-2" max="-2" attributes="0"/>
@@ -989,12 +989,12 @@
                           <Component id="lblAlimentoIngeridoSeleccionado10" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jScrollPane40" min="-2" pref="210" max="-2" attributes="0"/>
-                          <Component id="jScrollPane37" min="-2" pref="210" max="-2" attributes="0"/>
-                          <Component id="jScrollPane39" min="-2" pref="210" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                          <Component id="jScrollPane37" alignment="0" pref="179" max="32767" attributes="0"/>
+                          <Component id="jScrollPane40" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jScrollPane39" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
