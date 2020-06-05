@@ -14,6 +14,10 @@ public final class VentanaRegistrarProfesional extends javax.swing.JDialog {
     private Sistema sistema;
     private ImageIcon fotoDePerfilActual;
     private boolean primeraVez;
+    private RecortadorImagen recortadorImagen;
+    private static final int LARGO_IMAGEN = 100;
+    private static final int ANCHO_IMAGEN = 75;
+
 
     public VentanaRegistrarProfesional(Sistema unSistema) {
         initComponents();
@@ -27,6 +31,7 @@ public final class VentanaRegistrarProfesional extends javax.swing.JDialog {
         this.dateChooserFechaNacimiento.setMaxDate(fecha);
         this.dateChooserFechaGraduacion.setMaxDate(fecha);
         this.primeraVez = false;
+        this.recortadorImagen = new RecortadorImagen(LARGO_IMAGEN, ANCHO_IMAGEN);
     }
 
     @SuppressWarnings("unchecked")
@@ -498,6 +503,7 @@ public final class VentanaRegistrarProfesional extends javax.swing.JDialog {
         int imagen = fileChooser.showOpenDialog(this);
         if (imagen == JFileChooser.APPROVE_OPTION) {
             ImageIcon iconoPerfil = new ImageIcon(fileChooser.getSelectedFile().getAbsolutePath());
+            recortadorImagen.recortarImagen(iconoPerfil);
             this.btnIngresarFotoPerfil.setIcon(iconoPerfil);
             this.fotoDePerfilActual = iconoPerfil;
         }

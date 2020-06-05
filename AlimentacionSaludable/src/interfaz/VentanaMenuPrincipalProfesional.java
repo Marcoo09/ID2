@@ -22,6 +22,9 @@ public final class VentanaMenuPrincipalProfesional extends javax.swing.JDialog {
     private String diaDeLaSemanaAnterior;
     private String diaDeLaSemanaActual;
     private final String[][] planAlimentacion;
+    private RecortadorImagen recortadorImagen;
+    private static final int LARGO_IMAGEN = 100;
+    private static final int ANCHO_IMAGEN = 75;
 
     public VentanaMenuPrincipalProfesional(Sistema unSistema) {
         initComponents();
@@ -41,6 +44,7 @@ public final class VentanaMenuPrincipalProfesional extends javax.swing.JDialog {
         this.lblNombreUsuarioLogueado.setText(this.sistema.getPersonaLogueada().toString());
         ocultarPrincipalesNutrientes();
         this.panelVacio.setVisible(true);
+        this.recortadorImagen = new RecortadorImagen(LARGO_IMAGEN, ANCHO_IMAGEN);
     }
 
     public Sistema getSistema() {
@@ -1929,7 +1933,9 @@ public final class VentanaMenuPrincipalProfesional extends javax.swing.JDialog {
         Usuario usuarioPerfil = (Usuario) sistema.getUsuarioPorNombre(usuarioSeleccionado);
         this.lblNombreUsuario2.setText(usuarioSeleccionado);
         lblFechaNacimiento.setText(usuarioPerfil.getFechaNacimiento());
-        lblFotoDeUsuario.setIcon(usuarioPerfil.getFotoDePerfil());
+        ImageIcon fotoPerfilUsuario = usuarioPerfil.getFotoDePerfil();
+        recortadorImagen.recortarImagen(fotoPerfilUsuario);
+        this.lblFotoDeUsuario.setIcon(fotoPerfilUsuario);
         if (usuarioPerfil.getArrayAlimentosIngeridos().length > 0) {
             List<Ingesta> ingeridos = usuarioPerfil.getAlimentosIngeridos();
             List<String> listaASetear = new ArrayList<>();
@@ -2368,6 +2374,7 @@ public final class VentanaMenuPrincipalProfesional extends javax.swing.JDialog {
         int imagen = fileChooser.showOpenDialog(this);
         if (imagen == JFileChooser.APPROVE_OPTION) {
             ImageIcon iconoPerfil = new ImageIcon(fileChooser.getSelectedFile().getAbsolutePath());
+            recortadorImagen.recortarImagen(iconoPerfil);
             btnIngresarFotoAlimento.setIcon(iconoPerfil);
             this.setFotoDeAlimentoActual(iconoPerfil);
         }

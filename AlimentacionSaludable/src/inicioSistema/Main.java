@@ -1,6 +1,5 @@
 package inicioSistema;
 
-import cargaDeDatos.CargadorDatos;
 import dominio.Sistema;
 import interfaz.VentanaMenuPrincipal;
 import java.io.BufferedInputStream;

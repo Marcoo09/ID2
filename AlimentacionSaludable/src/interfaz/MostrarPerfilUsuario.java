@@ -6,11 +6,15 @@ import dominio.Sistema;
 import dominio.Usuario;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.ImageIcon;
 
 public final class MostrarPerfilUsuario extends javax.swing.JDialog {
 
     private Sistema sistema;
     private String nombreUsuario;
+    private RecortadorImagen recortadorImagen;
+    private static final int LARGO_IMAGEN = 100;
+    private static final int ANCHO_IMAGEN = 75;
 
     public MostrarPerfilUsuario(Sistema unSistema, String usuarioAMostrar) {
         initComponents();
@@ -20,7 +24,10 @@ public final class MostrarPerfilUsuario extends javax.swing.JDialog {
         Usuario usuarioPerfil = (Usuario) sistema.getUsuarioPorNombre(nombreUsuario);
         this.lblNombreUsuario.setText(usuarioPerfil.getNombreCompleto());
         this.lblFechaNacimientoUsuario.setText(usuarioPerfil.getFechaNacimiento());
-        this.lblFotoDeUsuario.setIcon(usuarioPerfil.getFotoDePerfil());
+        this.recortadorImagen = new RecortadorImagen(LARGO_IMAGEN, ANCHO_IMAGEN);
+        ImageIcon fotoPerfilUsuario = usuarioPerfil.getFotoDePerfil();
+        recortadorImagen.recortarImagen(fotoPerfilUsuario);
+        this.lblFotoDeUsuario.setIcon(fotoPerfilUsuario);
         if (usuarioPerfil.getArrayAlimentosIngeridos().length > 0) {
             List <Ingesta> ingeridos = usuarioPerfil.getAlimentosIngeridos();
             List <String> listaASetear = new ArrayList <>();

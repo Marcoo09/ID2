@@ -34,9 +34,9 @@ Tener un orden lógico y natural de los campos del login - 2hs {1 REGRESION} | D
 
 Tener visibilidad de usuario realizo el inicio de sesion - 1hs | Desarrollador
 
-Unificacion de la forma en que se presentan las imagenes en la aplicacion - 3hs [NO REALIZADO] | Desarrollador
+Unificacion de la forma en que se presentan las imagenes en la aplicacion - 7hs | Desarrollador
 
-=> 14hs Desarrollador - 2hs QA (Testing) || 1 Regresion
+=> 18hs Desarrollador - 2hs QA (Testing) || 1 Regresion
 -----------------------------------------------------
 -----------------------------------------------------
 ##Nuevas Funcionalidades##
