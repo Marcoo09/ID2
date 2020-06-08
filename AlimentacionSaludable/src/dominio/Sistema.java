@@ -18,7 +18,7 @@ public final class Sistema implements Serializable {
     private List<Conversacion> listaConversaciones;
     private Persona personaLogueada;
     private static final long serialVersionUID = 42L;
-
+    
     public Sistema(List<Usuario> unaListaUsuarios,
             List<Profesional> unaListaProfesionales,
             List<Alimento> unaListaAlimentos,
@@ -43,7 +43,6 @@ public final class Sistema implements Serializable {
         setPersonaLogueada(new Usuario("Nombre", "Apellido", "",
                 new ImageIcon(getClass().getResource("/Imagenes/fotoDeUsuarioStandard.png")),
                 "", null, null, null));
-
     }
 
     public Persona getPersonaLogueada() {
