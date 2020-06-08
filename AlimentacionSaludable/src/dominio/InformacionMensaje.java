@@ -23,7 +23,9 @@ public final class InformacionMensaje implements Serializable {
     }
 
     public String getDestinatario() {
-        return destinatario;
+        String destinatarioARetornar = destinatario != null ?
+                                        destinatario.trim() : "";
+        return !"".equals(destinatarioARetornar) ? destinatarioARetornar : "Destinatario no ingresado";    
     }
 
     public void setDestinatario(String elDestinatario) {
@@ -32,7 +34,9 @@ public final class InformacionMensaje implements Serializable {
     }
 
     public String getRemitente() {
-        return remitente;
+        String remitenteARetornar = remitente != null ?
+                                        remitente.trim() : "";
+        return !"".equals(remitenteARetornar) ? remitenteARetornar : "Remitente no ingresado";
     }
 
     public void setRemitente(String elRemitente) {

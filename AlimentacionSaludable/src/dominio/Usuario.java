@@ -2,6 +2,7 @@ package dominio;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import javax.swing.ImageIcon;
 
 public final class Usuario extends Persona {
@@ -115,4 +116,42 @@ public final class Usuario extends Persona {
         usuario.setRestricciones(restricciones);
     }
 
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 29 * hash + Objects.hashCode(this.nacionalidad);
+        hash = 29 * hash + Objects.hashCode(this.preferencias);
+        hash = 29 * hash + Objects.hashCode(this.restricciones);
+        hash = 29 * hash + Objects.hashCode(this.alimentosIngeridos);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Usuario other = (Usuario) obj;
+        if (!Objects.equals(this.nacionalidad, other.nacionalidad)) {
+            return false;
+        }
+        if (!Objects.equals(this.preferencias, other.preferencias)) {
+            return false;
+        }
+        if (!Objects.equals(this.restricciones, other.restricciones)) {
+            return false;
+        }
+        if (!Objects.equals(this.alimentosIngeridos, other.alimentosIngeridos)) {
+            return false;
+        }
+        return true;
+    }
+
+    
 }

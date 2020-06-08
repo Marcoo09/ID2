@@ -37,15 +37,6 @@ public class InformacionMensajeTest {
     }
 
     @Test
-    public void testGetsSetsStringsVaciosRemitente() {
-        String remitente = "";
-        String destinatario = "";
-        String mensaje = "";
-        InformacionMensaje info = new InformacionMensaje(remitente, destinatario, mensaje);
-        assertEquals(info.getRemitente(), "Remitente no ingresado");
-    }
-
-    @Test
     public void testGetsSetsStringsVaciosDestinatario() {
         String remitente = "";
         String destinatario = "";

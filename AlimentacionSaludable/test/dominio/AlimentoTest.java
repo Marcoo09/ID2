@@ -1,6 +1,7 @@
 package dominio;
 
 import java.util.ArrayList;
+import java.util.List;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import org.junit.Test;
@@ -13,13 +14,13 @@ public class AlimentoTest {
     @Test
     public void testSetsGetsNullTipo() {
         Alimento alimentoTest = new Alimento(null, null, null, null);
-        assertEquals(alimentoTest.getTipoAlimento(), "No definido");
+        assertEquals(alimentoTest.getTipoAlimento(), null);
     }
 
     @Test
     public void testSetsGetsNullListaNutrientes() {
         Alimento alimentoTest = new Alimento(null, null, null, null);
-        assertEquals(alimentoTest.getListaNutrientesConProporcion().size(), 0);
+        assertFalse(alimentoTest.getListaNutrientesConProporcion() != null);
     }
 
     @Test
@@ -48,7 +49,8 @@ public class AlimentoTest {
 
     @Test
     public void testSetsGetsListaNutrientesDatosVacios() {
-        Alimento alimentoTest = new Alimento("", "", null, null);
+        List<ComposicionAlimento> listaNutrientes = new ArrayList<>();
+        Alimento alimentoTest = new Alimento("", "", listaNutrientes, null);
         assertEquals(alimentoTest.getListaNutrientesConProporcion().size(), 0);
     }
 
@@ -61,7 +63,7 @@ public class AlimentoTest {
     @Test
     public void testSetsGetsTipoDatosVacios() {
         Alimento alimentoTest = new Alimento("", "", null, null);
-        assertEquals(alimentoTest.getTipoAlimento(), "No definido");
+        assertEquals(alimentoTest.getTipoAlimento(), "");
     }
 
     @Test

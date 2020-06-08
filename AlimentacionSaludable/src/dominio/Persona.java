@@ -17,7 +17,7 @@ public abstract class Persona implements Serializable {
     protected ImageIcon fotoDePerfil;
     private static final String APELLIDO_NO_INGRESADO = "Apellido no ingresado";
     private static final String NOMBRE_NO_INGRESADO = "Nombre no ingresado";
-    private static final String FECHA_NO_INGRESADA = "Fehca no ingresada";
+    private static final String FECHA_NO_INGRESADA = "Fecha no ingresada";
 
     public String getNombre() {
         return this.nombre;
@@ -59,14 +59,19 @@ public abstract class Persona implements Serializable {
 
     public String getNombreCompleto() {
         String retorno;
-        if (getNombre().equals(NOMBRE_NO_INGRESADO) && getApellido().equals(APELLIDO_NO_INGRESADO)) {
+        String nombre = getNombre();
+        String apellido = getApellido();
+        boolean nombreDefinido = nombre != null;
+        boolean apellidoDefinido = apellido != null;
+        if (nombreDefinido && nombre.equals(NOMBRE_NO_INGRESADO) &&
+                    apellidoDefinido && apellido.equals(APELLIDO_NO_INGRESADO)) {
             retorno = NOMBRE_NO_INGRESADO;
-        } else if (getNombre().equals(NOMBRE_NO_INGRESADO)) {
-            retorno = getApellido();
-        } else if (getApellido().equals(APELLIDO_NO_INGRESADO)) {
-            retorno = getNombre();
+        } else if (nombreDefinido && nombre.equals(NOMBRE_NO_INGRESADO)) {
+            retorno = apellido;
+        } else if (apellidoDefinido && apellido.equals(APELLIDO_NO_INGRESADO)) {
+            retorno = nombre;
         } else {
-            retorno = getNombre() + " " + getApellido();
+            retorno = nombre + " " + apellido;
         }
         return retorno;
     }

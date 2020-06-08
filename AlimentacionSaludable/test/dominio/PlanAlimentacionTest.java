@@ -19,7 +19,7 @@ public class PlanAlimentacionTest {
         String[][] planDiaADia = null;
         PlanAlimentacion planATestear = new PlanAlimentacion(nombrePlan, usuario, profesional,
                 fueAtendido, planDiaADia);
-        assertEquals(planATestear.toString(), "Plan de alimentación");
+        assertEquals(planATestear.toString(), null);
     }
 
     @Test
@@ -31,7 +31,7 @@ public class PlanAlimentacionTest {
         String[][] planDiaADia = new String[0][0];
         PlanAlimentacion planATestear = new PlanAlimentacion(nombrePlan, usuario, profesional,
                 fueAtendido, planDiaADia);
-        assertEquals(planATestear.getNombreDelPlan(), "Plan de alimentación");
+        assertEquals(planATestear.getNombreDelPlan(), "");
     }
 
     @Test
@@ -83,18 +83,6 @@ public class PlanAlimentacionTest {
                 fueAtendido, planDiaADia);
         String[][] planEsperado = new String[0][0];
         Assert.assertArrayEquals(planATestear.getPlanDiaADia(), planEsperado);
-    }
-
-    @Test
-    public void testGetsSetsDatosVaciosToString() {
-        String nombrePlan = "";
-        Usuario usuario = new Usuario(null, null, null, null, null, null, null, null);
-        Profesional profesional = new Profesional(null, null, null, null, null, null, null);
-        boolean fueAtendido = true;
-        String[][] planDiaADia = new String[0][0];
-        PlanAlimentacion planATestear = new PlanAlimentacion(nombrePlan, usuario, profesional,
-                fueAtendido, planDiaADia);
-        assertEquals(planATestear.toString(), "Plan de alimentación");
     }
 
     @Test
