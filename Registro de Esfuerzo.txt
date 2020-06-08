@@ -1,50 +1,61 @@
-Desarrollo:
+##Mejora en la Calidad Global del Codigo##
 
-Correccion de bugs de alta prioridad - 45 min
-Correccion de bugs de baja prioridad - 1hora 30min
-Correccion vulnerabilidades - 1 hora
-Correccion code smells alta prioridad - 1hora
-Correccion code smells baja prioridad - 1hora 30min
+Correccion de bugs de alta prioridad - 45min | Desarrollador
 
+Correccion de bugs de baja prioridad - 1hs 30min | Desarrollador
+
+Correccion vulnerabilidades - 1 hs | Desarrollador
+
+Correccion code smells alta prioridad - 1hs | Desarrollador
+
+Correccion code smells baja prioridad - 1hs 30min | Desarrollador
+
+=> 5:45hs Desarrollador
+-----------------------------------------------------
+-----------------------------------------------------
+##Correcciones en el Funcionamiento del Sistema##
+
+Netbeans sin errores - 0hs (quedo solucionado con el entregable anterior) | Desarrollador
+
+Correccion solicitud de plan de alimentacion - 10hs (TN2 9hs / TN3 1h) | Desarrollador
+
+Visualizacion de ingestas - 1hs 30min | Desarrollador
+
+Correccion creacion de plan de alimentacion - 4hs [NO REALIZADO] | Desarrollador
+
+=> 15:30hs Desarrollador - 2hs QA (Testing)
+-----------------------------------------------------
+-----------------------------------------------------
+##Mejora en la Usabilidad Global del Sistema##
+
+Capacidad de tener una resolucion diferente a la que tiene por defecto el programa (SOLUCION DISTINTA) - 8hs | Desarrollador
+
+Tener un orden lógico y natural de los campos del login - 2hs {1 REGRESION} | Desarrollador
+
+Tener visibilidad de usuario realizo el inicio de sesion - 1hs | Desarrollador
+
+Unificacion de la forma en que se presentan las imagenes en la aplicacion - 3hs [NO REALIZADO] | Desarrollador
+
+=> 14hs Desarrollador - 2hs QA (Testing) || 1 Regresion
+-----------------------------------------------------
+-----------------------------------------------------
+##Nuevas Funcionalidades##
+
+Capacidad de cerrar la aplicación desde cualquier pantalla - 2hs | Desarrollador {ADELANTADO}
+
+Capacidad de cargar un set de datos al entrar al sistema - 4hs | Desarrollador
+
+=> 6hs Desarrollador
+-----------------------------------------------------
 -----------------------------------------------------
 
-Netbeans sin errores - 0hs
-Correccion solicitud de plan de alimentacion - 10hs (TN2 9hs / TN3 1h)
-Visualizacion de ingestas - 1hora 30min
+Product Manager Tasks:
 
+Gestionar avanze por cada periodo definido por el entregable - 2hs x 3 = 6hs
+Planear acciones preventivas para el próximo período - 1hs
+Actualizar tablero de JIRA con los cambios para el próximo período - 1hs
 
+=> 8hs Product Manager
 -----------------------------------------------------
 
-Capacidad de tener una resoluci´on diferente
-a la que tiene por defecto el programa (SOLUCION DISTINTA A LA DE LA TAREA) - 8hs
-
------------------------------------------------------
-
-Capacidad de cerrar la aplicación desde cualquier lugar de la aplicación - 2hs
-
------------------------------------------------------
-
-Tener visibilidad de usuario logueado en la aplicación - 1hs
-
------------------------------------------------------
-
-Reordenamiento de la pantalla del login - 2hs
-
------------------------------------------------------
-
-PM:
-
-Gestionar avanze semana a semana - 2hs
-Planear acciones preventivas para el próximo período - 1h
-Actualizar tablero de JIRA con los cambios para el próximo período - 1h
-
------------------------------------------------------
-
-QA:
-
-Testing primer entregable - 2hs
-Testing segundo entregable - 2hs
-Testing tercer entregable - 2hs
-
------------------------------------------------------
 

@@ -753,22 +753,22 @@ public final class VentanaMenuPrincipalUsuario extends javax.swing.JDialog {
                         .addGap(0, 0, 0)
                         .addComponent(lblTituloDelProfesional, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(panelVerPlanAlimentacionLayout.createSequentialGroup()
-                        .addGap(160, 160, 160)
-                        .addComponent(lblAlimentoIngeridoSeleccionado8, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(70, 70, 70)
-                        .addComponent(lblAlimentoIngeridoSeleccionado9, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(30, 30, 30)
-                        .addComponent(lblAlimentoIngeridoSeleccionado10, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(panelVerPlanAlimentacionLayout.createSequentialGroup()
-                        .addGap(137, 137, 137)
-                        .addComponent(jScrollPane40, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(30, 30, 30)
-                        .addComponent(jScrollPane37, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(30, 30, 30)
-                        .addComponent(jScrollPane39, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(panelVerPlanAlimentacionLayout.createSequentialGroup()
-                        .addGap(42, 42, 42)
+                        .addGap(45, 45, 45)
                         .addGroup(panelVerPlanAlimentacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panelVerPlanAlimentacionLayout.createSequentialGroup()
+                                .addGap(118, 118, 118)
+                                .addComponent(lblAlimentoIngeridoSeleccionado8, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(70, 70, 70)
+                                .addComponent(lblAlimentoIngeridoSeleccionado9, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(30, 30, 30)
+                                .addComponent(lblAlimentoIngeridoSeleccionado10, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(panelVerPlanAlimentacionLayout.createSequentialGroup()
+                                .addGap(95, 95, 95)
+                                .addComponent(jScrollPane40, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(30, 30, 30)
+                                .addComponent(jScrollPane37, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(30, 30, 30)
+                                .addComponent(jScrollPane39, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(panelVerPlanAlimentacionLayout.createSequentialGroup()
                                 .addGap(30, 30, 30)
                                 .addComponent(lblAlimentoIngeridoSeleccionado14, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -809,7 +809,7 @@ public final class VentanaMenuPrincipalUsuario extends javax.swing.JDialog {
                 .addGroup(panelVerPlanAlimentacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblAlimentoIngeridoSeleccionado5)
                     .addComponent(lblTituloDelProfesional))
-                .addGap(46, 46, 46)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelVerPlanAlimentacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblAlimentoIngeridoSeleccionado14)
                     .addComponent(lblAlimentoIngeridoSeleccionado4)
@@ -827,11 +827,11 @@ public final class VentanaMenuPrincipalUsuario extends javax.swing.JDialog {
                     .addComponent(lblAlimentoIngeridoSeleccionado9)
                     .addComponent(lblAlimentoIngeridoSeleccionado10))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(panelVerPlanAlimentacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane40, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane37, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane39, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                .addGroup(panelVerPlanAlimentacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jScrollPane37, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE)
+                    .addComponent(jScrollPane40, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane39))
+                .addGap(31, 31, 31))
         );
 
         panelIngestaRegistradaCorrectamente.setBackground(new java.awt.Color(51, 51, 51));
@@ -1509,6 +1509,8 @@ public final class VentanaMenuPrincipalUsuario extends javax.swing.JDialog {
     }//GEN-LAST:event_comboProfesionalesEnSistemaActionPerformed
 
     private void listaPlanesDelUsuarioValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_listaPlanesDelUsuarioValueChanged
+        ocultarPanelDeErrores();
+        ocultarTodosLosPaneles();
         this.nombreDelPlan = this.listaPlanesDelUsuario.getSelectedValue();
         PlanAlimentacion planSeleccionado = this.sistema.devolverPlanDadoNombre(nombreDelPlan);
         this.lblNombreDelPlan.setText(planSeleccionado.getNombreDelPlan());
@@ -1605,6 +1607,7 @@ public final class VentanaMenuPrincipalUsuario extends javax.swing.JDialog {
     }
     
     private void ocultarTodosLosPaneles(){
+        panelVacio.setVisible(false);
         panelCrearPrimeraConversacion.setVisible(false);
         panelConsultaConProfesional.setVisible(false);
         panelElegirProfesional.setVisible(false);

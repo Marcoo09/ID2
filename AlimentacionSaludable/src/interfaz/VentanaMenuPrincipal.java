@@ -1,5 +1,6 @@
 package interfaz;
 
+import cargaDeDatos.CargadorDatos;
 import dominio.Persona;
 import dominio.Persona.TipoPersona;
 import dominio.Sistema;
@@ -46,6 +47,8 @@ public final class VentanaMenuPrincipal extends javax.swing.JDialog {
         lblTituloVentana = new javax.swing.JLabel();
         icono = new javax.swing.JLabel();
         lblTituloVentana1 = new javax.swing.JLabel();
+        btnCargarDatosPrueba = new javax.swing.JButton();
+        btnEliminarDatosSistema = new javax.swing.JButton();
         panel2 = new javax.swing.JPanel();
         lblNuevoUsuario = new javax.swing.JLabel();
         lblIconoNuevoUsuario = new javax.swing.JLabel();
@@ -88,18 +91,45 @@ public final class VentanaMenuPrincipal extends javax.swing.JDialog {
         lblTituloVentana1.setForeground(new java.awt.Color(0, 51, 153));
         lblTituloVentana1.setText("Alimentación");
 
+        btnCargarDatosPrueba.setBackground(new java.awt.Color(164, 211, 249));
+        btnCargarDatosPrueba.setForeground(new java.awt.Color(51, 51, 51));
+        btnCargarDatosPrueba.setText("Cargar datos de prueba");
+        btnCargarDatosPrueba.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnCargarDatosPrueba.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCargarDatosPruebaActionPerformed(evt);
+            }
+        });
+
+        btnEliminarDatosSistema.setBackground(new java.awt.Color(164, 211, 249));
+        btnEliminarDatosSistema.setForeground(new java.awt.Color(51, 51, 51));
+        btnEliminarDatosSistema.setText("Eliminar todos los datos del sistema");
+        btnEliminarDatosSistema.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnEliminarDatosSistema.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarDatosSistemaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panel1Layout = new javax.swing.GroupLayout(panel1);
         panel1.setLayout(panel1Layout);
         panel1Layout.setHorizontalGroup(
             panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panel1Layout.createSequentialGroup()
-                .addGap(57, 57, 57)
-                .addComponent(lblTituloVentana)
-                .addContainerGap(59, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(icono, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(86, 86, 86))
+                .addGap(80, 80, 80))
+            .addGroup(panel1Layout.createSequentialGroup()
+                .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panel1Layout.createSequentialGroup()
+                        .addGap(57, 57, 57)
+                        .addComponent(lblTituloVentana))
+                    .addGroup(panel1Layout.createSequentialGroup()
+                        .addGap(88, 88, 88)
+                        .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnEliminarDatosSistema, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnCargarDatosPrueba, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap(59, Short.MAX_VALUE))
             .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(panel1Layout.createSequentialGroup()
                     .addContainerGap()
@@ -113,7 +143,11 @@ public final class VentanaMenuPrincipal extends javax.swing.JDialog {
                 .addComponent(lblTituloVentana, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(icono, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(207, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
+                .addComponent(btnCargarDatosPrueba)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnEliminarDatosSistema)
+                .addGap(81, 81, 81))
             .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(panel1Layout.createSequentialGroup()
                     .addGap(182, 182, 182)
@@ -304,11 +338,30 @@ public final class VentanaMenuPrincipal extends javax.swing.JDialog {
         this.dispose();
     }//GEN-LAST:event_btnLoguearseMouseClicked
 
+    private void btnCargarDatosPruebaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargarDatosPruebaActionPerformed
+        CargadorDatos cargadorDatos = new CargadorDatos(sistema);
+        cargadorDatos.cargarSetDatos();
+        VentanaMenuPrincipal nuevaVentana = new VentanaMenuPrincipal(sistema);
+        this.setVisible(false);
+        nuevaVentana.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnCargarDatosPruebaActionPerformed
+
+    private void btnEliminarDatosSistemaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarDatosSistemaActionPerformed
+        Sistema nuevoSistemaVacio = new Sistema();
+        VentanaMenuPrincipal nuevaVentana = new VentanaMenuPrincipal(nuevoSistemaVacio);
+        this.setVisible(false);
+        nuevaVentana.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnEliminarDatosSistemaActionPerformed
+
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel btnAgregarProfesional;
     private javax.swing.JLabel btnAgregarUsuario;
+    private javax.swing.JButton btnCargarDatosPrueba;
     private javax.swing.JButton btnCerrarSistema;
+    private javax.swing.JButton btnEliminarDatosSistema;
     private javax.swing.JLabel btnLoguearse;
     private javax.swing.JLabel iconPlus;
     private javax.swing.JLabel icono;
