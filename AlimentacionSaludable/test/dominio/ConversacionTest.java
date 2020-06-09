@@ -77,5 +77,23 @@ public class ConversacionTest {
         assertEquals(conversacionATestear.toString(), "No hay mensajes para mostrar");
     }
 
+    @Test
+    public void testSimetriaEquals() {
+        Usuario usuario = new Usuario(null, null, null, null, null, null, null, null);
+        Profesional profesional = new Profesional(null, null, null, null, null, null, null);
+        List<InformacionMensaje> listaMensajes = new ArrayList<>();
+        Conversacion stubConversacion1 = new Conversacion(usuario, profesional, listaMensajes);
+        Conversacion stubConversacion2 = new Conversacion(usuario, profesional, listaMensajes);
 
+        assertTrue(stubConversacion1.equals(stubConversacion2) && stubConversacion2.equals(stubConversacion1));
+        assertTrue(stubConversacion1.hashCode() == stubConversacion2.hashCode());
+    }
+    
+    @Test
+    public void testGetFueAtendidaConsulta(){
+        Conversacion stubConversacion = new Conversacion(null,null,null);
+        stubConversacion.setFueAtendidaConsulta(true);
+        assertTrue(stubConversacion.getFueAtendidaConsulta());
+    }
+    
 }
