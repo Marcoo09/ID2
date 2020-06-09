@@ -51,6 +51,8 @@ Capacidad de cargar un set de datos al entrar al sistema - 4hs | Desarrollador
 ##Pruebas unitarias##
 
 Solucionar test que fallan - 4hs | QA
+
+Mejorar porcentaje de pruebas unitarias - 3hs | QA
 -----------------------------------------------------
 -----------------------------------------------------
 Product Manager Tasks:
