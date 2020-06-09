@@ -1427,7 +1427,6 @@ public final class VentanaMenuPrincipalUsuario extends javax.swing.JDialog {
     }//GEN-LAST:event_btnNuevaIngestaActionPerformed
 
     private void btnVerPlanesExistentesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerPlanesExistentesActionPerformed
-        this.btnVerPlanesExistentes.setEnabled(false);
         String nombreUsuarioLoguedo = this.sistema.getPersonaLogueada().getNombreCompleto();
         Usuario usuarioLogueado = this.sistema.getUsuarioPorNombre(nombreUsuarioLoguedo);
         String[] planesDelUsuario = this.sistema.planesAtendidosDelUsuario(usuarioLogueado);
