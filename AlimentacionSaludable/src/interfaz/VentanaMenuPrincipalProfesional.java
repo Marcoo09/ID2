@@ -22,10 +22,12 @@ public final class VentanaMenuPrincipalProfesional extends javax.swing.JDialog {
     private String diaDeLaSemanaAnterior;
     private String diaDeLaSemanaActual;
     private final String[][] planAlimentacion;
-    private RecortadorImagen recortadorImagen;
+    private final RecortadorImagen recortadorImagen;
     private List<String> diasCompletados;
     private static final int LARGO_IMAGEN = 100;
     private static final int ANCHO_IMAGEN = 75;
+    private static final String AYUDA_ENVIAR_PLAN = "Plan completado, ahora puede enviarlo";
+    private static final String AYUDA_COMPLETAR_DIA = "Complete y guarde el dia seleccionado";
 
     public VentanaMenuPrincipalProfesional(Sistema unSistema) {
         initComponents();
@@ -651,8 +653,9 @@ public final class VentanaMenuPrincipalProfesional extends javax.swing.JDialog {
             }
         });
 
-        listaAlimentosEnSistema.setBackground(new java.awt.Color(238, 238, 238));
+        listaAlimentosEnSistema.setBackground(new java.awt.Color(51, 51, 51));
         listaAlimentosEnSistema.setFont(new java.awt.Font("Century Gothic", 0, 19)); // NOI18N
+        listaAlimentosEnSistema.setForeground(new java.awt.Color(255, 255, 255));
         listaAlimentosEnSistema.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
             public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
                 listaAlimentosEnSistemaValueChanged(evt);
@@ -768,8 +771,9 @@ public final class VentanaMenuPrincipalProfesional extends javax.swing.JDialog {
         lblDiasCompletados.setForeground(new java.awt.Color(255, 255, 255));
         lblDiasCompletados.setText("Dias Completados");
 
-        listaDiasCompletados.setBackground(new java.awt.Color(238, 238, 238));
+        listaDiasCompletados.setBackground(new java.awt.Color(51, 51, 51));
         listaDiasCompletados.setFont(new java.awt.Font("Century Gothic", 0, 19)); // NOI18N
+        listaDiasCompletados.setForeground(new java.awt.Color(255, 255, 255));
         listaDiasCompletados.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
             public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
                 listaDiasCompletadosValueChanged(evt);
@@ -812,45 +816,51 @@ public final class VentanaMenuPrincipalProfesional extends javax.swing.JDialog {
                                 .addComponent(lblAlimentos, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addContainerGap())
                             .addGroup(panelElaborarPlanLayout.createSequentialGroup()
-                                .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGroup(panelElaborarPlanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(panelElaborarPlanLayout.createSequentialGroup()
-                                        .addGap(36, 36, 36)
+                                        .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGroup(panelElaborarPlanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(iconAgregarAlimento, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(btnEliminarDelPlan, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                            .addGroup(panelElaborarPlanLayout.createSequentialGroup()
+                                                .addGap(36, 36, 36)
+                                                .addGroup(panelElaborarPlanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(iconAgregarAlimento, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(btnEliminarDelPlan, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                            .addGroup(panelElaborarPlanLayout.createSequentialGroup()
+                                                .addGap(10, 10, 10)
+                                                .addGroup(panelElaborarPlanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(lblEliminarAlimento)
+                                                    .addComponent(lblAgregarAlimento1)))))
                                     .addGroup(panelElaborarPlanLayout.createSequentialGroup()
-                                        .addGap(10, 10, 10)
-                                        .addGroup(panelElaborarPlanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(lblEliminarAlimento)
-                                            .addComponent(lblAgregarAlimento1))))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
+                                        .addGap(175, 175, 175)
+                                        .addComponent(lblValidarNombrePlan)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(lblNombrePlanVacio, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(panelElaborarPlanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelElaborarPlanLayout.createSequentialGroup()
-                                        .addComponent(lblErrorDiaIncompleto)
-                                        .addGap(42, 42, 42))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelElaborarPlanLayout.createSequentialGroup()
                                         .addComponent(btnElaborarPlan1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(lblEnviarPlan)
                                         .addGap(85, 85, 85))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelElaborarPlanLayout.createSequentialGroup()
                                         .addGroup(panelElaborarPlanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                             .addComponent(lblErrorNoSeCompletaronTodosLosDias)
                                             .addGroup(panelElaborarPlanLayout.createSequentialGroup()
-                                                .addComponent(iconGuardarDia, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(iconGuardarDia)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                                 .addComponent(lblGuardarDia1)))
-                                        .addGap(73, 73, 73))))))
+                                        .addGap(73, 73, 73))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelElaborarPlanLayout.createSequentialGroup()
+                                        .addComponent(lblErrorDiaIncompleto)
+                                        .addGap(56, 56, 56))))))
                     .addGroup(panelElaborarPlanLayout.createSequentialGroup()
                         .addComponent(lblNombrePlan, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtNombrePlan, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(lblValidarNombrePlan)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblNombrePlanVacio, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())
+                    .addGroup(panelElaborarPlanLayout.createSequentialGroup()
+                        .addComponent(lblElaborarNuevoPlan)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(panelElaborarPlanLayout.createSequentialGroup()
                         .addGap(36, 36, 36)
                         .addGroup(panelElaborarPlanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -868,17 +878,14 @@ public final class VentanaMenuPrincipalProfesional extends javax.swing.JDialog {
                                 .addGap(115, 115, 115)
                                 .addComponent(lblCena, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGroup(panelElaborarPlanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelElaborarPlanLayout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(lblDiasCompletados, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(113, 113, 113))
                             .addGroup(panelElaborarPlanLayout.createSequentialGroup()
                                 .addGap(53, 53, 53)
                                 .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                    .addGroup(panelElaborarPlanLayout.createSequentialGroup()
-                        .addComponent(lblElaborarNuevoPlan)
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelElaborarPlanLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(lblDiasCompletados, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(115, 115, 115))))))
         );
         panelElaborarPlanLayout.setVerticalGroup(
             panelElaborarPlanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -888,32 +895,33 @@ public final class VentanaMenuPrincipalProfesional extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
                 .addGroup(panelElaborarPlanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelElaborarPlanLayout.createSequentialGroup()
-                        .addGroup(panelElaborarPlanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(panelElaborarPlanLayout.createSequentialGroup()
-                                .addComponent(lblNombrePlanVacio, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(97, 97, 97))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelElaborarPlanLayout.createSequentialGroup()
-                                .addGroup(panelElaborarPlanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(btnElaborarPlan1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblEnviarPlan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(18, 18, 18)
-                                .addComponent(lblErrorNoSeCompletaronTodosLosDias, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(panelElaborarPlanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnElaborarPlan1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblEnviarPlan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addComponent(lblErrorNoSeCompletaronTodosLosDias, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(panelElaborarPlanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(panelElaborarPlanLayout.createSequentialGroup()
-                                .addGap(3, 3, 3)
+                                .addGap(36, 36, 36)
                                 .addComponent(iconGuardarDia, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
+                                .addGap(18, 18, 18))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelElaborarPlanLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(lblGuardarDia1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(31, 31, 31)))
+                                .addGap(35, 35, 35)))
                         .addComponent(lblErrorDiaIncompleto, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(panelElaborarPlanLayout.createSequentialGroup()
+                        .addGap(4, 4, 4)
                         .addGroup(panelElaborarPlanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelElaborarPlanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(lblNombrePlan, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(txtNombrePlan, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(lblValidarNombrePlan, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(15, 15, 15)
+                            .addGroup(panelElaborarPlanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelElaborarPlanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(lblNombrePlan, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtNombrePlan, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(lblNombrePlanVacio, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(panelElaborarPlanLayout.createSequentialGroup()
+                                .addGap(2, 2, 2)
+                                .addComponent(lblValidarNombrePlan, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(9, 9, 9)
                         .addGroup(panelElaborarPlanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(panelElaborarPlanLayout.createSequentialGroup()
                                 .addGap(10, 10, 10)
@@ -937,9 +945,9 @@ public final class VentanaMenuPrincipalProfesional extends javax.swing.JDialog {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(lblEliminarAlimento, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(jScrollPane8))))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
                 .addGroup(panelElaborarPlanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelElaborarPlanLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(panelElaborarPlanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(panelElaborarPlanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(lblDesayuno, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -951,10 +959,11 @@ public final class VentanaMenuPrincipalProfesional extends javax.swing.JDialog {
                             .addComponent(jScrollPane10)
                             .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(panelElaborarPlanLayout.createSequentialGroup()
-                        .addGap(12, 12, 12)
+                        .addGap(14, 14, 14)
                         .addComponent(lblDiasCompletados, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addGap(31, 31, 31))
         );
 
@@ -2254,7 +2263,13 @@ public final class VentanaMenuPrincipalProfesional extends javax.swing.JDialog {
             diasCompletados.add(diaCompletado);
             listaDiasCompletados.setListData(diasCompletados.toArray());
             cargarListaDiasDeLaSemana();
-            this.listaDiasDeLaSemana.setEnabled(true);
+            
+            if(!seCompletaronTodosLosDias()){
+                this.listaDiasDeLaSemana.setEnabled(true);
+            }
+            else{
+                this.listaDiasDeLaSemana.setEnabled(false);
+            }
         }
         else{
             this.lblErrorDiaIncompleto.setVisible(true);
@@ -2818,37 +2833,37 @@ public final class VentanaMenuPrincipalProfesional extends javax.swing.JDialog {
         this.textAlmuerzo.setText("");
         this.textCena.setText("");
         switch (this.diaDeLaSemanaAnterior) {
-            case "Lunes":
+            case "LUNES":
                 this.planAlimentacion[0][0] = itemsDesayuno;
                 this.planAlimentacion[0][1] = itemsAlmuerzo;
                 this.planAlimentacion[0][2] = itemsCena;
                 break;
-            case "Martes":
+            case "MARTES":
                 this.planAlimentacion[1][0] = itemsDesayuno;
                 this.planAlimentacion[1][1] = itemsAlmuerzo;
                 this.planAlimentacion[1][2] = itemsCena;
                 break;
-            case "Miercoles":
+            case "MIERCOLES":
                 this.planAlimentacion[2][0] = itemsDesayuno;
                 this.planAlimentacion[2][1] = itemsAlmuerzo;
                 this.planAlimentacion[2][2] = itemsCena;
                 break;
-            case "Jueves":
+            case "JUEVUES":
                 this.planAlimentacion[3][0] = itemsDesayuno;
                 this.planAlimentacion[3][1] = itemsAlmuerzo;
                 this.planAlimentacion[3][2] = itemsCena;
                 break;
-            case "Viernes":
+            case "VIERNES":
                 this.planAlimentacion[4][0] = itemsDesayuno;
                 this.planAlimentacion[4][1] = itemsAlmuerzo;
                 this.planAlimentacion[4][2] = itemsCena;
                 break;
-            case "Sabado":
+            case "SABADO":
                 this.planAlimentacion[5][0] = itemsDesayuno;
                 this.planAlimentacion[5][1] = itemsAlmuerzo;
                 this.planAlimentacion[5][2] = itemsCena;
                 break;
-            case "Domingo":
+            case "DOMINGO":
                 this.planAlimentacion[6][0] = itemsDesayuno;
                 this.planAlimentacion[6][1] = itemsAlmuerzo;
                 this.planAlimentacion[6][2] = itemsCena;
@@ -2909,4 +2924,6 @@ public final class VentanaMenuPrincipalProfesional extends javax.swing.JDialog {
     private boolean seCompletaronTodosLosDias(){
         return diasCompletados.size() == 7;
     }
+    
+
 }
