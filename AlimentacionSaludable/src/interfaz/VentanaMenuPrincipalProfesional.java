@@ -26,8 +26,6 @@ public final class VentanaMenuPrincipalProfesional extends javax.swing.JDialog {
     private List<String> diasCompletados;
     private static final int LARGO_IMAGEN = 100;
     private static final int ANCHO_IMAGEN = 75;
-    private static final String AYUDA_ENVIAR_PLAN = "Plan completado, ahora puede enviarlo";
-    private static final String AYUDA_COMPLETAR_DIA = "Complete y guarde el dia seleccionado";
 
     public VentanaMenuPrincipalProfesional(Sistema unSistema) {
         initComponents();
