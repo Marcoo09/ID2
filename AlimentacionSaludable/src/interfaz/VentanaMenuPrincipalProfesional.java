@@ -2274,6 +2274,7 @@ public final class VentanaMenuPrincipalProfesional extends javax.swing.JDialog {
         else{
             this.lblErrorDiaIncompleto.setVisible(true);
         }
+        this.lblErrorNoSeCompletaronTodosLosDias.setVisible(false);
     }//GEN-LAST:event_iconGuardarDiaActionPerformed
 
     private void btnAyudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAyudaActionPerformed
@@ -2848,7 +2849,7 @@ public final class VentanaMenuPrincipalProfesional extends javax.swing.JDialog {
                 this.planAlimentacion[2][1] = itemsAlmuerzo;
                 this.planAlimentacion[2][2] = itemsCena;
                 break;
-            case "JUEVUES":
+            case "JUEVES":
                 this.planAlimentacion[3][0] = itemsDesayuno;
                 this.planAlimentacion[3][1] = itemsAlmuerzo;
                 this.planAlimentacion[3][2] = itemsCena;
