@@ -48,7 +48,11 @@ Capacidad de cargar un set de datos al entrar al sistema - 4hs | Desarrollador
 => 6hs Desarrollador
 -----------------------------------------------------
 -----------------------------------------------------
+##Pruebas unitarias##
 
+Solucionar test que fallan - 4hs | QA
+-----------------------------------------------------
+-----------------------------------------------------
 Product Manager Tasks:
 
 Gestionar avanze por cada periodo definido por el entregable - 2hs x 3 = 6hs
