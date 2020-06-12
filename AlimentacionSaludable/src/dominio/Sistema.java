@@ -258,7 +258,7 @@ public final class Sistema implements Serializable {
         return fueAgregadaConversacion;
     }
 
-    private boolean agregarConversacionALaLista(Conversacion nuevaConversacion) {
+    public boolean agregarConversacionALaLista(Conversacion nuevaConversacion) {
         boolean fueAgregadaConversacion = false;
         if (!getListaConversaciones().contains(nuevaConversacion)) {
             getListaConversaciones().add(nuevaConversacion);
@@ -344,7 +344,7 @@ public final class Sistema implements Serializable {
         return retorno;
     }
 
-    private List copiarLista(List lista) {
+    public List copiarLista(List lista) {
         List nueva = new ArrayList();
         for (int i = 0; i < lista.size(); i++) {
             nueva.add(lista.get(i));
@@ -481,17 +481,16 @@ public final class Sistema implements Serializable {
         return planesDelUsuario;
     }
 
-    public PlanAlimentacion devolverPlanDadoNombre(String np) {
+    public PlanAlimentacion devolverPlanDadoNombre(String nombrePlan) {
         PlanAlimentacion planRetorno = new PlanAlimentacion(null, null, null, false, null);
-        if (np != null) {
+        if (nombrePlan != null) {
             for (int i = 0; i < this.listaPlanesAlimentacion.size(); i++) {
                 String nombrePlanActual = this.listaPlanesAlimentacion.get(i).getNombreDelPlan();
-                if (nombrePlanActual.equals(np)) {
+                if (nombrePlanActual.equals(nombrePlan)) {
                     planRetorno = this.listaPlanesAlimentacion.get(i);
                 }
             }
         }
-
         return planRetorno;
     }
 

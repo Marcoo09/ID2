@@ -89,7 +89,7 @@ public final class Conversacion implements Serializable {
     @Override
     public String toString() {
         String retorno = "No hay mensajes para mostrar";
-        if (!getListaMensajes().isEmpty()) {
+        if (getListaMensajes() != null && !getListaMensajes().isEmpty()) {
             retorno = "";
             retorno = listaMensajes.stream().map((InformacionMensaje info) -> "\n" + info.getRemitente() + "\n"
                     + info.getMensaje() + "\n").reduce(retorno, String::concat);

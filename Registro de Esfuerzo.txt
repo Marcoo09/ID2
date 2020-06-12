@@ -52,9 +52,11 @@ Posibilidad de subir im´agenes jpg - FUERA DEL ALCANCE
 => 6hs Desarrollador
 -----------------------------------------------------
 -----------------------------------------------------
-##Pruebas Unitarias##
+##Pruebas unitarias##
 
+Solucionar test que fallan - 4hs | QA
 
+Mejorar porcentaje de pruebas unitarias - 7hs | QA
 -----------------------------------------------------
 -----------------------------------------------------
 Product Manager Tasks:

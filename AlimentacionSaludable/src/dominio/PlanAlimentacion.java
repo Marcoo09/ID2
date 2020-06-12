@@ -81,14 +81,26 @@ public final class PlanAlimentacion implements Serializable {
 
     @Override
     public boolean equals(Object obj) {
-        if(!(obj instanceof PlanAlimentacion)){
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
             return false;
         }
-        
-        PlanAlimentacion otroPlanAlimentacion = (PlanAlimentacion) obj;
-        return this.getNombreDelPlan().equals(otroPlanAlimentacion.getNombreDelPlan())
-                && this.getUsuario().equals(otroPlanAlimentacion.getUsuario())
-                && this.getProfesional().equals(otroPlanAlimentacion.getProfesional());
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final PlanAlimentacion other = (PlanAlimentacion) obj;
+        if (!Objects.equals(this.getNombreDelPlan(), other.getNombreDelPlan())) {
+            return false;
+        }
+        if (!Objects.equals(this.getUsuario(), other.getUsuario())) {
+            return false;
+        }
+        if (!Objects.equals(this.getProfesional(), other.getProfesional())) {
+            return false;
+        }
+        return true;
     }
 
     @Override
