@@ -22,13 +22,15 @@ public final class VentanaMenuPrincipalProfesional extends javax.swing.JDialog {
     private String diaDeLaSemanaAnterior;
     private String diaDeLaSemanaActual;
     private final String[][] planAlimentacion;
-    private RecortadorImagen recortadorImagen;
+    private final RecortadorImagen recortadorImagen;
+    private List<String> diasCompletados;
     private static final int LARGO_IMAGEN = 100;
     private static final int ANCHO_IMAGEN = 75;
 
     public VentanaMenuPrincipalProfesional(Sistema unSistema) {
         initComponents();
         sistema = unSistema;
+        diasCompletados = new ArrayList<>();
         this.setLocationRelativeTo(null);
         ocultarPaneles();
         this.panelVacio.setVisible(true);
@@ -44,6 +46,8 @@ public final class VentanaMenuPrincipalProfesional extends javax.swing.JDialog {
         this.lblNombreUsuarioLogueado.setText(this.sistema.getPersonaLogueada().toString());
         ocultarPrincipalesNutrientes();
         this.panelVacio.setVisible(true);
+        this.lblErrorDiaIncompleto.setVisible(false);
+        this.lblErrorNoSeCompletaronTodosLosDias.setVisible(false);
         this.recortadorImagen = new RecortadorImagen(LARGO_IMAGEN, ANCHO_IMAGEN);
     }
 
@@ -111,12 +115,11 @@ public final class VentanaMenuPrincipalProfesional extends javax.swing.JDialog {
         lblDia = new javax.swing.JLabel();
         lblNombrePlan = new javax.swing.JLabel();
         txtNombrePlan = new javax.swing.JTextField();
-        btnAgregarAlPlan = new javax.swing.JButton();
+        iconAgregarAlimento = new javax.swing.JButton();
         btnEliminarDelPlan = new javax.swing.JButton();
         lblDesayuno = new javax.swing.JLabel();
         lblAlmuerzo = new javax.swing.JLabel();
         lblCena = new javax.swing.JLabel();
-        lblNombreDelDia = new javax.swing.JLabel();
         btnElaborarPlan1 = new javax.swing.JButton();
         jScrollPane10 = new javax.swing.JScrollPane();
         textAlmuerzo = new javax.swing.JTextArea();
@@ -124,10 +127,18 @@ public final class VentanaMenuPrincipalProfesional extends javax.swing.JDialog {
         textCena = new javax.swing.JTextArea();
         jScrollPane12 = new javax.swing.JScrollPane();
         textDesayuno = new javax.swing.JTextArea();
-        btnEliminarDelPlan1 = new javax.swing.JButton();
+        iconGuardarDia = new javax.swing.JButton();
         lblValidarNombrePlan = new javax.swing.JLabel();
-        lblCena1 = new javax.swing.JLabel();
+        lblErrorDiaIncompleto = new javax.swing.JLabel();
         lblNombrePlanVacio = new javax.swing.JLabel();
+        lblEnviarPlan = new javax.swing.JLabel();
+        lblDiasCompletados = new javax.swing.JLabel();
+        jScrollPane9 = new javax.swing.JScrollPane();
+        listaDiasCompletados = new javax.swing.JList();
+        lblGuardarDia1 = new javax.swing.JLabel();
+        lblEliminarAlimento = new javax.swing.JLabel();
+        lblErrorNoSeCompletaronTodosLosDias = new javax.swing.JLabel();
+        lblAgregarAlimento1 = new javax.swing.JLabel();
         panelMostrarPlanEnviado = new javax.swing.JPanel();
         lblOK2 = new javax.swing.JLabel();
         lblOKTexto2 = new javax.swing.JLabel();
@@ -210,7 +221,6 @@ public final class VentanaMenuPrincipalProfesional extends javax.swing.JDialog {
         setMinimumSize(new java.awt.Dimension(1280, 720));
         setModalityType(java.awt.Dialog.ModalityType.APPLICATION_MODAL);
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(1280, 720));
         setResizable(false);
         setSize(new java.awt.Dimension(1280, 720));
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -333,10 +343,7 @@ public final class VentanaMenuPrincipalProfesional extends javax.swing.JDialog {
                                 .addGap(51, 51, 51))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelMenuLayout.createSequentialGroup()
                                 .addComponent(btnPlanesSolicitados, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(62, 62, 62))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelMenuLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(panelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGap(62, 62, 62))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelMenuLayout.createSequentialGroup()
                                 .addComponent(btnIngresarAlimento, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(70, 70, 70))
@@ -644,8 +651,9 @@ public final class VentanaMenuPrincipalProfesional extends javax.swing.JDialog {
             }
         });
 
-        listaAlimentosEnSistema.setBackground(new java.awt.Color(238, 238, 238));
+        listaAlimentosEnSistema.setBackground(new java.awt.Color(51, 51, 51));
         listaAlimentosEnSistema.setFont(new java.awt.Font("Century Gothic", 0, 19)); // NOI18N
+        listaAlimentosEnSistema.setForeground(new java.awt.Color(255, 255, 255));
         listaAlimentosEnSistema.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
             public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
                 listaAlimentosEnSistemaValueChanged(evt);
@@ -676,12 +684,12 @@ public final class VentanaMenuPrincipalProfesional extends javax.swing.JDialog {
             }
         });
 
-        btnAgregarAlPlan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/iconoAgregarAlPlan.png"))); // NOI18N
-        btnAgregarAlPlan.setBorderPainted(false);
-        btnAgregarAlPlan.setContentAreaFilled(false);
-        btnAgregarAlPlan.addActionListener(new java.awt.event.ActionListener() {
+        iconAgregarAlimento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/iconoAgregarAlPlan.png"))); // NOI18N
+        iconAgregarAlimento.setBorderPainted(false);
+        iconAgregarAlimento.setContentAreaFilled(false);
+        iconAgregarAlimento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAgregarAlPlanActionPerformed(evt);
+                iconAgregarAlimentoActionPerformed(evt);
             }
         });
 
@@ -705,10 +713,6 @@ public final class VentanaMenuPrincipalProfesional extends javax.swing.JDialog {
         lblCena.setFont(new java.awt.Font("Century Gothic", 1, 20)); // NOI18N
         lblCena.setForeground(new java.awt.Color(255, 255, 255));
         lblCena.setText("Cena");
-
-        lblNombreDelDia.setFont(new java.awt.Font("Century Gothic", 1, 20)); // NOI18N
-        lblNombreDelDia.setForeground(new java.awt.Color(255, 255, 255));
-        lblNombreDelDia.setText("Nombre del dia");
 
         btnElaborarPlan1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/iconoEnviarMensaje.png"))); // NOI18N
         btnElaborarPlan1.setBorderPainted(false);
@@ -737,37 +741,68 @@ public final class VentanaMenuPrincipalProfesional extends javax.swing.JDialog {
         textDesayuno.setRows(5);
         jScrollPane12.setViewportView(textDesayuno);
 
-        btnEliminarDelPlan1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/iconoGuardarDia.png"))); // NOI18N
-        btnEliminarDelPlan1.setBorderPainted(false);
-        btnEliminarDelPlan1.setContentAreaFilled(false);
-        btnEliminarDelPlan1.addActionListener(new java.awt.event.ActionListener() {
+        iconGuardarDia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/iconoGuardarDia.png"))); // NOI18N
+        iconGuardarDia.setBorderPainted(false);
+        iconGuardarDia.setContentAreaFilled(false);
+        iconGuardarDia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEliminarDelPlan1ActionPerformed(evt);
+                iconGuardarDiaActionPerformed(evt);
             }
         });
 
         lblValidarNombrePlan.setForeground(new java.awt.Color(255, 255, 255));
         lblValidarNombrePlan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/iconoCampoIncorrecto.png"))); // NOI18N
 
-        lblCena1.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
-        lblCena1.setForeground(new java.awt.Color(255, 255, 255));
-        lblCena1.setText("Guardar día");
+        lblErrorDiaIncompleto.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        lblErrorDiaIncompleto.setForeground(new java.awt.Color(240, 128, 128));
+        lblErrorDiaIncompleto.setText("Complete todas las comidas");
 
         lblNombrePlanVacio.setFont(new java.awt.Font("Century Gothic", 0, 19)); // NOI18N
         lblNombrePlanVacio.setForeground(new java.awt.Color(240, 128, 128));
         lblNombrePlanVacio.setText("Dato vacío");
+
+        lblEnviarPlan.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+        lblEnviarPlan.setForeground(new java.awt.Color(255, 255, 255));
+        lblEnviarPlan.setText("Enviar Plan");
+
+        lblDiasCompletados.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+        lblDiasCompletados.setForeground(new java.awt.Color(255, 255, 255));
+        lblDiasCompletados.setText("Dias Completados");
+
+        listaDiasCompletados.setBackground(new java.awt.Color(51, 51, 51));
+        listaDiasCompletados.setFont(new java.awt.Font("Century Gothic", 0, 19)); // NOI18N
+        listaDiasCompletados.setForeground(new java.awt.Color(255, 255, 255));
+        listaDiasCompletados.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                listaDiasCompletadosValueChanged(evt);
+            }
+        });
+        jScrollPane9.setViewportView(listaDiasCompletados);
+
+        lblGuardarDia1.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+        lblGuardarDia1.setForeground(new java.awt.Color(255, 255, 255));
+        lblGuardarDia1.setText("Guardar día");
+
+        lblEliminarAlimento.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        lblEliminarAlimento.setForeground(new java.awt.Color(255, 255, 255));
+        lblEliminarAlimento.setText("Eliminar alimento");
+
+        lblErrorNoSeCompletaronTodosLosDias.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        lblErrorNoSeCompletaronTodosLosDias.setForeground(new java.awt.Color(240, 128, 128));
+        lblErrorNoSeCompletaronTodosLosDias.setText("Complete todos los dias");
+
+        lblAgregarAlimento1.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        lblAgregarAlimento1.setForeground(new java.awt.Color(255, 255, 255));
+        lblAgregarAlimento1.setText("Agregar alimento");
 
         javax.swing.GroupLayout panelElaborarPlanLayout = new javax.swing.GroupLayout(panelElaborarPlan);
         panelElaborarPlan.setLayout(panelElaborarPlanLayout);
         panelElaborarPlanLayout.setHorizontalGroup(
             panelElaborarPlanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelElaborarPlanLayout.createSequentialGroup()
+                .addGap(30, 30, 30)
                 .addGroup(panelElaborarPlanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelElaborarPlanLayout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addComponent(lblElaborarNuevoPlan))
-                    .addGroup(panelElaborarPlanLayout.createSequentialGroup()
-                        .addGap(50, 50, 50)
                         .addGroup(panelElaborarPlanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblDia, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(listaDiasDeLaSemana, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -775,107 +810,159 @@ public final class VentanaMenuPrincipalProfesional extends javax.swing.JDialog {
                             .addComponent(listaComidasPlan, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(60, 60, 60)
                         .addGroup(panelElaborarPlanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblAlimentos, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(25, 25, 25)
-                        .addGroup(panelElaborarPlanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnAgregarAlPlan, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(panelElaborarPlanLayout.createSequentialGroup()
-                                .addGap(10, 10, 10)
-                                .addComponent(btnEliminarDelPlan, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(lblAlimentos, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap())
+                            .addGroup(panelElaborarPlanLayout.createSequentialGroup()
+                                .addGroup(panelElaborarPlanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(panelElaborarPlanLayout.createSequentialGroup()
+                                        .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(panelElaborarPlanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(panelElaborarPlanLayout.createSequentialGroup()
+                                                .addGap(36, 36, 36)
+                                                .addGroup(panelElaborarPlanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(iconAgregarAlimento, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(btnEliminarDelPlan, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                            .addGroup(panelElaborarPlanLayout.createSequentialGroup()
+                                                .addGap(10, 10, 10)
+                                                .addGroup(panelElaborarPlanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(lblEliminarAlimento)
+                                                    .addComponent(lblAgregarAlimento1)))))
+                                    .addGroup(panelElaborarPlanLayout.createSequentialGroup()
+                                        .addGap(175, 175, 175)
+                                        .addComponent(lblValidarNombrePlan)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(lblNombrePlanVacio, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(panelElaborarPlanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelElaborarPlanLayout.createSequentialGroup()
+                                        .addComponent(btnElaborarPlan1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(lblEnviarPlan)
+                                        .addGap(85, 85, 85))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelElaborarPlanLayout.createSequentialGroup()
+                                        .addGroup(panelElaborarPlanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(lblErrorNoSeCompletaronTodosLosDias)
+                                            .addGroup(panelElaborarPlanLayout.createSequentialGroup()
+                                                .addComponent(iconGuardarDia)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(lblGuardarDia1)))
+                                        .addGap(73, 73, 73))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelElaborarPlanLayout.createSequentialGroup()
+                                        .addComponent(lblErrorDiaIncompleto)
+                                        .addGap(56, 56, 56))))))
                     .addGroup(panelElaborarPlanLayout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addGroup(panelElaborarPlanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(panelElaborarPlanLayout.createSequentialGroup()
-                                .addGap(230, 230, 230)
-                                .addComponent(txtNombrePlan, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(lblNombrePlan, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(9, 9, 9)
-                        .addComponent(lblValidarNombrePlan)
-                        .addGap(8, 8, 8)
-                        .addGroup(panelElaborarPlanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblNombrePlanVacio, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(panelElaborarPlanLayout.createSequentialGroup()
-                                .addGap(150, 150, 150)
-                                .addComponent(lblCena1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(panelElaborarPlanLayout.createSequentialGroup()
-                                .addGap(90, 90, 90)
-                                .addComponent(btnEliminarDelPlan1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(panelElaborarPlanLayout.createSequentialGroup()
-                        .addGap(170, 170, 170)
-                        .addComponent(lblDesayuno, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(80, 80, 80)
-                        .addComponent(lblAlmuerzo, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(70, 70, 70)
-                        .addComponent(lblCena, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(panelElaborarPlanLayout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(lblNombreDelDia, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblNombrePlan, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(40, 40, 40)
-                        .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(30, 30, 30)
-                        .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(83, 83, 83)
-                        .addComponent(btnElaborarPlan1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(177, Short.MAX_VALUE))
+                        .addComponent(txtNombrePlan, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addGroup(panelElaborarPlanLayout.createSequentialGroup()
+                        .addComponent(lblElaborarNuevoPlan)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(panelElaborarPlanLayout.createSequentialGroup()
+                        .addGap(36, 36, 36)
+                        .addGroup(panelElaborarPlanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panelElaborarPlanLayout.createSequentialGroup()
+                                .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(40, 40, 40)
+                                .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(30, 30, 30)
+                                .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(panelElaborarPlanLayout.createSequentialGroup()
+                                .addGap(32, 32, 32)
+                                .addComponent(lblDesayuno)
+                                .addGap(105, 105, 105)
+                                .addComponent(lblAlmuerzo)
+                                .addGap(115, 115, 115)
+                                .addComponent(lblCena, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(panelElaborarPlanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panelElaborarPlanLayout.createSequentialGroup()
+                                .addGap(53, 53, 53)
+                                .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelElaborarPlanLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(lblDiasCompletados, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(115, 115, 115))))))
         );
         panelElaborarPlanLayout.setVerticalGroup(
             panelElaborarPlanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelElaborarPlanLayout.createSequentialGroup()
                 .addGap(11, 11, 11)
                 .addComponent(lblElaborarNuevoPlan, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(8, 8, 8)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
                 .addGroup(panelElaborarPlanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelElaborarPlanLayout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(lblDia, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(14, 14, 14)
-                        .addComponent(listaDiasDeLaSemana, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(20, 20, 20)
-                        .addComponent(lblComida, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(8, 8, 8)
-                        .addComponent(listaComidasPlan, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(panelElaborarPlanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnElaborarPlan1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblEnviarPlan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addComponent(lblErrorNoSeCompletaronTodosLosDias, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(panelElaborarPlanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panelElaborarPlanLayout.createSequentialGroup()
+                                .addGap(36, 36, 36)
+                                .addComponent(iconGuardarDia, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelElaborarPlanLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lblGuardarDia1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(35, 35, 35)))
+                        .addComponent(lblErrorDiaIncompleto, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(panelElaborarPlanLayout.createSequentialGroup()
-                        .addComponent(lblAlimentos, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(6, 6, 6)
-                        .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(panelElaborarPlanLayout.createSequentialGroup()
-                        .addGap(40, 40, 40)
-                        .addComponent(btnAgregarAlPlan, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(30, 30, 30)
-                        .addComponent(btnEliminarDelPlan, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(40, 40, 40)
+                        .addGap(4, 4, 4)
+                        .addGroup(panelElaborarPlanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panelElaborarPlanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelElaborarPlanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(lblNombrePlan, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtNombrePlan, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(lblNombrePlanVacio, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(panelElaborarPlanLayout.createSequentialGroup()
+                                .addGap(2, 2, 2)
+                                .addComponent(lblValidarNombrePlan, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(9, 9, 9)
+                        .addGroup(panelElaborarPlanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panelElaborarPlanLayout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addComponent(lblDia, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(14, 14, 14)
+                                .addComponent(listaDiasDeLaSemana, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(20, 20, 20)
+                                .addComponent(lblComida, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(8, 8, 8)
+                                .addComponent(listaComidasPlan, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(panelElaborarPlanLayout.createSequentialGroup()
+                                .addComponent(lblAlimentos, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(6, 6, 6)
+                                .addGroup(panelElaborarPlanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(panelElaborarPlanLayout.createSequentialGroup()
+                                        .addComponent(iconAgregarAlimento, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(lblAgregarAlimento1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(btnEliminarDelPlan, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(lblEliminarAlimento, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jScrollPane8))))))
                 .addGroup(panelElaborarPlanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtNombrePlan, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblNombrePlan, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblValidarNombrePlan, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(panelElaborarPlanLayout.createSequentialGroup()
-                        .addComponent(lblNombrePlanVacio, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(2, 2, 2)
-                        .addComponent(lblCena1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(panelElaborarPlanLayout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(btnEliminarDelPlan1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGroup(panelElaborarPlanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblDesayuno, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblAlmuerzo, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblCena, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(panelElaborarPlanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelElaborarPlanLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(panelElaborarPlanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panelElaborarPlanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(lblDesayuno, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(lblAlmuerzo, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(lblCena, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(26, 26, 26)
                         .addGroup(panelElaborarPlanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPane11, javax.swing.GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE)
+                            .addComponent(jScrollPane11)
                             .addComponent(jScrollPane10)
-                            .addComponent(jScrollPane12)))
+                            .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(panelElaborarPlanLayout.createSequentialGroup()
-                        .addGap(45, 45, 45)
-                        .addComponent(btnElaborarPlan1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(panelElaborarPlanLayout.createSequentialGroup()
-                        .addGap(56, 56, 56)
-                        .addComponent(lblNombreDelDia, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(29, Short.MAX_VALUE))
+                        .addGap(14, 14, 14)
+                        .addComponent(lblDiasCompletados, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addGap(31, 31, 31))
         );
 
         panelMostrarPlanEnviado.setBackground(new java.awt.Color(51, 51, 51));
@@ -1083,7 +1170,7 @@ public final class VentanaMenuPrincipalProfesional extends javax.swing.JDialog {
                                 .addComponent(lblTxtRestricciones)
                                 .addGap(18, 18, 18)
                                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
                         .addComponent(lblElaborarPlan)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnElaborarPlan, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1742,37 +1829,6 @@ public final class VentanaMenuPrincipalProfesional extends javax.swing.JDialog {
                 .addContainerGap(488, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout panelDerechoLayout = new javax.swing.GroupLayout(panelDerecho);
-        panelDerecho.setLayout(panelDerechoLayout);
-        panelDerechoLayout.setHorizontalGroup(
-            panelDerechoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelPlanAlimentacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(panelMostrarPlanEnviado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(panelConsultaConProfesional, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(panelElaborarPlan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(panelNuevoAlimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(panelNoHayPlanesPendientes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGroup(panelDerechoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(panelDerechoLayout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(panelNoHayConsultasPendientes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addContainerGap()))
-        );
-        panelDerechoLayout.setVerticalGroup(
-            panelDerechoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelPlanAlimentacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(panelMostrarPlanEnviado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(panelConsultaConProfesional, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(panelElaborarPlan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(panelNuevoAlimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(panelNoHayPlanesPendientes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGroup(panelDerechoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(panelDerechoLayout.createSequentialGroup()
-                    .addGap(221, 221, 221)
-                    .addComponent(panelNoHayConsultasPendientes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGap(222, 222, 222)))
-        );
-
         panelVacio.setBackground(new java.awt.Color(51, 51, 51));
         panelVacio.setMaximumSize(new java.awt.Dimension(1020, 720));
         panelVacio.setMinimumSize(new java.awt.Dimension(1020, 720));
@@ -1808,14 +1864,53 @@ public final class VentanaMenuPrincipalProfesional extends javax.swing.JDialog {
                 .addContainerGap(608, Short.MAX_VALUE))
         );
 
+        javax.swing.GroupLayout panelDerechoLayout = new javax.swing.GroupLayout(panelDerecho);
+        panelDerecho.setLayout(panelDerechoLayout);
+        panelDerechoLayout.setHorizontalGroup(
+            panelDerechoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(panelPlanAlimentacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(panelMostrarPlanEnviado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(panelConsultaConProfesional, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(panelElaborarPlan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(panelNuevoAlimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(panelNoHayPlanesPendientes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(panelDerechoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panelDerechoLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(panelNoHayConsultasPendientes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addContainerGap()))
+            .addGroup(panelDerechoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panelDerechoLayout.createSequentialGroup()
+                    .addGap(5, 5, 5)
+                    .addComponent(panelVacio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+        );
+        panelDerechoLayout.setVerticalGroup(
+            panelDerechoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(panelPlanAlimentacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(panelMostrarPlanEnviado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(panelConsultaConProfesional, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(panelElaborarPlan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(panelNuevoAlimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(panelNoHayPlanesPendientes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(panelDerechoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panelDerechoLayout.createSequentialGroup()
+                    .addGap(221, 221, 221)
+                    .addComponent(panelNoHayConsultasPendientes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGap(222, 222, 222)))
+            .addGroup(panelDerechoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panelDerechoLayout.createSequentialGroup()
+                    .addGap(110, 110, 110)
+                    .addComponent(panelVacio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(111, Short.MAX_VALUE)))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(panelMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(panelVacio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(panelDerecho, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -1823,9 +1918,7 @@ public final class VentanaMenuPrincipalProfesional extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(panelMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(panelDerecho, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(panelVacio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(panelDerecho, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
@@ -1967,7 +2060,6 @@ public final class VentanaMenuPrincipalProfesional extends javax.swing.JDialog {
         cargarListaDiasDeLaSemana();
         cargarListaIngestasPorDia();
         this.listaAlimentosEnSistema.setListData(sistema.getListaAlimentos().toArray());
-        this.lblNombreDelDia.setText("Lunes");
         this.panelElaborarPlan.setVisible(true);
         this.listaAlimentosEnSistema.setSelectedIndex(0);
     }//GEN-LAST:event_btnElaborarPlanActionPerformed
@@ -1976,7 +2068,6 @@ public final class VentanaMenuPrincipalProfesional extends javax.swing.JDialog {
 
         String diaSeleccionado = (String) this.listaDiasDeLaSemana.getSelectedItem();
         this.diaDeLaSemanaActual = diaSeleccionado;
-        this.lblNombreDelDia.setText(this.diaDeLaSemanaActual);
         switch (this.diaDeLaSemanaActual) {
             case "Lunes":
                 this.textDesayuno.setText(this.planAlimentacion[0][0]);
@@ -2023,7 +2114,7 @@ public final class VentanaMenuPrincipalProfesional extends javax.swing.JDialog {
     }//GEN-LAST:event_listaDiasDeLaSemanaFocusLost
 
     private void listaDiasDeLaSemanaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listaDiasDeLaSemanaActionPerformed
-
+ 
     }//GEN-LAST:event_listaDiasDeLaSemanaActionPerformed
 
     private void listaComidasPlanItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_listaComidasPlanItemStateChanged
@@ -2059,14 +2150,14 @@ public final class VentanaMenuPrincipalProfesional extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNombrePlanActionPerformed
 
-    private void btnAgregarAlPlanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarAlPlanActionPerformed
+    private void iconAgregarAlimentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_iconAgregarAlimentoActionPerformed
         String diaSeleccionado = (String) this.listaDiasDeLaSemana.getSelectedItem();
         this.diaDeLaSemanaAnterior = diaSeleccionado;
         String ingestaSeleccionada = (String) this.listaComidasPlan.getSelectedItem();
         String alimentoAgregado = this.listaAlimentosEnSistema.getSelectedValue().toString();
         String textoAnterior = "";
         switch (ingestaSeleccionada) {
-            case "Desayuno":
+            case "DESAYUNO":
                 textoAnterior = this.textDesayuno.getText();
                 if (textoAnterior.equals("")) {
                     textoAnterior = alimentoAgregado;
@@ -2075,7 +2166,7 @@ public final class VentanaMenuPrincipalProfesional extends javax.swing.JDialog {
                 }
                 this.textDesayuno.setText(textoAnterior);
                 break;
-            case "Almuerzo":
+            case "ALMUERZO":
                 textoAnterior = this.textAlmuerzo.getText();
                 if (textoAnterior.equals("")) {
                     textoAnterior = alimentoAgregado;
@@ -2084,7 +2175,7 @@ public final class VentanaMenuPrincipalProfesional extends javax.swing.JDialog {
                 }
                 this.textAlmuerzo.setText(textoAnterior);
                 break;
-            case "Cena":
+            case "CENA":
                 textoAnterior = this.textCena.getText();
                 if (textoAnterior.equals("")) {
                     textoAnterior = alimentoAgregado;
@@ -2096,7 +2187,8 @@ public final class VentanaMenuPrincipalProfesional extends javax.swing.JDialog {
             default:
                 break;
         }
-    }//GEN-LAST:event_btnAgregarAlPlanActionPerformed
+        this.listaDiasDeLaSemana.setEnabled(false);
+    }//GEN-LAST:event_iconAgregarAlimentoActionPerformed
 
     private void btnEliminarDelPlanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarDelPlanActionPerformed
         String diaSeleccionado = (String) this.listaDiasDeLaSemana.getSelectedItem();
@@ -2106,7 +2198,7 @@ public final class VentanaMenuPrincipalProfesional extends javax.swing.JDialog {
         String remplazado = "";
         CharSequence secuencia = "\n";
         switch (ingestaSeleccionada) {
-            case "Desayuno":
+            case "DESAYUNO":
                 aRemplazar = this.textDesayuno.getText();
                 if (aRemplazar.contains(secuencia)) {
                     alimentoEliminado += "\n";
@@ -2114,7 +2206,7 @@ public final class VentanaMenuPrincipalProfesional extends javax.swing.JDialog {
                 remplazado = aRemplazar.replaceFirst(alimentoEliminado, "");
                 this.textDesayuno.setText(remplazado);
                 break;
-            case "Almuerzo":
+            case "ALMUERZO":
                 aRemplazar = this.textAlmuerzo.getText();
                 if (aRemplazar.contains(secuencia)) {
                     alimentoEliminado += "\n";
@@ -2122,7 +2214,7 @@ public final class VentanaMenuPrincipalProfesional extends javax.swing.JDialog {
                 remplazado = aRemplazar.replaceFirst(alimentoEliminado, "");
                 this.textAlmuerzo.setText(remplazado);
                 break;
-            case "Cena":
+            case "CENA":
                 aRemplazar = this.textCena.getText();
                 if (aRemplazar.contains(secuencia)) {
                     alimentoEliminado += "\n";
@@ -2140,7 +2232,12 @@ public final class VentanaMenuPrincipalProfesional extends javax.swing.JDialog {
         if (nombreDelPlan.equals("")) {
             this.lblNombrePlanVacio.setVisible(true);
             this.lblValidarNombrePlan.setVisible(true);
-        } else {
+        } 
+        else if(!seCompletaronTodosLosDias()){
+            this.lblErrorNoSeCompletaronTodosLosDias.setVisible(true);
+        }
+        else {
+            this.lblErrorNoSeCompletaronTodosLosDias.setVisible(false);
             String nombreProfesionalLogueado = sistema.getPersonaLogueada().getNombreCompleto();
             Profesional profesionalLogueado = sistema.getProfesionalPorNombre(nombreProfesionalLogueado);
             Usuario usuarioPerfil = (Usuario) sistema.getUsuarioPorNombre(usuarioSeleccionado);
@@ -2152,9 +2249,31 @@ public final class VentanaMenuPrincipalProfesional extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_btnElaborarPlan1ActionPerformed
 
-    private void btnEliminarDelPlan1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarDelPlan1ActionPerformed
-        guardarDatosDelPlan();
-    }//GEN-LAST:event_btnEliminarDelPlan1ActionPerformed
+    private void iconGuardarDiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_iconGuardarDiaActionPerformed
+        if(diaCompleto()){
+            this.lblErrorDiaIncompleto.setVisible(false);
+            guardarDatosDelPlan();
+            this.textDesayuno.setText("");
+            this.textAlmuerzo.setText("");
+            this.textCena.setText("");
+            
+            String diaCompletado = (String) this.listaDiasDeLaSemana.getSelectedItem();
+            diasCompletados.add(diaCompletado);
+            listaDiasCompletados.setListData(diasCompletados.toArray());
+            cargarListaDiasDeLaSemana();
+            
+            if(!seCompletaronTodosLosDias()){
+                this.listaDiasDeLaSemana.setEnabled(true);
+            }
+            else{
+                this.listaDiasDeLaSemana.setEnabled(false);
+            }
+        }
+        else{
+            this.lblErrorDiaIncompleto.setVisible(true);
+        }
+        this.lblErrorNoSeCompletaronTodosLosDias.setVisible(false);
+    }//GEN-LAST:event_iconGuardarDiaActionPerformed
 
     private void btnAyudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAyudaActionPerformed
         AyudaProfesional ayuda = new AyudaProfesional(sistema);
@@ -2403,6 +2522,10 @@ public final class VentanaMenuPrincipalProfesional extends javax.swing.JDialog {
         System.exit(0);
     }//GEN-LAST:event_btnCerrarSistemaActionPerformed
 
+    private void listaDiasCompletadosValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_listaDiasCompletadosValueChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_listaDiasCompletadosValueChanged
+
     private void ocultarPaneles() {
         this.btnConsultasPendientes.setEnabled(true);
         this.btnIngresarAlimento.setEnabled(true);
@@ -2525,14 +2648,12 @@ public final class VentanaMenuPrincipalProfesional extends javax.swing.JDialog {
         return listaRetorno;
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAgregarAlPlan;
     private javax.swing.JButton btnAyuda;
     private javax.swing.JButton btnCerrarSistema;
     private javax.swing.JButton btnConsultasPendientes;
     private javax.swing.JButton btnElaborarPlan;
     private javax.swing.JButton btnElaborarPlan1;
     private javax.swing.JButton btnEliminarDelPlan;
-    private javax.swing.JButton btnEliminarDelPlan1;
     private javax.swing.JButton btnEnviarMensaje;
     private javax.swing.JButton btnHome;
     private javax.swing.JButton btnIngresarAlimento;
@@ -2547,6 +2668,8 @@ public final class VentanaMenuPrincipalProfesional extends javax.swing.JDialog {
     private javax.swing.JCheckBox checkMinerales;
     private javax.swing.JCheckBox checkProteínas;
     private javax.swing.JCheckBox checkVitaminas;
+    private javax.swing.JButton iconAgregarAlimento;
+    private javax.swing.JButton iconGuardarDia;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -2562,25 +2685,32 @@ public final class VentanaMenuPrincipalProfesional extends javax.swing.JDialog {
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
+    private javax.swing.JScrollPane jScrollPane9;
+    private javax.swing.JLabel lblAgregarAlimento1;
     private javax.swing.JLabel lblAlimentos;
     private javax.swing.JLabel lblAlmuerzo;
     private javax.swing.JLabel lblCena;
-    private javax.swing.JLabel lblCena1;
     private javax.swing.JLabel lblComida;
     private javax.swing.JLabel lblConsultasPendientes;
     private javax.swing.JLabel lblDatosIncorrectos;
     private javax.swing.JLabel lblDatosIncorrectos2;
     private javax.swing.JLabel lblDesayuno;
     private javax.swing.JLabel lblDia;
+    private javax.swing.JLabel lblDiasCompletados;
     private javax.swing.JLabel lblElaborarNuevoPlan;
     private javax.swing.JLabel lblElaborarPlan;
     private javax.swing.JLabel lblElijaUnUsuario;
+    private javax.swing.JLabel lblEliminarAlimento;
+    private javax.swing.JLabel lblEnviarPlan;
+    private javax.swing.JLabel lblErrorDiaIncompleto;
+    private javax.swing.JLabel lblErrorNoSeCompletaronTodosLosDias;
     private javax.swing.JLabel lblFechaNacimiento;
     private javax.swing.JLabel lblFibra;
     private javax.swing.JLabel lblFotoDeUsuario;
     private javax.swing.JLabel lblFotoProfesional;
     private javax.swing.JLabel lblFotoUsuario;
     private javax.swing.JLabel lblGlucidos;
+    private javax.swing.JLabel lblGuardarDia1;
     private javax.swing.JLabel lblHidratos;
     private javax.swing.JLabel lblIconoNuevoAlimento;
     private javax.swing.JLabel lblIngestas;
@@ -2598,7 +2728,6 @@ public final class VentanaMenuPrincipalProfesional extends javax.swing.JDialog {
     private javax.swing.JLabel lblNohayPlanesTexto1;
     private javax.swing.JLabel lblNohayPlanesTexto2;
     private javax.swing.JLabel lblNombre;
-    private javax.swing.JLabel lblNombreDelDia;
     private javax.swing.JLabel lblNombrePlan;
     private javax.swing.JLabel lblNombrePlanVacio;
     private javax.swing.JLabel lblNombreUsuario;
@@ -2627,6 +2756,7 @@ public final class VentanaMenuPrincipalProfesional extends javax.swing.JDialog {
     private javax.swing.JList listaAlimentosEnSistema;
     private javax.swing.JComboBox<String> listaComidasPlan;
     private javax.swing.JList<String> listaConversaciones;
+    private javax.swing.JList listaDiasCompletados;
     private javax.swing.JComboBox<String> listaDiasDeLaSemana;
     private javax.swing.JList<String> listaIngestas;
     private javax.swing.JList<String> listaPlanesPendientes;
@@ -2670,10 +2800,19 @@ public final class VentanaMenuPrincipalProfesional extends javax.swing.JDialog {
         List<String> diasEnSistema = sistema.devolverListaDiasDeLaSemana();
         this.listaDiasDeLaSemana.setModel(modelo);
         for (int i = 0; i < diasEnSistema.size(); i++) {
-            this.listaDiasDeLaSemana.addItem(diasEnSistema.get(i));
+            boolean diaYaCompletado = false;
+            
+            for(int j = 0; j < diasCompletados.size(); j++){
+                if(diasEnSistema.get(i).equalsIgnoreCase(diasCompletados.get(j)))
+                    diaYaCompletado = true;
+            }
+            
+            if(!diaYaCompletado){
+                this.listaDiasDeLaSemana.addItem(diasEnSistema.get(i));
+            }
         }
     }
-
+    
     private void cargarListaIngestasPorDia() {
         DefaultComboBoxModel modelo = new DefaultComboBoxModel();
         List<String> ingestasEnSistema = sistema.devolverListaIngestasDeLaSemana();
@@ -2686,7 +2825,6 @@ public final class VentanaMenuPrincipalProfesional extends javax.swing.JDialog {
     private void guardarDatosDelPlan() {
         String diaSeleccionado = (String) this.listaDiasDeLaSemana.getSelectedItem();
         this.diaDeLaSemanaActual = diaSeleccionado;
-        this.lblNombreDelDia.setText(diaSeleccionado);
         String itemsDesayuno = this.textDesayuno.getText();
         String itemsAlmuerzo = this.textAlmuerzo.getText();
         String itemsCena = this.textCena.getText();
@@ -2694,37 +2832,37 @@ public final class VentanaMenuPrincipalProfesional extends javax.swing.JDialog {
         this.textAlmuerzo.setText("");
         this.textCena.setText("");
         switch (this.diaDeLaSemanaAnterior) {
-            case "Lunes":
+            case "LUNES":
                 this.planAlimentacion[0][0] = itemsDesayuno;
                 this.planAlimentacion[0][1] = itemsAlmuerzo;
                 this.planAlimentacion[0][2] = itemsCena;
                 break;
-            case "Martes":
+            case "MARTES":
                 this.planAlimentacion[1][0] = itemsDesayuno;
                 this.planAlimentacion[1][1] = itemsAlmuerzo;
                 this.planAlimentacion[1][2] = itemsCena;
                 break;
-            case "Miercoles":
+            case "MIERCOLES":
                 this.planAlimentacion[2][0] = itemsDesayuno;
                 this.planAlimentacion[2][1] = itemsAlmuerzo;
                 this.planAlimentacion[2][2] = itemsCena;
                 break;
-            case "Jueves":
+            case "JUEVES":
                 this.planAlimentacion[3][0] = itemsDesayuno;
                 this.planAlimentacion[3][1] = itemsAlmuerzo;
                 this.planAlimentacion[3][2] = itemsCena;
                 break;
-            case "Viernes":
+            case "VIERNES":
                 this.planAlimentacion[4][0] = itemsDesayuno;
                 this.planAlimentacion[4][1] = itemsAlmuerzo;
                 this.planAlimentacion[4][2] = itemsCena;
                 break;
-            case "Sabado":
+            case "SABADO":
                 this.planAlimentacion[5][0] = itemsDesayuno;
                 this.planAlimentacion[5][1] = itemsAlmuerzo;
                 this.planAlimentacion[5][2] = itemsCena;
                 break;
-            case "Domingo":
+            case "DOMINGO":
                 this.planAlimentacion[6][0] = itemsDesayuno;
                 this.planAlimentacion[6][1] = itemsAlmuerzo;
                 this.planAlimentacion[6][2] = itemsCena;
@@ -2773,4 +2911,18 @@ public final class VentanaMenuPrincipalProfesional extends javax.swing.JDialog {
         this.txtVitaminas.setVisible(false);
         this.txtFibra.setVisible(false);
     }
+    
+    private boolean diaCompleto(){
+        String desayuno = textDesayuno.getText();
+        String almuerzo = textAlmuerzo.getText();
+        String cena = textCena.getText();
+        
+        return !desayuno.isEmpty() && !almuerzo.isEmpty() && !cena.isEmpty();
+    }
+    
+    private boolean seCompletaronTodosLosDias(){
+        return diasCompletados.size() == 7;
+    }
+    
+
 }

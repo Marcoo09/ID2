@@ -21,9 +21,9 @@ Correccion solicitud de plan de alimentacion - 10hs (TN2 9hs / TN3 1h) | Desarro
 
 Visualizacion de ingestas - 1hs 30min | Desarrollador
 
-Correccion creacion de plan de alimentacion - 4hs [NO REALIZADO] | Desarrollador
+Correccion creacion de plan de alimentacion - 9hs | Desarrollador
 
-=> 15:30hs Desarrollador - 2hs QA (Testing)
+=> 20:30hs Desarrollador - 2hs QA (Testing)
 -----------------------------------------------------
 -----------------------------------------------------
 ##Mejora en la Usabilidad Global del Sistema##
@@ -44,6 +44,10 @@ Unificacion de la forma en que se presentan las imagenes en la aplicacion - 7hs 
 Capacidad de cerrar la aplicación desde cualquier pantalla - 2hs | Desarrollador {ADELANTADO}
 
 Capacidad de cargar un set de datos al entrar al sistema - 4hs | Desarrollador
+
+Capacidad de eliminar alimentos ingeridos y registrados - FUERA DEL ALCANCE
+
+Posibilidad de subir im´agenes jpg - FUERA DEL ALCANCE
 
 => 6hs Desarrollador
 -----------------------------------------------------
