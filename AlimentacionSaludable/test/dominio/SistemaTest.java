@@ -2,10 +2,12 @@ package dominio;
 
 import dominio.Sistema.DiasDeLaSemana;
 import dominio.Sistema.IngestasPorDia;
+import dominio.Sistema.Paises;
 import dominio.Sistema.Preferencias;
 import dominio.Sistema.Restricciones;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.ImageIcon;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -95,6 +97,49 @@ public class SistemaTest {
         Sistema sistemaATestear = new Sistema(null, null, null, null, null, null);
         boolean pudeAgregarMensaje = sistemaATestear.agregarMensajeConversacion(null, null, "Segundo mensaje", false, false);
         assertFalse(pudeAgregarMensaje);
+    }
+    
+    @Test
+    public void testAgregarMensajeConversacionCorrectamente() {
+        Usuario personaLogueada = new Usuario("Nombre", "Apellido", "",
+                                      new ImageIcon(getClass().getResource("/Imagenes/fotoDeUsuarioStandard.png")),
+                                            "", null, null, null);
+        Profesional profesionalConversacion = new Profesional("Luis", null, null, null, null, null, null);
+        List<Profesional> listaProfesionales = new ArrayList<>();
+        List<Usuario> listaUsuarios = new ArrayList<>();
+        List<Conversacion> listaConversaciones = new ArrayList<>();
+        
+        listaProfesionales.add(profesionalConversacion);
+        listaUsuarios.add(personaLogueada);
+        
+        Sistema sistemaATestear = new Sistema(listaUsuarios,listaProfesionales,new ArrayList<>(),new ArrayList<>(),
+                                        listaConversaciones,personaLogueada);
+        sistemaATestear.crearConversacion(personaLogueada, profesionalConversacion, "Hola", true);
+
+        boolean pudeAgregarMensaje = sistemaATestear.agregarMensajeConversacion(personaLogueada.getNombreCompleto(), profesionalConversacion.getNombreCompleto(), "Segundo mensaje", false, false);
+        assertTrue(pudeAgregarMensaje);
+    }
+    
+    @Test
+    public void testAgregarMensajeConversacionCorrectamenteConIntercambio() {
+        Usuario personaLogueada = new Usuario("Nombre", "Apellido", "",
+                                      new ImageIcon(getClass().getResource("/Imagenes/fotoDeUsuarioStandard.png")),
+                                            "", null, null, null);
+        Profesional profesionalConversacion = new Profesional("Luis", null, null, null, null, null, null);
+        List<Profesional> listaProfesionales = new ArrayList<>();
+        List<Usuario> listaUsuarios = new ArrayList<>();
+        List<Conversacion> listaConversaciones = new ArrayList<>();
+        
+        listaProfesionales.add(profesionalConversacion);
+        listaUsuarios.add(personaLogueada);
+        
+        Sistema sistemaATestear = new Sistema(listaUsuarios,listaProfesionales,new ArrayList<>(),new ArrayList<>(),
+                                        listaConversaciones,personaLogueada);
+        sistemaATestear.crearConversacion(personaLogueada, profesionalConversacion, "Hola", false);
+        
+        boolean pudeAgregarMensaje = sistemaATestear.agregarMensajeConversacion(personaLogueada.getNombreCompleto(),
+                                                profesionalConversacion.getNombreCompleto(), "Segundo mensaje", true, false);
+        assertTrue(pudeAgregarMensaje);
     }
 
     @Test
@@ -208,6 +253,26 @@ public class SistemaTest {
         assertEquals(sistemaATestear.getListaPlanesPendientes(null).length, 0);
     }
 
+    @Test
+    public void testCrearConversacionDatosCorrectos() {
+        ArrayList<Usuario> listaUsuarios = new ArrayList<>();
+        ArrayList<Profesional> listaProfesionales = new ArrayList<>();
+        ArrayList<Alimento> listaAlimentos = new ArrayList<>();
+        ArrayList<PlanAlimentacion> listaPlanesAlimentacion = new ArrayList<>();
+        ArrayList<Conversacion> listaConversaciones = new ArrayList<>();        
+        Usuario personaLogueada = new Usuario("Martin", null, null, null, null, null, null, null);
+        Profesional profesional = new Profesional("Jose", null, null, null, null, null, null);
+        listaUsuarios.add(personaLogueada);
+        listaProfesionales.add(profesional);       
+        
+        Sistema sistemaATestear = new Sistema(listaUsuarios, listaProfesionales, listaAlimentos, listaPlanesAlimentacion,
+                                listaConversaciones, personaLogueada);
+        
+        boolean agregarConversacion = sistemaATestear.crearConversacion(personaLogueada, 
+                                                profesional, "Hola", false);
+        assertTrue(agregarConversacion);
+    }
+    
     @Test
     public void testAgregarAListaConversacionesDatosErroneos() {
         ArrayList<Usuario> listaUsuarios = new ArrayList<>();
@@ -429,4 +494,348 @@ public class SistemaTest {
         assertEquals(sistemaATestear.devolverListaDiasDeLaSemana(), listaEsperada);
     }
 
+    @Test
+    public void testCrearAlimento() {
+        Sistema sistemaATestear = new Sistema();
+        List<Alimento> listaEsperada = new ArrayList<>();
+        String nombre = "Manzana";
+        String tipoAlimento = "N/A";
+        Alimento nuevoAlimento = new Alimento(nombre,tipoAlimento,null,null);
+        listaEsperada.add(nuevoAlimento);
+        
+        sistemaATestear.crearAlimento(nombre, tipoAlimento, null, null);
+        assertEquals(sistemaATestear.getListaAlimentos(), listaEsperada);
+    }
+    
+    @Test
+    public void testCrearProfesional() {
+        Sistema sistemaATestear = new Sistema();
+        List<Profesional> listaEsperada = new ArrayList<>();
+        String nombre = "John";
+        String apellido = "Johnson";
+        String fechaNacimiento = "11/05/06";
+        String tituloProfesional = "Nutricionista";
+        String fechaGraduacion = "11/05/21";
+        String paisGraduacion = "Uruguay";
+        Profesional nuevoProf = new Profesional(nombre,apellido,fechaNacimiento,null,
+                                                    tituloProfesional,fechaGraduacion,paisGraduacion);
+        listaEsperada.add(nuevoProf);
+        
+        sistemaATestear.crearProfesional(nombre, apellido, fechaNacimiento, null,tituloProfesional,
+                                        fechaGraduacion,paisGraduacion);
+        assertEquals(sistemaATestear.getListaProfesionales(), listaEsperada);
+    }
+    
+    @Test
+    public void testAgregarConversacionAListaCorrectamente(){
+        Sistema sistemaATestear = new Sistema();
+        Usuario usuario = new Usuario("James", "Cliford", null, null, null, null, null, null);
+        Profesional profesional = new Profesional("Mary", "Ga", null, null, null, null, null);
+        List<InformacionMensaje> listaMensajes = new ArrayList<>();
+        
+        Conversacion nuevaConversacion = new Conversacion(usuario,profesional,listaMensajes);
+        
+        assertTrue(sistemaATestear.agregarConversacionALaLista(nuevaConversacion));
+    }
+    
+    @Test
+    public void testAgregarConversacionAListaIncorrectamente(){
+        Sistema sistemaATestear = new Sistema();
+        Usuario usuario = new Usuario("James", "Cliford", null, null, null, null, null, null);
+        Profesional profesional = new Profesional("Mary", "Ga", null, null, null, null, null);
+        List<InformacionMensaje> listaMensajes = new ArrayList<>();
+        
+        Conversacion nuevaConversacion = new Conversacion(usuario,profesional,listaMensajes);
+        
+        sistemaATestear.agregarConversacionALaLista(nuevaConversacion);
+        assertFalse(sistemaATestear.agregarConversacionALaLista(nuevaConversacion));
+    }
+ 
+    @Test
+    public void testAgregarAlimentoALaListaCorrectamente(){
+        Sistema sistemaATestear = new Sistema();
+        String nombre = "Manzana";
+        String tipoAlimento = "N/A";
+        Alimento nuevoAlimento = new Alimento(nombre,tipoAlimento,null,null);
+        
+        assertTrue(sistemaATestear.agregarAlimentoALaLista(nuevoAlimento));
+    }
+    
+    @Test
+    public void testAgregarAlimentoNullALaLista(){
+        Sistema sistemaATestear = new Sistema(); 
+        assertFalse(sistemaATestear.agregarAlimentoALaLista(null));
+    }
+    
+     
+    @Test
+    public void testAgregarAlimentoExistenteALaLista(){
+        Sistema sistemaATestear = new Sistema();
+        String nombre = "Manzana";
+        String tipoAlimento = "N/A";
+        Alimento nuevoAlimento = new Alimento(nombre,tipoAlimento,null,null);
+        
+        sistemaATestear.agregarAlimentoALaLista(nuevoAlimento);
+        assertFalse(sistemaATestear.agregarAlimentoALaLista(nuevoAlimento));
+    }
+    
+    @Test
+    public void testCopiarListaVacia(){
+        Sistema sistemaATestear = new Sistema();
+        List<String> lista = new ArrayList<>(); 
+        assertEquals(sistemaATestear.copiarLista(lista), lista);
+    }
+    
+    @Test
+    public void testCopiarListaNoVacia(){
+        Sistema sistemaATestear = new Sistema();
+        List<String> lista = new ArrayList<>(); 
+        lista.add("Test 1");
+        lista.add("Test 2");
+        assertEquals(sistemaATestear.copiarLista(lista), lista);
+    }
+    
+    @Test
+    public void testUsuarioTieneSolicitudPlanAlimentacionUsuarioNull(){
+        Sistema sistemaATestear = new Sistema();
+        assertFalse(sistemaATestear.usuarioTieneSolicitudPlanAlimentacionPendiente(null));
+    }
+    
+        @Test
+    public void testUsuarioTieneSolicitudPlanAlimentacionUsuarioSinPlan(){
+        Sistema sistemaATestear = new Sistema();
+        Usuario usuario = new Usuario("James", "Cliford", null, null, null, null, null, null);
+        assertFalse(sistemaATestear.usuarioTieneSolicitudPlanAlimentacionPendiente(usuario)); 
+    }
+    
+    @Test
+    public void testUsuarioTieneSolicitudPlanAlimentacionUsuarioConPlan(){
+        Usuario usuario = new Usuario("James", "Cliford", null, null, null, null, null, null);
+        PlanAlimentacion plan = new PlanAlimentacion("TestPlan",usuario,null,false,null);
+        List<PlanAlimentacion> listaPlanes = new ArrayList<>();
+        listaPlanes.add(plan);
+        Usuario personaLogueada = new Usuario("Nombre", "Apellido", "",
+                                      new ImageIcon(getClass().getResource("/Imagenes/fotoDeUsuarioStandard.png")),
+                                            "", null, null, null);
+        Sistema sistemaATestear = new Sistema(new ArrayList<>(),new ArrayList<>(),new ArrayList<>(),listaPlanes,
+                                        new ArrayList<>(),personaLogueada);
+        assertTrue(sistemaATestear.usuarioTieneSolicitudPlanAlimentacionPendiente(usuario)); 
+    }
+    
+    @Test
+    public void testGetNombresProfesionalesSinConversacionConUsuario(){
+        Usuario personaLogueada = new Usuario("Nombre", "Apellido", "",
+                                      new ImageIcon(getClass().getResource("/Imagenes/fotoDeUsuarioStandard.png")),
+                                            "", null, null, null);
+        Profesional profesionalConversacion = new Profesional("Luis", null, null, null, null, null, null);
+        Profesional profesionalSinConversacion = new Profesional("Jose", null, null, null, null, null, null);
+        
+        List<Profesional> listaProfesionales = new ArrayList<>();
+        List<Usuario> listaUsuarios = new ArrayList<>();
+        List<Conversacion> listaConversaciones = new ArrayList<>();
+        List<Profesional> resultadoEsperado = new ArrayList<>();
+        
+        listaProfesionales.add(profesionalConversacion);
+        listaProfesionales.add(profesionalSinConversacion);
+        resultadoEsperado.add(profesionalSinConversacion);
+        
+        listaUsuarios.add(personaLogueada);
+        
+        Sistema sistemaATestear = new Sistema(listaUsuarios,listaProfesionales,new ArrayList<>(),new ArrayList<>(),
+                                        listaConversaciones,personaLogueada);
+                
+        sistemaATestear.crearConversacion(personaLogueada, profesionalConversacion, "Hola", true);
+                
+        assertEquals(sistemaATestear.getNombresProfesionalesSinConversacionConUsuario(personaLogueada),resultadoEsperado);
+    }
+    
+    @Test
+    public void testGetNombresProfesionalesConConversacionConUsuario(){
+        Usuario personaLogueada = new Usuario("Nombre", "Apellido", "",
+                                      new ImageIcon(getClass().getResource("/Imagenes/fotoDeUsuarioStandard.png")),
+                                            "", null, null, null);
+        Profesional profesionalConversacion = new Profesional("Luis", null, null, null, null, null, null);
+        Profesional profesionalSinConversacion = new Profesional("Jose", null, null, null, null, null, null);
+        
+        List<Profesional> listaProfesionales = new ArrayList<>();
+        List<Usuario> listaUsuarios = new ArrayList<>();
+        List<Conversacion> listaConversaciones = new ArrayList<>();
+        String[] resultadoEsperado = {profesionalConversacion.getNombreCompleto()};
+        
+        listaProfesionales.add(profesionalConversacion);
+        listaProfesionales.add(profesionalSinConversacion);
+        
+        listaUsuarios.add(personaLogueada);
+        
+        Sistema sistemaATestear = new Sistema(listaUsuarios,listaProfesionales,new ArrayList<>(),new ArrayList<>(),
+                                        listaConversaciones,personaLogueada);
+                
+        sistemaATestear.crearConversacion(personaLogueada, profesionalConversacion, "Hola", true);
+                
+        assertArrayEquals(sistemaATestear.getProfesionalesConConversacionesActivas(personaLogueada.getNombreCompleto()),resultadoEsperado);
+    }
+    
+    @Test
+    public void testGetListaNombresUsuariosConversacionesPendientes(){
+        Usuario personaLogueada = new Usuario("Nombre", "Apellido", "",
+                                      new ImageIcon(getClass().getResource("/Imagenes/fotoDeUsuarioStandard.png")),
+                                            "", null, null, null);
+        Profesional profesionalConversacion = new Profesional("Luis", null, null, null, null, null, null);
+        Profesional profesionalSinConversacion = new Profesional("Jose", null, null, null, null, null, null);
+        
+        List<Profesional> listaProfesionales = new ArrayList<>();
+        List<Usuario> listaUsuarios = new ArrayList<>();
+        List<Conversacion> listaConversaciones = new ArrayList<>();
+        String[] resultadoEsperado = {personaLogueada.getNombreCompleto()};
+        
+        listaProfesionales.add(profesionalConversacion);
+        listaProfesionales.add(profesionalSinConversacion);
+        
+        listaUsuarios.add(personaLogueada);
+        
+        Sistema sistemaATestear = new Sistema(listaUsuarios,listaProfesionales,new ArrayList<>(),new ArrayList<>(),
+                                        listaConversaciones,personaLogueada);
+                
+        sistemaATestear.crearConversacion(personaLogueada, profesionalConversacion, "Hola", true);
+                
+        assertArrayEquals(sistemaATestear.getListaNombresUsuariosConversacionesPendientes(profesionalConversacion.getNombreCompleto()),resultadoEsperado);
+    }
+    
+    @Test
+    public void testDevolverListaPaises(){
+        List<String> resultadoEsperado = new ArrayList<>();
+        resultadoEsperado.add(Paises.ARGENTINA.toString());
+        resultadoEsperado.add(Paises.BOLIVIA.toString());
+        resultadoEsperado.add(Paises.BRASIL.toString());
+        resultadoEsperado.add(Paises.CHILE.toString());
+        resultadoEsperado.add(Paises.COLOMBIA.toString());
+        resultadoEsperado.add("Costa Rica");
+        resultadoEsperado.add(Paises.CUBA.toString());
+        resultadoEsperado.add(Paises.ECUADOR.toString());
+        resultadoEsperado.add("El Salvador");
+        resultadoEsperado.add("Guayana Francesa");
+        resultadoEsperado.add(Paises.GRANADA.toString());
+        resultadoEsperado.add(Paises.GUATEMALA.toString());
+        resultadoEsperado.add(Paises.GUAYANA.toString());
+        resultadoEsperado.add(Paises.HAITI.toString());
+        resultadoEsperado.add(Paises.HONDURAS.toString());
+        resultadoEsperado.add(Paises.JAMAICA.toString());
+        resultadoEsperado.add(Paises.MEXICO.toString());
+        resultadoEsperado.add(Paises.NICARAGUA.toString());
+        resultadoEsperado.add(Paises.PARAGUAY.toString());
+        resultadoEsperado.add(Paises.PANAMA.toString());
+        resultadoEsperado.add(Paises.PERU.toString());
+        resultadoEsperado.add("Puerto Rico");
+        resultadoEsperado.add("República Dominicana");
+        resultadoEsperado.add(Paises.SURINAM.toString());
+        resultadoEsperado.add(Paises.URUGUAY.toString());
+        resultadoEsperado.add(Paises.VENEZUELA.toString());
+        
+        Sistema sistemaATestear = new Sistema();
+                
+        assertEquals(sistemaATestear.devolverListaPaises(), resultadoEsperado);
+    }
+    
+    @Test
+    public void testGetConversacionSinConversaciones () {
+        Sistema sistemaATestear = new Sistema();
+        assertEquals(sistemaATestear.getConversacion("", ""), "No hay conversación disponible.");
+    }
+    
+    @Test
+    public void testGetConversacionConConversaciones () {
+        Usuario personaLogueada = new Usuario("Nombre", "Apellido", "",
+                                      new ImageIcon(getClass().getResource("/Imagenes/fotoDeUsuarioStandard.png")),
+                                            "", null, null, null);
+        Profesional profesionalConversacion = new Profesional("Luis", null, null, null, null, null, null);
+        
+        List<Profesional> listaProfesionales = new ArrayList<>();
+        List<Usuario> listaUsuarios = new ArrayList<>();
+        List<Conversacion> listaConversaciones = new ArrayList<>();
+        String conversacion = "Hola";
+        
+        listaProfesionales.add(profesionalConversacion);
+        
+        listaUsuarios.add(personaLogueada);
+        
+        Sistema sistemaATestear = new Sistema(listaUsuarios,listaProfesionales,new ArrayList<>(),new ArrayList<>(),
+                                        listaConversaciones,personaLogueada);
+                
+        sistemaATestear.crearConversacion(personaLogueada, profesionalConversacion, conversacion, true);
+        
+        InformacionMensaje mensaje = new InformacionMensaje(personaLogueada.getNombreCompleto(),
+                                                                profesionalConversacion.getNombreCompleto(),conversacion);
+        List<InformacionMensaje> listaMensajes = new ArrayList<>();
+        listaMensajes.add(mensaje);
+        
+        Conversacion resultadoEsperado = new Conversacion(personaLogueada,profesionalConversacion,listaMensajes);
+                
+        assertEquals(sistemaATestear.getConversacion(profesionalConversacion.getNombreCompleto(), 
+                                                            personaLogueada.getNombreCompleto()), resultadoEsperado.toString());
+    }
+    
+    @Test
+    public void testPlanesAtendidosDelUsuarioSinPlanesUsuarioNull(){
+        Sistema sistemaATestear = new Sistema();
+        String[] resultadoEsperado = {};
+        assertArrayEquals(sistemaATestear.planesAtendidosDelUsuario(null), resultadoEsperado);
+    }
+    
+    @Test
+    public void testPlanesAtendidosDelUsuarioSinPlanesUsuarioExistente(){
+        Sistema sistemaATestear = new Sistema();
+        String[] resultadoEsperado = {};
+        Usuario stubUsuario = new Usuario("John",null,null,null,null,null,null,null);
+        assertArrayEquals(sistemaATestear.planesAtendidosDelUsuario(stubUsuario), resultadoEsperado);
+    }
+    
+    @Test
+    public void testPlanesAtendidosDelUsuarioConPlanesAtendidos(){
+        Usuario usuario = new Usuario("Martin", null, null, null, null, null, null, null);
+        Profesional professional = new Profesional("Ana", null, null, null, null, null, null);
+        PlanAlimentacion plan = new PlanAlimentacion("Plan", usuario, professional, true, null);
+        ArrayList<PlanAlimentacion> listaPlanesAlimentacion = new ArrayList<>();
+        listaPlanesAlimentacion.add(plan);
+        Sistema sistemaATestear = new Sistema(null, null, null, listaPlanesAlimentacion, null, null);
+        
+        String[] resultadoEsperado = {plan.getNombreDelPlan()};
+        
+        assertArrayEquals(sistemaATestear.planesAtendidosDelUsuario(usuario), resultadoEsperado);
+    }
+    
+    @Test
+    public void testPlanesAtendidosDelUsuarioConPlanesNoAtendidos(){
+        Usuario usuario = new Usuario("Martin", null, null, null, null, null, null, null);
+        Profesional professional = new Profesional("Ana", null, null, null, null, null, null);
+        PlanAlimentacion plan = new PlanAlimentacion("Plan", usuario, professional, false, null);
+        ArrayList<PlanAlimentacion> listaPlanesAlimentacion = new ArrayList<>();
+        listaPlanesAlimentacion.add(plan);
+        Sistema sistemaATestear = new Sistema(null, null, null, listaPlanesAlimentacion, null, null);
+        
+        String[] resultadoEsperado = {};
+        
+        assertArrayEquals(sistemaATestear.planesAtendidosDelUsuario(usuario), resultadoEsperado);
+    }
+    
+    @Test 
+    public void testAtenderSolicitudDelPlanSinExito(){
+        Sistema sistemaATestear = new Sistema();
+        assertFalse(sistemaATestear.atenderSolicitudDelPlan(null,null,null,null));
+    }
+    
+    @Test 
+    public void testAtenderSolicitudDelPlanConExito(){
+        Usuario usuario = new Usuario("Martin", null, null, null, null, null, null, null);
+        Profesional professional = new Profesional("Ana", null, null, null, null, null, null);
+        PlanAlimentacion plan = new PlanAlimentacion("Plan", usuario, professional, false, null);
+        ArrayList<PlanAlimentacion> listaPlanesAlimentacion = new ArrayList<>();
+        listaPlanesAlimentacion.add(plan);
+        Sistema sistemaATestear = new Sistema(null, null, null, listaPlanesAlimentacion, null, null);
+        
+        String[] resultadoEsperado = {};
+        
+        assertArrayEquals(sistemaATestear.planesAtendidosDelUsuario(usuario), resultadoEsperado);
+
+        assertTrue(sistemaATestear.atenderSolicitudDelPlan(null,professional,usuario,plan.getNombreDelPlan()));
+    }
 }

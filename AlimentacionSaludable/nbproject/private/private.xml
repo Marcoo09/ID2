@@ -3,22 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Matias/Desktop/ID2/AlimentacionSaludable/src/dominio/Sistema.java</file>
-            <file>file:/C:/Users/Matias/Desktop/ID2/AlimentacionSaludable/src/interfaz/AyudaProfesional.java</file>
-            <file>file:/C:/Users/Matias/Desktop/ID2/AlimentacionSaludable/src/dominio/Profesional.java</file>
-            <file>file:/C:/Users/Matias/Desktop/ID2/AlimentacionSaludable/src/interfaz/RecortadorImagen.java</file>
-            <file>file:/C:/Users/Matias/Desktop/ID2/AlimentacionSaludable/src/dominio/Alimento.java</file>
-            <file>file:/C:/Users/Matias/Desktop/ID2/AlimentacionSaludable/src/interfaz/AyudaUsuario.java</file>
-            <file>file:/C:/Users/Matias/Desktop/ID2/AlimentacionSaludable/src/dominio/ComposicionAlimento.java</file>
-            <file>file:/C:/Users/Matias/Desktop/ID2/AlimentacionSaludable/src/dominio/Ingesta.java</file>
-            <file>file:/C:/Users/Matias/Desktop/ID2/AlimentacionSaludable/src/dominio/Conversacion.java</file>
-            <file>file:/C:/Users/Matias/Desktop/ID2/AlimentacionSaludable/src/dominio/Persona.java</file>
-            <file>file:/C:/Users/Matias/Desktop/ID2/AlimentacionSaludable/src/interfaz/VentanaEditarRestricciones.java</file>
-            <file>file:/C:/Users/Matias/Desktop/ID2/AlimentacionSaludable/src/dominio/Usuario.java</file>
-            <file>file:/C:/Users/Matias/Desktop/ID2/AlimentacionSaludable/src/dominio/InformacionMensaje.java</file>
-            <file>file:/C:/Users/Matias/Desktop/ID2/AlimentacionSaludable/src/inicioSistema/Main.java</file>
-            <file>file:/C:/Users/Matias/Desktop/ID2/AlimentacionSaludable/src/interfaz/MostrarPerfilUsuario.java</file>
-            <file>file:/C:/Users/Matias/Desktop/ID2/AlimentacionSaludable/src/interfaz/VentanaEditarPreferencias.java</file>
+            <file>file:/C:/Users/Usuario/Desktop/Facultad/QuintoSemestre/IS2/Obligatorio/AlimentacionSaludable/test/dominio/SistemaTest.java</file>
+            <file>file:/C:/Users/Usuario/Desktop/Facultad/QuintoSemestre/IS2/Obligatorio/AlimentacionSaludable/src/dominio/Profesional.java</file>
+            <file>file:/C:/Users/Usuario/Desktop/Facultad/QuintoSemestre/IS2/Obligatorio/AlimentacionSaludable/test/dominio/ProfesionalTest.java</file>
+            <file>file:/C:/Users/Usuario/Desktop/Facultad/QuintoSemestre/IS2/Obligatorio/AlimentacionSaludable/src/dominio/Sistema.java</file>
         </group>
     </open-files>
 </project-private>

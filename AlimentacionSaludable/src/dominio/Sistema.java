@@ -258,7 +258,7 @@ public final class Sistema implements Serializable {
         return fueAgregadaConversacion;
     }
 
-    private boolean agregarConversacionALaLista(Conversacion nuevaConversacion) {
+    public boolean agregarConversacionALaLista(Conversacion nuevaConversacion) {
         boolean fueAgregadaConversacion = false;
         if (!getListaConversaciones().contains(nuevaConversacion)) {
             getListaConversaciones().add(nuevaConversacion);
@@ -344,7 +344,7 @@ public final class Sistema implements Serializable {
         return retorno;
     }
 
-    private List copiarLista(List lista) {
+    public List copiarLista(List lista) {
         List nueva = new ArrayList();
         for (int i = 0; i < lista.size(); i++) {
             nueva.add(lista.get(i));
