@@ -61,5 +61,10 @@ Actualizar tablero de JIRA con los cambios para el próximo período - 1hs
 
 => 8hs Product Manager
 -----------------------------------------------------
+-----------------------------------------------------
+##Nueva documentación##
+
+Requerimientos funcionales - 3hs | QA
+-----------------------------------------------------
 
 
