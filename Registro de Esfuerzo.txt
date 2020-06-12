@@ -65,6 +65,7 @@ Actualizar tablero de JIRA con los cambios para el próximo período - 1hs
 ##Nueva documentación##
 
 Requerimientos funcionales - 3hs | QA
+Casos de uso - 5hs | QA
 -----------------------------------------------------
 
 
