@@ -61,9 +61,10 @@ Mejorar porcentaje de pruebas unitarias - 7hs | QA
 -----------------------------------------------------
 Product Manager Tasks:
 
-Gestionar avanze por cada periodo definido por el entregable - 2hs x 3 = 6hs
+Gestionar avanze por cada periodo definido por el entregable - 2hs x 6 = 12hs
 Planear acciones preventivas para el próximo período - 1hs
 Actualizar tablero de JIRA con los cambios para el próximo período - 1hs
+Actualizar tablero de JIRA semanalmente - 1hs
 
 => 8hs Product Manager
 -----------------------------------------------------
