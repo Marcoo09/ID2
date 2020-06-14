@@ -66,13 +66,15 @@ Planear acciones preventivas para el próximo período - 1hs
 Actualizar tablero de JIRA con los cambios para el próximo período - 1hs
 Actualizar tablero de JIRA semanalmente - 1hs
 
-=> 8hs Product Manager
+=> 15hs Product Manager
 -----------------------------------------------------
 -----------------------------------------------------
 ##Nueva documentación##
 
 Requerimientos funcionales - 3hs | QA
 Casos de uso - 6hs | QA
+
+=> 9hs QA
 -----------------------------------------------------
 
 
