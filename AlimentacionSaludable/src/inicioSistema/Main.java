@@ -19,6 +19,7 @@ public class Main {
         } catch (IOException | ClassNotFoundException e) {
             sistema = new Sistema();
         }
+        
         VentanaMenuPrincipal ventana = new VentanaMenuPrincipal(sistema);
         ventana.setVisible(true);
     }

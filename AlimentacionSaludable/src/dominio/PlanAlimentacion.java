@@ -1,26 +1,26 @@
 package dominio;
 
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.Objects;
-import java.util.Currency;
 
 public final class PlanAlimentacion implements Serializable {
-
     private String nombreDelPlan;
     private Usuario usuario;
-    public Profesional profesional;
-    public boolean fueAtendidoElPlan;
+    private Profesional profesional;
+    private boolean fueAtendidoElPlan;
     private String[][] planDiaADia;
+    private static final long serialVersionUID = 48L;
 
-    public PlanAlimentacion(String np,
-            Usuario usu,
-            Profesional pro,
+    public PlanAlimentacion(String nombrePlan,
+            Usuario usuario,
+            Profesional profesional,
             boolean fueAtendido,
             String[][] unPlan) {
 
-        setNombreDelPlan(np);
-        setUsuario(usu);
-        setProfesional(pro);
+        setNombreDelPlan(nombrePlan);
+        setUsuario(usuario);
+        setProfesional(profesional);
         setFueAtendidoElPlan(fueAtendido);
         setPlanDiaADia(unPlan);
     }
@@ -55,11 +55,14 @@ public final class PlanAlimentacion implements Serializable {
     }
 
     public String[][] getPlanDiaADia() {
-        return this.planDiaADia;
+        return Arrays.stream(this.planDiaADia).map(String[]::clone).toArray(String[][]::new);
     }
 
     public void setPlanDiaADia(String[][] unPlan) {
-        this.planDiaADia = unPlan;
+        if(unPlan != null){
+            String [][] copia = Arrays.stream(unPlan).map(String[]::clone).toArray(String[][]::new);
+            this.planDiaADia = copia;
+        }
     }
 
     public String getNombreDelPlan() {
@@ -78,10 +81,35 @@ public final class PlanAlimentacion implements Serializable {
 
     @Override
     public boolean equals(Object obj) {
-        PlanAlimentacion otroPlanAlimentacion = (PlanAlimentacion) obj;
-        return (this.getNombreDelPlan().equals(otroPlanAlimentacion.getNombreDelPlan())
-                && this.getUsuario().equals(otroPlanAlimentacion.getUsuario())
-                && this.getProfesional().equals(otroPlanAlimentacion.getProfesional()));
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final PlanAlimentacion other = (PlanAlimentacion) obj;
+        if (!Objects.equals(this.getNombreDelPlan(), other.getNombreDelPlan())) {
+            return false;
+        }
+        if (!Objects.equals(this.getUsuario(), other.getUsuario())) {
+            return false;
+        }
+        if (!Objects.equals(this.getProfesional(), other.getProfesional())) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 53 * hash + Objects.hashCode(this.nombreDelPlan);
+        hash = 53 * hash + Objects.hashCode(this.usuario);
+        hash = 53 * hash + Objects.hashCode(this.profesional);
+        return hash;
     }
 
 }

@@ -4,7 +4,7 @@ import dominio.Sistema;
 import dominio.Usuario;
 import java.util.ArrayList;
 
-public class VentanaEditarRestricciones extends javax.swing.JDialog {
+public final class VentanaEditarRestricciones extends javax.swing.JDialog {
 
     private Sistema sistema;
     private Usuario usuarioActual;
@@ -82,7 +82,7 @@ public class VentanaEditarRestricciones extends javax.swing.JDialog {
         lblEditar.setForeground(new java.awt.Color(255, 255, 255));
         lblEditar.setText("Editar");
         panelEditarRestricciones.add(lblEditar);
-        lblEditar.setBounds(110, 20, 137, 71);
+        lblEditar.setBounds(110, 20, 131, 64);
 
         lblTxtRestricciones.setFont(new java.awt.Font("Century Gothic", 0, 30)); // NOI18N
         lblTxtRestricciones.setForeground(new java.awt.Color(255, 255, 255));
@@ -101,6 +101,11 @@ public class VentanaEditarRestricciones extends javax.swing.JDialog {
         rdBtnDiabetes.setFont(new java.awt.Font("Century Gothic", 0, 20)); // NOI18N
         rdBtnDiabetes.setForeground(new java.awt.Color(255, 255, 255));
         rdBtnDiabetes.setText("Restriccion 1");
+        rdBtnDiabetes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rdBtnDiabetesActionPerformed(evt);
+            }
+        });
         panelEditarRestricciones.add(rdBtnDiabetes);
         rdBtnDiabetes.setBounds(80, 150, 230, 35);
 
@@ -200,6 +205,10 @@ public class VentanaEditarRestricciones extends javax.swing.JDialog {
         this.sistema.guardarDatosSistema();
     }//GEN-LAST:event_formWindowClosing
 
+    private void rdBtnDiabetesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdBtnDiabetesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rdBtnDiabetesActionPerformed
+
     void agregarRestriccionesUsuario(ArrayList<String> restricciones) {
         if (this.rdBtnCeliaco.isSelected()) {
             restricciones.add("Celíaco");
@@ -217,10 +226,10 @@ public class VentanaEditarRestricciones extends javax.swing.JDialog {
 
     private void cargarListaRestricciones() {
         Sistema.Restricciones[] listaRestricciones = new Sistema.Restricciones[4];
-        listaRestricciones[0] = Sistema.Restricciones.Celiaquia;
-        listaRestricciones[1] = Sistema.Restricciones.Diabetes;
-        listaRestricciones[2] = Sistema.Restricciones.IntoleranciaLactosa;
-        listaRestricciones[3] = Sistema.Restricciones.Veganismo;
+        listaRestricciones[0] = Sistema.Restricciones.CELIAQUIA;
+        listaRestricciones[1] = Sistema.Restricciones.DIABETES;
+        listaRestricciones[2] = Sistema.Restricciones.INTOLERANCIALACTOSA;
+        listaRestricciones[3] = Sistema.Restricciones.VEGANISMO;
         for (int i = 0; i < listaRestricciones.length; i++) {
             if (i == 0) {
                 this.rdBtnCeliaco.setText("Celiaquía");

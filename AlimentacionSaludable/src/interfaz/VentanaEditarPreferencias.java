@@ -4,7 +4,7 @@ import dominio.Sistema;
 import dominio.Usuario;
 import java.util.ArrayList;
 
-public class VentanaEditarPreferencias extends javax.swing.JDialog {
+public final class VentanaEditarPreferencias extends javax.swing.JDialog {
 
     private Sistema sistema;
     private Usuario usuarioActual;
@@ -259,11 +259,11 @@ public class VentanaEditarPreferencias extends javax.swing.JDialog {
 
    private void cargarListaPreferencias() {
         Sistema.Preferencias[] listaPreferencias = new Sistema.Preferencias[5];
-        listaPreferencias[0] = Sistema.Preferencias.CarnesBlancas;
-        listaPreferencias[1] = Sistema.Preferencias.CarnesRojas;
-        listaPreferencias[2] = Sistema.Preferencias.Frutas;
-        listaPreferencias[3] = Sistema.Preferencias.Harinas;
-        listaPreferencias[4] = Sistema.Preferencias.Verduras;
+        listaPreferencias[0] = Sistema.Preferencias.CARNESBLANCAS;
+        listaPreferencias[1] = Sistema.Preferencias.CARNESROJAS;
+        listaPreferencias[2] = Sistema.Preferencias.FRUTAS;
+        listaPreferencias[3] = Sistema.Preferencias.HARINAS;
+        listaPreferencias[4] = Sistema.Preferencias.VERDURAS;
         for (int i = 0; i < listaPreferencias.length; i++) {
             if (i == 0) {
                 this.rdBtnCarnesRojas.setText("Carnes Rojas");

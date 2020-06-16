@@ -1,24 +1,26 @@
 package dominio;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 import javax.swing.ImageIcon;
-import java.io.File;
 
 public final class Usuario extends Persona {
 
     private String nacionalidad;
-    private ArrayList<String> preferencias;
-    private ArrayList<String> restricciones;
-    public ArrayList<Ingesta> alimentosIngeridos;
+    private List<String> preferencias;
+    private List<String> restricciones;
+    private List<Ingesta> alimentosIngeridos;
+    private static final long serialVersionUID = 50L;
 
     public Usuario(String unNombre,
             String unApellido,
             String unaFechaNacimiento,
             ImageIcon unaFotoDePerfil,
             String unaNacionalidad,
-            ArrayList<String> listaPreferencias,
-            ArrayList<String> listaRestricciones,
-            ArrayList<Ingesta> listaAlimentos) {
+            List<String> listaPreferencias,
+            List<String> listaRestricciones,
+            List<Ingesta> listaAlimentos) {
 
         this.setNombre(unNombre);
         this.setApellido(unApellido);
@@ -35,46 +37,42 @@ public final class Usuario extends Persona {
     }
 
     public void setNacionalidad(String unaNacionalidad) {
-       
+
         nacionalidad = unaNacionalidad;
-       
+
     }
 
-    public ArrayList<String> getPreferencias() {
+    public List<String> getPreferencias() {
         return this.preferencias;
     }
 
-    public void setPreferencias(ArrayList<String> listaPreferencias) {
+    public void setPreferencias(List<String> listaPreferencias) {
         if (listaPreferencias == null) {
-            this.preferencias = new ArrayList<>();
-        } else {
-            this.preferencias = listaPreferencias;
+            listaPreferencias = new ArrayList<>();
         }
+        this.preferencias = listaPreferencias;
     }
 
-    public ArrayList<String> getRestricciones() {
+    public List<String> getRestricciones() {
         return this.restricciones;
     }
 
-    public void setRestricciones(ArrayList<String> listaRestricciones) {
+    public void setRestricciones(List<String> listaRestricciones) {
         if (listaRestricciones == null) {
-            this.restricciones = new ArrayList<>();
-        } else {
-            this.restricciones = listaRestricciones;
+            listaRestricciones = new ArrayList<>();
         }
+        this.restricciones = listaRestricciones;
     }
 
-    public ArrayList<Ingesta> getAlimentosIngeridos() {
+    public List<Ingesta> getAlimentosIngeridos() {
         return this.alimentosIngeridos;
     }
 
-    public void setAlimentosIngeridos(ArrayList<Ingesta> listaAlimentos) {
+    public void setAlimentosIngeridos(List<Ingesta> listaAlimentos) {
         if (listaAlimentos == null) {
-            this.alimentosIngeridos = new ArrayList<>();
-        } else {
-            this.alimentosIngeridos = listaAlimentos;
+            listaAlimentos = new ArrayList<>();
         }
-
+        this.alimentosIngeridos = listaAlimentos;
     }
 
     public String[] getArrayAlimentosIngeridos() {
@@ -102,15 +100,58 @@ public final class Usuario extends Persona {
     }
 
     @Override
-    public String toString() {
-        return super.toString();
+    public void setFotoDePerfil(ImageIcon foto) {
+        if (foto == null) {
+            this.fotoDePerfil = new ImageIcon(getClass().getResource("/Imagenes/fotoDeUsuarioStandard.png"));
+        } else {
+            this.fotoDePerfil = foto;
+        }
     }
 
-    public void actualizarPreferenciasUsuario(Usuario usuario, ArrayList<String> pr) {
+    public void actualizarPreferenciasUsuario(Usuario usuario, List<String> pr) {
         usuario.setPreferencias(pr);
     }
 
-    public void actualizarRestriccionesUsuario(Usuario usuario, ArrayList<String> restricciones) {
+    public void actualizarRestriccionesUsuario(Usuario usuario, List<String> restricciones) {
         usuario.setRestricciones(restricciones);
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 29 * hash + Objects.hashCode(this.nacionalidad);
+        hash = 29 * hash + Objects.hashCode(this.preferencias);
+        hash = 29 * hash + Objects.hashCode(this.restricciones);
+        hash = 29 * hash + Objects.hashCode(this.alimentosIngeridos);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Usuario other = (Usuario) obj;
+        if (!Objects.equals(this.nacionalidad, other.nacionalidad)) {
+            return false;
+        }
+        if (!Objects.equals(this.preferencias, other.preferencias)) {
+            return false;
+        }
+        if (!Objects.equals(this.restricciones, other.restricciones)) {
+            return false;
+        }
+        if (!Objects.equals(this.alimentosIngeridos, other.alimentosIngeridos)) {
+            return false;
+        }
+        return true;
+    }
+
+    
 }

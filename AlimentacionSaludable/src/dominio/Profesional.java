@@ -1,12 +1,13 @@
 package dominio;
 
+import java.util.Objects;
 import javax.swing.ImageIcon;
 
 public final class Profesional extends Persona {
-
-    public String tituloProfesional;
+    private String tituloProfesional;
     private String fechaGraduacion;
     private String paisGraduacion;
+    private static final long serialVersionUID = 49L;
 
     public Profesional(String unNombre,
             String unApellido,
@@ -55,11 +56,51 @@ public final class Profesional extends Persona {
 
     public void setPaisGraduacion(String unPaisGraduacion) {
         paisGraduacion = unPaisGraduacion;
-        
+
     }
 
     @Override
-    public String toString() {
-        return super.toString();
+    public void setFotoDePerfil(ImageIcon foto) {
+        if (foto == null) {
+            this.fotoDePerfil = new ImageIcon(getClass().getResource("/Imagenes/fotoDeUsuarioStandard.png"));
+        } else {
+            this.fotoDePerfil = foto;
+        }
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 83 * hash + Objects.hashCode(this.tituloProfesional);
+        hash = 83 * hash + Objects.hashCode(this.fechaGraduacion);
+        hash = 83 * hash + Objects.hashCode(this.paisGraduacion);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Profesional other = (Profesional) obj;
+        if (!Objects.equals(this.tituloProfesional, other.tituloProfesional)) {
+            return false;
+        }
+        if (!Objects.equals(this.fechaGraduacion, other.fechaGraduacion)) {
+            return false;
+        }
+        if (!Objects.equals(this.paisGraduacion, other.paisGraduacion)) {
+            return false;
+        }
+        return true;
+    }
+    
+    
+
 }

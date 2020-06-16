@@ -1,30 +1,29 @@
 package dominio;
 
-
 import java.io.BufferedOutputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
-
-import java.util.Currency;
+import java.util.List;
 import javax.swing.ImageIcon;
 
 public final class Sistema implements Serializable {
 
-    private ArrayList<Usuario> listaUsuarios;
-    private ArrayList<Profesional> listaProfesionales;
-    private ArrayList<Alimento> listaAlimentos;
-    private ArrayList<PlanAlimentacion> listaPlanesAlimentacion;
-    private ArrayList<Conversacion> listaConversaciones;
+    private List<Usuario> listaUsuarios;
+    private List<Profesional> listaProfesionales;
+    private List<Alimento> listaAlimentos;
+    private List<PlanAlimentacion> listaPlanesAlimentacion;
+    private List<Conversacion> listaConversaciones;
     private Persona personaLogueada;
-
-    public Sistema(ArrayList<Usuario> unaListaUsuarios,
-            ArrayList<Profesional> unaListaProfesionales,
-            ArrayList<Alimento> unaListaAlimentos,
-            ArrayList<PlanAlimentacion> unaListaPlanesAlimentacion,
-            ArrayList<Conversacion> unaListaConversaciones,
+    private static final long serialVersionUID = 42L;
+    
+    public Sistema(List<Usuario> unaListaUsuarios,
+            List<Profesional> unaListaProfesionales,
+            List<Alimento> unaListaAlimentos,
+            List<PlanAlimentacion> unaListaPlanesAlimentacion,
+            List<Conversacion> unaListaConversaciones,
             Persona personaLogueada) {
 
         setListaUsuarios(unaListaUsuarios);
@@ -44,7 +43,6 @@ public final class Sistema implements Serializable {
         setPersonaLogueada(new Usuario("Nombre", "Apellido", "",
                 new ImageIcon(getClass().getResource("/Imagenes/fotoDeUsuarioStandard.png")),
                 "", null, null, null));
-
     }
 
     public Persona getPersonaLogueada() {
@@ -52,15 +50,15 @@ public final class Sistema implements Serializable {
     }
 
     public void setPersonaLogueada(Persona personaLogueada) {
-        personaLogueada = personaLogueada;
-        
+        this.personaLogueada = personaLogueada;
+
     }
 
-    public ArrayList<Conversacion> getListaConversaciones() {
+    public List<Conversacion> getListaConversaciones() {
         return this.listaConversaciones;
     }
 
-    public void setListaConversaciones(ArrayList<Conversacion> unaListaConversaciones) {
+    public void setListaConversaciones(List<Conversacion> unaListaConversaciones) {
         if (unaListaConversaciones == null) {
             this.listaConversaciones = new ArrayList<>();
         } else {
@@ -68,11 +66,11 @@ public final class Sistema implements Serializable {
         }
     }
 
-    public ArrayList<Usuario> getListaUsuarios() {
+    public List<Usuario> getListaUsuarios() {
         return this.listaUsuarios;
     }
 
-    public void setListaUsuarios(ArrayList<Usuario> unaListaUsuarios) {
+    public void setListaUsuarios(List<Usuario> unaListaUsuarios) {
         if (unaListaUsuarios == null) {
             this.listaUsuarios = new ArrayList<>();
         } else {
@@ -80,11 +78,11 @@ public final class Sistema implements Serializable {
         }
     }
 
-    public ArrayList<Profesional> getListaProfesionales() {
+    public List<Profesional> getListaProfesionales() {
         return this.listaProfesionales;
     }
 
-    public void setListaProfesionales(ArrayList<Profesional> unaListaProfesionales) {
+    public void setListaProfesionales(List<Profesional> unaListaProfesionales) {
         if (unaListaProfesionales == null) {
             this.listaProfesionales = new ArrayList<>();
         } else {
@@ -92,11 +90,11 @@ public final class Sistema implements Serializable {
         }
     }
 
-    public ArrayList<Alimento> getListaAlimentos() {
+    public List<Alimento> getListaAlimentos() {
         return this.listaAlimentos;
     }
 
-    public void setListaAlimentos(ArrayList<Alimento> unaListaAlimentos) {
+    public void setListaAlimentos(List<Alimento> unaListaAlimentos) {
         if (unaListaAlimentos == null) {
             this.listaAlimentos = new ArrayList<>();
         } else {
@@ -104,11 +102,11 @@ public final class Sistema implements Serializable {
         }
     }
 
-    public ArrayList<PlanAlimentacion> getListaPlanesAlimentacion() {
+    public List<PlanAlimentacion> getListaPlanesAlimentacion() {
         return this.listaPlanesAlimentacion;
     }
 
-    public void setListaPlanesAlimentacion(ArrayList<PlanAlimentacion> unaListaPlanesAlimentacion) {
+    public void setListaPlanesAlimentacion(List<PlanAlimentacion> unaListaPlanesAlimentacion) {
         if (unaListaPlanesAlimentacion == null) {
             this.listaPlanesAlimentacion = new ArrayList<>();
         } else {
@@ -117,101 +115,97 @@ public final class Sistema implements Serializable {
     }
 
     public enum Preferencias {
-        CarnesRojas, CarnesBlancas, Verduras, Frutas, Harinas;
+        CARNESROJAS, CARNESBLANCAS, VERDURAS, FRUTAS, HARINAS;
     }
 
     public enum Restricciones {
-        Diabetes, Veganismo, IntoleranciaLactosa, Celiaquia;
+        DIABETES, VEGANISMO, INTOLERANCIALACTOSA, CELIAQUIA;
     }
 
     public enum Paises {
-        Argentina, Bolivia, Brasil, Chile, Colombia, CostaRica, Cuba, Ecuador, ElSalvador,
-        GuayanaFrancesa, Granada, Guatemala, Guayana, Haití, Honduras, Jamaica,
-        México, Nicaragua, Paraguay, Panamá, Perú, PuertoRico, RepúblicaDominicana, Surinam, Uruguay, Venezuela;
+        ARGENTINA, BOLIVIA, BRASIL, CHILE, COLOMBIA, COSTARICA, CUBA, ECUADOR, ELSALVADOR,
+        GUAYANAFRANCESA, GRANADA, GUATEMALA, GUAYANA, HAITI, HONDURAS, JAMAICA,
+        MEXICO, NICARAGUA, PARAGUAY, PANAMA, PERU, PUERTORICO, REPUBLICADOMINICANA, SURINAM, URUGUAY, VENEZUELA;
     }
 
     public enum DiasDeLaSemana {
-        Lunes, Martes, Miercoles, Jueves, Viernes, Sabado, Domingo;
+        LUNES, MARTES, MIERCOLES, JUEVES, VIERNES, SABADO, DOMINGO;
     }
 
     public enum IngestasPorDia {
-        Desayuno, Almuerzo, Cena;
+        DESAYUNO, ALMUERZO, CENA;
     }
 
-    public ArrayList<String> devolverListaPaises() {
-        ArrayList<String> lstNacionalidades = new ArrayList<>();
-        lstNacionalidades.add(Paises.Argentina.toString());
-        lstNacionalidades.add(Paises.Bolivia.toString());
-        lstNacionalidades.add(Paises.Brasil.toString());
-        lstNacionalidades.add(Paises.Chile.toString());
-        lstNacionalidades.add(Paises.Colombia.toString());
+    public List<String> devolverListaPaises() {
+        List<String> lstNacionalidades = new ArrayList<>();
+        lstNacionalidades.add(Paises.ARGENTINA.toString());
+        lstNacionalidades.add(Paises.BOLIVIA.toString());
+        lstNacionalidades.add(Paises.BRASIL.toString());
+        lstNacionalidades.add(Paises.CHILE.toString());
+        lstNacionalidades.add(Paises.COLOMBIA.toString());
         lstNacionalidades.add("Costa Rica");
-        lstNacionalidades.add(Paises.Cuba.toString());
-        lstNacionalidades.add(Paises.Ecuador.toString());
+        lstNacionalidades.add(Paises.CUBA.toString());
+        lstNacionalidades.add(Paises.ECUADOR.toString());
         lstNacionalidades.add("El Salvador");
         lstNacionalidades.add("Guayana Francesa");
-        lstNacionalidades.add(Paises.Granada.toString());
-        lstNacionalidades.add(Paises.Guatemala.toString());
-        lstNacionalidades.add(Paises.Guayana.toString());
-        lstNacionalidades.add(Paises.Haití.toString());
-        lstNacionalidades.add(Paises.Honduras.toString());
-        lstNacionalidades.add(Paises.Jamaica.toString());
-        lstNacionalidades.add(Paises.México.toString());
-        lstNacionalidades.add(Paises.Nicaragua.toString());
-        lstNacionalidades.add(Paises.Paraguay.toString());
-        lstNacionalidades.add(Paises.Panamá.toString());
-        lstNacionalidades.add(Paises.Perú.toString());
+        lstNacionalidades.add(Paises.GRANADA.toString());
+        lstNacionalidades.add(Paises.GUATEMALA.toString());
+        lstNacionalidades.add(Paises.GUAYANA.toString());
+        lstNacionalidades.add(Paises.HAITI.toString());
+        lstNacionalidades.add(Paises.HONDURAS.toString());
+        lstNacionalidades.add(Paises.JAMAICA.toString());
+        lstNacionalidades.add(Paises.MEXICO.toString());
+        lstNacionalidades.add(Paises.NICARAGUA.toString());
+        lstNacionalidades.add(Paises.PARAGUAY.toString());
+        lstNacionalidades.add(Paises.PANAMA.toString());
+        lstNacionalidades.add(Paises.PERU.toString());
         lstNacionalidades.add("Puerto Rico");
         lstNacionalidades.add("República Dominicana");
-        lstNacionalidades.add(Paises.Surinam.toString());
-        lstNacionalidades.add(Paises.Uruguay.toString());
-        lstNacionalidades.add(Paises.Venezuela.toString());
+        lstNacionalidades.add(Paises.SURINAM.toString());
+        lstNacionalidades.add(Paises.URUGUAY.toString());
+        lstNacionalidades.add(Paises.VENEZUELA.toString());
         return lstNacionalidades;
     }
 
-    public ArrayList<String> devolverListaDiasDeLaSemana() {
-        ArrayList<String> lstDiasSemana = new ArrayList<>();
-        lstDiasSemana.add(DiasDeLaSemana.Lunes.toString());
-        lstDiasSemana.add(DiasDeLaSemana.Martes.toString());
-        lstDiasSemana.add(DiasDeLaSemana.Miercoles.toString());
-        lstDiasSemana.add(DiasDeLaSemana.Jueves.toString());
-        lstDiasSemana.add(DiasDeLaSemana.Viernes.toString());
-        lstDiasSemana.add(DiasDeLaSemana.Sabado.toString());
-        lstDiasSemana.add(DiasDeLaSemana.Domingo.toString());
+    public List<String> devolverListaDiasDeLaSemana() {
+        List<String> lstDiasSemana = new ArrayList<>();
+        lstDiasSemana.add(DiasDeLaSemana.LUNES.toString());
+        lstDiasSemana.add(DiasDeLaSemana.MARTES.toString());
+        lstDiasSemana.add(DiasDeLaSemana.MIERCOLES.toString());
+        lstDiasSemana.add(DiasDeLaSemana.JUEVES.toString());
+        lstDiasSemana.add(DiasDeLaSemana.VIERNES.toString());
+        lstDiasSemana.add(DiasDeLaSemana.SABADO.toString());
+        lstDiasSemana.add(DiasDeLaSemana.DOMINGO.toString());
         return lstDiasSemana;
     }
 
-    public ArrayList<String> devolverListaIngestasDeLaSemana() {
-        ArrayList<String> lstIngestas = new ArrayList<>();
-        lstIngestas.add(IngestasPorDia.Desayuno.toString());
-        lstIngestas.add(IngestasPorDia.Almuerzo.toString());
-        lstIngestas.add(IngestasPorDia.Cena.toString());
+    public List<String> devolverListaIngestasDeLaSemana() {
+        List<String> lstIngestas = new ArrayList<>();
+        lstIngestas.add(IngestasPorDia.DESAYUNO.toString());
+        lstIngestas.add(IngestasPorDia.ALMUERZO.toString());
+        lstIngestas.add(IngestasPorDia.CENA.toString());
         return lstIngestas;
     }
 
     public void guardarDatosSistema() {
-        try {
-            FileOutputStream archivo = new FileOutputStream("Sistema.data");
-            BufferedOutputStream buffer = new BufferedOutputStream(archivo);
-            try (ObjectOutputStream objetoASerializar = new ObjectOutputStream(buffer)) {
-                objetoASerializar.writeObject(this);
-                objetoASerializar.flush();
-            }
+        try ( FileOutputStream archivo = new FileOutputStream("Sistema.data");  BufferedOutputStream buffer = new BufferedOutputStream(archivo);  ObjectOutputStream objetoASerializar = new ObjectOutputStream(buffer)) {
+            objetoASerializar.writeObject(this);
+            objetoASerializar.flush();
         } catch (IOException e) {
-
+            System.err.println("Error al guardar los datos");
         }
     }
 
-    public boolean crearUsuario(String nombre, String apellido, String fechaNacimiento, ImageIcon fotoDePerfil, String nacionalidad, ArrayList<String> preferencias, ArrayList<String> restricciones, ArrayList<Ingesta> alimentosIngeridos) {
+    public boolean crearUsuario(String nombre, String apellido, String fechaNacimiento, ImageIcon fotoDePerfil, String nacionalidad, List<String> preferencias, List<String> restricciones, List<Ingesta> alimentosIngeridos) {
         Usuario usuarioNuevo;
         usuarioNuevo = new Usuario(nombre, apellido, fechaNacimiento, fotoDePerfil, nacionalidad, preferencias, restricciones, alimentosIngeridos);
-        boolean fueAgregadoUsuario = agregarUsuarioALaLista(usuarioNuevo);
-        return fueAgregadoUsuario;
+        
+        return agregarUsuarioALaLista(usuarioNuevo);
     }
 
     public boolean agregarUsuarioALaLista(Usuario usuarioARegistrar) {
         boolean fueAgregadoUsuario = false;
-        if ((usuarioARegistrar != null) && !getListaUsuarios().contains(usuarioARegistrar)) {
+        if (usuarioARegistrar != null && !getListaUsuarios().contains(usuarioARegistrar)) {
             getListaUsuarios().add(usuarioARegistrar);
             fueAgregadoUsuario = true;
         }
@@ -220,23 +214,21 @@ public final class Sistema implements Serializable {
 
     public boolean crearProfesional(String nombre, String apellido, String fechaNacimiento, ImageIcon fotoPerfil, String tituloProfesional, String fechaGraduacion, String paisGraduacion) {
         Profesional profesionalNuevo = new Profesional(nombre, apellido, fechaNacimiento, fotoPerfil, tituloProfesional, fechaGraduacion, paisGraduacion);
-        boolean fueAgregadoProfesional = agregarProfesionalALaLista(profesionalNuevo);
-        return fueAgregadoProfesional;
+
+        return agregarProfesionalALaLista(profesionalNuevo);
     }
 
     public boolean agregarProfesionalALaLista(Profesional profesionalARegistrar) {
-        if ((profesionalARegistrar != null) && !getListaProfesionales().contains(profesionalARegistrar)) {
+        if (profesionalARegistrar != null && !getListaProfesionales().contains(profesionalARegistrar)) {
             getListaProfesionales().add(profesionalARegistrar);
             return true;
         }
         return false;
     }
 
-    public boolean crearAlimento(String nombre, String tipoAlimento, ArrayList<ComposicionAlimento> listaNutrientesConProporcion, ImageIcon fotoDelAlimento) {
-        Alimento an;
-        an = new Alimento(nombre, tipoAlimento, listaNutrientesConProporcion, fotoDelAlimento);
-        boolean fueAgregadoAlimento = agregarAlimentoALaLista(an);
-        return fueAgregadoAlimento;
+    public boolean crearAlimento(String nombre, String tipoAlimento, List<ComposicionAlimento> listaNutrientesConProporcion, ImageIcon fotoDelAlimento) {
+        Alimento nuevoalimento = new Alimento(nombre, tipoAlimento, listaNutrientesConProporcion, fotoDelAlimento);
+        return agregarAlimentoALaLista(nuevoalimento);
     }
 
     public boolean agregarAlimentoALaLista(Alimento alimentoAAgregar) {
@@ -247,7 +239,7 @@ public final class Sistema implements Serializable {
         return false;
     }
 
-    public boolean crearConversacion(Persona usuario, Persona profesional, String mensaje, boolean usuarioEsRemitente) {
+    public boolean crearConversacion(Usuario usuario, Profesional profesional, String mensaje, boolean usuarioEsRemitente) {
         boolean fueAgregadaConversacion = false;
         if (usuario != null && profesional != null && mensaje != null && !mensaje.isEmpty()) {
             InformacionMensaje info;
@@ -256,19 +248,17 @@ public final class Sistema implements Serializable {
             } else {
                 info = new InformacionMensaje(profesional.getNombreCompleto(), usuario.getNombreCompleto(), mensaje);
             }
-            if (listaUsuarios.contains((Usuario) usuario)) {
-                if (listaProfesionales.contains((Profesional) profesional)) {
-                    ArrayList<InformacionMensaje> listaMensajes = new ArrayList<>();
-                    listaMensajes.add(info);
-                    Conversacion nuevaConversacion = new Conversacion(usuario, profesional, listaMensajes);
-                    fueAgregadaConversacion = agregarConversacionALaLista(nuevaConversacion);
-                }
+            if (listaUsuarios.contains((Usuario) usuario) && listaProfesionales.contains((Profesional) profesional)) {
+                List<InformacionMensaje> listaMensajes = new ArrayList<>();
+                listaMensajes.add(info);
+                Conversacion nuevaConversacion = new Conversacion(usuario, profesional, listaMensajes);
+                fueAgregadaConversacion = agregarConversacionALaLista(nuevaConversacion);
             }
         }
         return fueAgregadaConversacion;
     }
 
-    private boolean agregarConversacionALaLista(Conversacion nuevaConversacion) {
+    public boolean agregarConversacionALaLista(Conversacion nuevaConversacion) {
         boolean fueAgregadaConversacion = false;
         if (!getListaConversaciones().contains(nuevaConversacion)) {
             getListaConversaciones().add(nuevaConversacion);
@@ -277,33 +267,28 @@ public final class Sistema implements Serializable {
         return fueAgregadaConversacion;
     }
 
-    public String[] getListaNombresProfesionalesConversaciones(String nombreUsuarioConversacion) {
+    public String[] getProfesionalesConConversacionesActivas(String nombreUsuarioConversacion) {
         String[] nombresProfesionales = new String[getListaConversaciones().size()];
-        ArrayList<String> nombresIngresados = new ArrayList<>();
-        for (int i = 1; i < getListaConversaciones().size(); i++) {
+        List<String> nombresIngresados = new ArrayList<>();
+        for (int i = 0; i < getListaConversaciones().size(); i++) {
             String nombreCompleto = getListaConversaciones().get(i).getProfesional().getNombreCompleto();
             String nombreUsuarioCompleto = getListaConversaciones().get(i).getUsuario().getNombreCompleto();
-            if (!nombresIngresados.contains(nombreCompleto)) {
-                if (nombreUsuarioCompleto.equals(nombreUsuarioConversacion)) {
-                    nombresProfesionales[i] = nombreCompleto;
-                    nombresIngresados.add(nombreCompleto);
-                }
+            if (!nombresIngresados.contains(nombreCompleto) && nombreUsuarioCompleto.equals(nombreUsuarioConversacion)) {
+                nombresProfesionales[i] = nombreCompleto;
+                nombresIngresados.add(nombreCompleto);
             }
         }
         return nombresProfesionales;
     }
 
     public String[] getListaNombresUsuariosConversacionesPendientes(String profesional) {
-        ArrayList<String> nombresIngresados = new ArrayList<>();
+        List<String> nombresIngresados = new ArrayList<>();
         for (int i = 0; i < getListaConversaciones().size(); i++) {
             String nombreCompleto = getListaConversaciones().get(i).getUsuario().getNombreCompleto();
             String nombreProfesional = getListaConversaciones().get(i).getProfesional().getNombreCompleto();
-            if (!nombresIngresados.contains(nombreCompleto)) {
-                if (profesional.equals(nombreProfesional)) {
-                    if (!getListaConversaciones().get(i).getFueAtendidaConsulta()) {
-                        nombresIngresados.add(nombreCompleto);
-                    }
-                }
+            if (!nombresIngresados.contains(nombreCompleto) && profesional.equals(nombreProfesional)
+                    && !getListaConversaciones().get(i).getFueAtendidaConsulta()) {
+                nombresIngresados.add(nombreCompleto);
             }
         }
         String[] nombreUsuarios = new String[nombresIngresados.size()];
@@ -328,11 +313,14 @@ public final class Sistema implements Serializable {
 
     public boolean agregarMensajeConversacion(String remitente, String destinatario, String mensaje, boolean intercambioRemitente, boolean consultaRespondida) {
         boolean pudeAgregarMensaje = false;
-        if (remitente != null && !remitente.isEmpty() && !destinatario.isEmpty() && destinatario != null) {
+        
+        if (remitente != null && !remitente.isEmpty() && destinatario != null && !destinatario.isEmpty()) {
             for (int i = 0; getListaConversaciones() != null && i < getListaConversaciones().size(); i++) {
+                
                 Conversacion conversacionActual = getListaConversaciones().get(i);
                 String nombreApellidoProfesional = conversacionActual.getProfesional().getNombreCompleto();
                 String nombreApellidoUsuario = conversacionActual.getUsuario().getNombreCompleto();
+                
                 if (destinatario.equals(nombreApellidoProfesional) && remitente.equals(nombreApellidoUsuario)
                         || destinatario.equals(nombreApellidoUsuario) && remitente.equals(nombreApellidoProfesional)) {
                     conversacionActual.agregarMensaje(mensaje, intercambioRemitente);
@@ -344,8 +332,8 @@ public final class Sistema implements Serializable {
         return pudeAgregarMensaje;
     }
 
-    public ArrayList getNombresProfesionalesSinConversacionConUsuario(Persona personaLogueada) {
-        ArrayList retorno = copiarLista(getListaProfesionales());
+    public List getNombresProfesionalesSinConversacionConUsuario(Persona personaLogueada) {
+        List retorno = copiarLista(getListaProfesionales());
         for (int i = 0; i < getListaConversaciones().size(); i++) {
             Profesional profActual = (Profesional) getListaConversaciones().get(i).getProfesional();
             Persona usuarioActual = getListaConversaciones().get(i).getUsuario();
@@ -356,40 +344,40 @@ public final class Sistema implements Serializable {
         return retorno;
     }
 
-    private ArrayList copiarLista(ArrayList lista) {
-        ArrayList nueva = new ArrayList();
+    public List copiarLista(List lista) {
+        List nueva = new ArrayList();
         for (int i = 0; i < lista.size(); i++) {
             nueva.add(lista.get(i));
         }
         return nueva;
     }
 
-    public boolean agregarIngestaAUsuario(ArrayList<Ingesta> listaIngestasDelUsuario, String fechaIngesta, String nuevoAlimento) {
+    public boolean agregarIngestaAUsuario(List<Ingesta> listaIngestasDelUsuario, String fechaIngesta, String nuevoAlimento) {
         boolean ingestaAgregada = false;
         if (listaIngestasDelUsuario != null) {
-            
-                if (yaExisteIngestaEnEsaFecha(listaIngestasDelUsuario, fechaIngesta)) {
-                    for (int i = 0; i < listaIngestasDelUsuario.size(); i++) {
-                        if (listaIngestasDelUsuario.get(i).getFechaDeIngesta().equals(fechaIngesta)) {
-                            ArrayList<Alimento> listaAlimentosActual = listaIngestasDelUsuario.get(i).getListaAlimentosPorFecha();
-                            Alimento alimentoAAgregar = devolverAlimentoDadoNombre(nuevoAlimento);
-                            listaAlimentosActual.add(alimentoAAgregar);
-                        }
+
+            if (yaExisteIngestaEnEsaFecha(listaIngestasDelUsuario, fechaIngesta)) {
+                for (int i = 0; i < listaIngestasDelUsuario.size(); i++) {
+                    if (listaIngestasDelUsuario.get(i).getFechaDeIngesta().equals(fechaIngesta)) {
+                        List<Alimento> listaAlimentosActual = listaIngestasDelUsuario.get(i).getListaAlimentosPorFecha();
+                        Alimento alimentoAAgregar = devolverAlimentoDadoNombre(nuevoAlimento);
+                        listaAlimentosActual.add(alimentoAAgregar);
                     }
-                } else {
-                    Alimento alimentoAAgregar = devolverAlimentoDadoNombre(nuevoAlimento);
-                    ArrayList<Alimento> nuevaLista = new ArrayList<>();
-                    nuevaLista.add(alimentoAAgregar);
-                    Ingesta nuevaIngesta = new Ingesta(fechaIngesta, nuevaLista);
-                    listaIngestasDelUsuario.add(nuevaIngesta);
                 }
-                ingestaAgregada = true;
-            
+            } else {
+                Alimento alimentoAAgregar = devolverAlimentoDadoNombre(nuevoAlimento);
+                List<Alimento> nuevaLista = new ArrayList<>();
+                nuevaLista.add(alimentoAAgregar);
+                Ingesta nuevaIngesta = new Ingesta(fechaIngesta, nuevaLista);
+                listaIngestasDelUsuario.add(nuevaIngesta);
+            }
+            ingestaAgregada = true;
+
         }
         return ingestaAgregada;
     }
 
-    private boolean yaExisteIngestaEnEsaFecha(ArrayList<Ingesta> listaIngestasDelUsuario, String fechaIngesta) {
+    private boolean yaExisteIngestaEnEsaFecha(List<Ingesta> listaIngestasDelUsuario, String fechaIngesta) {
         boolean existe = false;
         if (listaIngestasDelUsuario != null) {
             for (int i = 0; i < listaIngestasDelUsuario.size(); i++) {
@@ -444,9 +432,22 @@ public final class Sistema implements Serializable {
             }
         }
         return agreguePlan;
-
     }
 
+    public boolean usuarioTieneSolicitudPlanAlimentacionPendiente(Usuario usuario) {
+        boolean existePlanPendiente = false;
+        if (usuario != null) {
+            for (PlanAlimentacion planDeAlimentacion : getListaPlanesAlimentacion()) {
+                if(planDeAlimentacion.getUsuario().equals(usuario) && 
+                        !planDeAlimentacion.getFueAtendidoElPlan()){
+                    existePlanPendiente = true;
+                    break;
+                }
+            }
+        }
+        return existePlanPendiente;
+    }
+    
     public boolean atenderSolicitudDelPlan(String[][] planAlimentacion,
             Profesional profesional,
             Usuario usuario,
@@ -466,7 +467,7 @@ public final class Sistema implements Serializable {
     }
 
     public String[] planesAtendidosDelUsuario(Usuario usuario) {
-        ArrayList<String> listaAuxiliar = new ArrayList<>();
+        List<String> listaAuxiliar = new ArrayList<>();
         for (int i = 0; i < this.listaPlanesAlimentacion.size(); i++) {
             PlanAlimentacion actual = this.listaPlanesAlimentacion.get(i);
             if (actual.getUsuario().equals(usuario) && actual.getFueAtendidoElPlan()) {
@@ -480,23 +481,22 @@ public final class Sistema implements Serializable {
         return planesDelUsuario;
     }
 
-    public PlanAlimentacion devolverPlanDadoNombre(String np) {
+    public PlanAlimentacion devolverPlanDadoNombre(String nombrePlan) {
         PlanAlimentacion planRetorno = new PlanAlimentacion(null, null, null, false, null);
-        if (np != null) {
+        if (nombrePlan != null) {
             for (int i = 0; i < this.listaPlanesAlimentacion.size(); i++) {
                 String nombrePlanActual = this.listaPlanesAlimentacion.get(i).getNombreDelPlan();
-                if (nombrePlanActual.equals(np)) {
+                if (nombrePlanActual.equals(nombrePlan)) {
                     planRetorno = this.listaPlanesAlimentacion.get(i);
                 }
             }
         }
-
         return planRetorno;
     }
 
     public String[] getListaPlanesPendientes(Profesional profesional) {
         if (profesional != null) {
-            ArrayList<String> planesPendientes = new ArrayList<>();
+            List<String> planesPendientes = new ArrayList<>();
             for (int i = 0; i < this.listaPlanesAlimentacion.size(); i++) {
                 Profesional profesionalActual = this.listaPlanesAlimentacion.get(i).getProfesional();
                 boolean fueAtendidoPlanActual = this.listaPlanesAlimentacion.get(i).getFueAtendidoElPlan();

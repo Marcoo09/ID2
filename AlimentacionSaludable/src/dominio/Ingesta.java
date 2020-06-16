@@ -1,18 +1,18 @@
 package dominio;
 
 import java.io.Serializable;
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
-import java.util.Arrays;
 
 public final class Ingesta implements Serializable {
 
-    public String fechaDeIngesta;
-    private ArrayList<Alimento> listaAlimentosPorFecha;
+    private String fechaDeIngesta;
+    private List<Alimento> listaAlimentosPorFecha;
+    private static final long serialVersionUID = 47L;
 
-    public Ingesta(String f, ArrayList<Alimento> LA) {
-        setFechaDeIngesta(f);
-        setLAPF(LA);
+    public Ingesta(String fechaIngesta, List<Alimento> listaAlimentos) {
+        setFechaDeIngesta(fechaIngesta);
+        setListaAlimentosPorFecha(listaAlimentos);
     }
 
     public String getFechaDeIngesta() {
@@ -23,20 +23,12 @@ public final class Ingesta implements Serializable {
         this.fechaDeIngesta = unaFecha;
     }
 
-    public ArrayList<Alimento> getListaAlimentosPorFecha() {
-        if (this.listaAlimentosPorFecha.isEmpty()) {
-            return new ArrayList<>();
-        } else {
-            return this.listaAlimentosPorFecha;
-        }
+    public List<Alimento> getListaAlimentosPorFecha() {
+        return this.listaAlimentosPorFecha;
     }
 
-    public void setLAPF(ArrayList<Alimento> list) {
-        if (list == null || list.isEmpty()) {
-            this.listaAlimentosPorFecha = new ArrayList<>();
-        } else {
-            this.listaAlimentosPorFecha = list;
-        }
+    public void setListaAlimentosPorFecha(List<Alimento> listaAlimentos) {
+        this.listaAlimentosPorFecha = listaAlimentos;
     }
 
     @Override
@@ -50,10 +42,22 @@ public final class Ingesta implements Serializable {
 
     @Override
     public boolean equals(Object obj) {
+        if (!(obj instanceof Ingesta)) {
+            return false;
+        }
+
         Ingesta otraIngesta = (Ingesta) obj;
         boolean sonIguales = this.getFechaDeIngesta().equals(otraIngesta.getFechaDeIngesta());
         sonIguales = sonIguales && this.getListaAlimentosPorFecha().equals(otraIngesta.getListaAlimentosPorFecha());
         return sonIguales;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 83 * hash + Objects.hashCode(this.fechaDeIngesta);
+        hash = 83 * hash + Objects.hashCode(this.listaAlimentosPorFecha);
+        return hash;
     }
 
 }

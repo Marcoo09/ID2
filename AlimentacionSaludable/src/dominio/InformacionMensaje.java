@@ -1,17 +1,16 @@
 package dominio;
 
 import java.io.Serializable;
-import java.util.Date;
         
 public final class InformacionMensaje implements Serializable {
-
     private String mensaje;
-    public String destinatario;
+    private String destinatario;
     private String remitente;
+    private static final long serialVersionUID = 46L;
 
-    public InformacionMensaje(String elRemitente, String dst, String elMensaje) {
+    public InformacionMensaje(String elRemitente, String destinatario, String elMensaje) {
         setRemitente(elRemitente);
-        setDestinatario(dst);
+        setDestinatario(destinatario);
         setMensaje(elMensaje);
     }
 
@@ -24,7 +23,9 @@ public final class InformacionMensaje implements Serializable {
     }
 
     public String getDestinatario() {
-        return destinatario;
+        String destinatarioARetornar = destinatario != null ?
+                                        destinatario.trim() : "";
+        return !"".equals(destinatarioARetornar) ? destinatarioARetornar : "Destinatario no ingresado";    
     }
 
     public void setDestinatario(String elDestinatario) {
@@ -33,7 +34,9 @@ public final class InformacionMensaje implements Serializable {
     }
 
     public String getRemitente() {
-        return remitente;
+        String remitenteARetornar = remitente != null ?
+                                        remitente.trim() : "";
+        return !"".equals(remitenteARetornar) ? remitenteARetornar : "Remitente no ingresado";
     }
 
     public void setRemitente(String elRemitente) {

@@ -5,11 +5,19 @@ import java.io.Serializable;
 import javax.swing.ImageIcon;
 
 public abstract class Persona implements Serializable {
-
-    private String nombre;
-    private String apellido;
-    private String fechaNacimiento;
-    public ImageIcon fotoDePerfil;
+    
+    public enum TipoPersona {
+        PROFESIONAL,
+        USUARIO,
+    }
+        
+    protected String nombre;
+    protected String apellido;
+    protected String fechaNacimiento;
+    protected ImageIcon fotoDePerfil;
+    private static final String APELLIDO_NO_INGRESADO = "Apellido no ingresado";
+    private static final String NOMBRE_NO_INGRESADO = "Nombre no ingresado";
+    private static final String FECHA_NO_INGRESADA = "Fecha no ingresada";
 
     public String getNombre() {
         return this.nombre;
@@ -25,7 +33,7 @@ public abstract class Persona implements Serializable {
 
     public void setApellido(String unApellido) {
         if (unApellido == null || unApellido.isEmpty()) {
-            this.apellido = "Apellido no ingresado";
+            this.apellido = APELLIDO_NO_INGRESADO;
         } else {
             this.apellido = unApellido;
         }
@@ -37,7 +45,7 @@ public abstract class Persona implements Serializable {
 
     public void setFechaNacimiento(String unaFecha) {
         if (unaFecha == null || unaFecha.isEmpty()) {
-            this.fechaNacimiento = "Fecha no ingresada";
+            this.fechaNacimiento = FECHA_NO_INGRESADA;
         } else {
             this.fechaNacimiento = unaFecha;
         }
@@ -47,24 +55,23 @@ public abstract class Persona implements Serializable {
         return this.fotoDePerfil;
     }
 
-    public void setFotoDePerfil(ImageIcon foto) {
-        if (foto == null) {
-            this.fotoDePerfil = new ImageIcon(getClass().getResource("/Imagenes/fotoDeUsuarioStandard.png"));
-        } else {
-            this.fotoDePerfil = foto;
-        }
-    }
+    public abstract void setFotoDePerfil(ImageIcon foto);
 
     public String getNombreCompleto() {
         String retorno;
-        if (getNombre().equals("Nombre no ingresado") && getApellido().equals("Apellido no ingresado")) {
-            retorno = "Nombre no ingresado";
-        } else if (getNombre().equals("Nombre no ingresado")) {
-            retorno = getApellido();
-        } else if (getApellido().equals("Apellido no ingresado")) {
-            retorno = getNombre();
+        String nombre = getNombre();
+        String apellido = getApellido();
+        boolean nombreDefinido = nombre != null;
+        boolean apellidoDefinido = apellido != null;
+        if (nombreDefinido && nombre.equals(NOMBRE_NO_INGRESADO) &&
+                    apellidoDefinido && apellido.equals(APELLIDO_NO_INGRESADO)) {
+            retorno = NOMBRE_NO_INGRESADO;
+        } else if (nombreDefinido && nombre.equals(NOMBRE_NO_INGRESADO)) {
+            retorno = apellido;
+        } else if (apellidoDefinido && apellido.equals(APELLIDO_NO_INGRESADO)) {
+            retorno = nombre;
         } else {
-            retorno = getNombre() + " " + getApellido();
+            retorno = nombre + " " + apellido;
         }
         return retorno;
     }
@@ -76,7 +83,21 @@ public abstract class Persona implements Serializable {
 
     @Override
     public boolean equals(Object obj) {
+        if(!(obj instanceof Persona)){
+            return false;
+        }
+        
         Persona otraPersona = (Persona) obj;
-        return this.getNombreCompleto().equals(otraPersona.getNombreCompleto());
+        return this.getNombre().equals(otraPersona.getNombre()) &&
+                this.getApellido().equals(otraPersona.getApellido());
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 37 * hash + Objects.hashCode(this.nombre);
+        hash = 37 * hash + Objects.hashCode(this.apellido);
+        return hash;
+    }
+    
 }

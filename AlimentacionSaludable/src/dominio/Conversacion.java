@@ -1,17 +1,18 @@
 package dominio;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Collections;
+import java.util.List;
+import java.util.Objects;
 
 public final class Conversacion implements Serializable {
 
-    private ArrayList<InformacionMensaje> listaMensajes;
-    public Persona usuario;
-    public Persona profesional;
+    private List<InformacionMensaje> listaMensajes;
+    private Usuario usuario;
+    private Profesional profesional;
     private boolean fueAtendidaConsulta;
+    private static final long serialVersionUID = 45L;
 
-    public Conversacion(Persona user, Persona pr, ArrayList<InformacionMensaje> lista) {
+    public Conversacion(Usuario user, Profesional pr, List<InformacionMensaje> lista) {
         setUsuario(user);
         setProfesional(pr);
         setListaMensajes(lista);
@@ -26,23 +27,19 @@ public final class Conversacion implements Serializable {
         this.fueAtendidaConsulta = fueAtendida;
     }
 
-    public ArrayList<InformacionMensaje> getListaMensajes() {
+    public List<InformacionMensaje> getListaMensajes() {
         return this.listaMensajes;
     }
 
-    public void setListaMensajes(ArrayList<InformacionMensaje> lista) {
-        if (lista == null || lista.isEmpty()) {
-            this.listaMensajes = new ArrayList<>();
-        } else {
-            this.listaMensajes = lista;
-        }
+    public void setListaMensajes(List<InformacionMensaje> lista) {
+        this.listaMensajes = lista;
     }
 
     public Persona getUsuario() {
         return usuario;
     }
 
-    public void setUsuario(Persona unUsuario) {
+    public void setUsuario(Usuario unUsuario) {
         if (unUsuario == null) {
             this.usuario = new Usuario(null, null, null, null, null, null, null, null);
         } else {
@@ -54,7 +51,7 @@ public final class Conversacion implements Serializable {
         return this.profesional;
     }
 
-    public void setProfesional(Persona unProfesional) {
+    public void setProfesional(Profesional unProfesional) {
         if (unProfesional == null) {
             this.profesional = new Profesional(null, null, null, null, null, null, null);
         } else {
@@ -62,27 +59,37 @@ public final class Conversacion implements Serializable {
         }
     }
 
-    public boolean agregarMensaje(String mensaje, boolean intercambioRemitente) {
+    public void agregarMensaje(String mensaje, boolean intercambioRemitente) {
         InformacionMensaje informacion = new InformacionMensaje(getUsuario().getNombreCompleto(), getProfesional().getNombreCompleto(), mensaje);
         if (intercambioRemitente) {
             informacion.intercambiarRemitente();
         }
         listaMensajes.add(informacion);
-        boolean agregueMensaje = true;
-        return agregueMensaje;
     }
 
     @Override
     public boolean equals(Object obj) {
+        if (!(obj instanceof Conversacion)) {
+            return false;
+        }
+
         final Conversacion conversacionParametro = (Conversacion) obj;
         return getProfesional().equals(conversacionParametro.getProfesional())
                 && getUsuario().equals(conversacionParametro.getUsuario());
     }
 
     @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 89 * hash + Objects.hashCode(this.usuario);
+        hash = 89 * hash + Objects.hashCode(this.profesional);
+        return hash;
+    }
+
+    @Override
     public String toString() {
         String retorno = "No hay mensajes para mostrar";
-        if (!getListaMensajes().isEmpty()) {
+        if (getListaMensajes() != null && !getListaMensajes().isEmpty()) {
             retorno = "";
             retorno = listaMensajes.stream().map((InformacionMensaje info) -> "\n" + info.getRemitente() + "\n"
                     + info.getMensaje() + "\n").reduce(retorno, String::concat);

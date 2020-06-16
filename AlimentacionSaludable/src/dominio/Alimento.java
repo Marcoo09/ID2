@@ -1,21 +1,21 @@
 package dominio;
 
 import java.io.Serializable;
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import javax.swing.ImageIcon;
-import java.util.Currency;
 
 public final class Alimento implements Serializable {
 
     private String nombre;
     private String tipoAlimento;
-    private ArrayList<ComposicionAlimento> listaNutrientesConProporcion;
-    public ImageIcon fotoDelAlimento;
+    private List<ComposicionAlimento> listaNutrientesConProporcion;
+    private ImageIcon fotoDelAlimento;
+    private static final long serialVersionUID = 44L;
 
     public Alimento(String unNombre,
             String unTipoAlimento,
-            ArrayList<ComposicionAlimento> listaNutrientes,
+            List<ComposicionAlimento> listaNutrientes,
             ImageIcon foto) {
 
         this.setNombre(unNombre);
@@ -40,25 +40,17 @@ public final class Alimento implements Serializable {
         return this.tipoAlimento;
     }
 
-    public void setTipoAlimento(String TA) {
-        tipoAlimento = TA;
-        
+    public void setTipoAlimento(String tipoAlimento) {
+        this.tipoAlimento = tipoAlimento;
     }
 
-    public ArrayList<ComposicionAlimento> getListaNutrientesConProporcion() {
-        if (this.listaNutrientesConProporcion.isEmpty()) {
-            return new ArrayList<>();
-        } else {
-            return this.listaNutrientesConProporcion;
-        }
+    public List<ComposicionAlimento> getListaNutrientesConProporcion() {
+        return this.listaNutrientesConProporcion;
     }
 
-    public void setListaNutrientesConProporcion(ArrayList<ComposicionAlimento> listaNutrientes) {
-        if (listaNutrientes == null) {
-            this.listaNutrientesConProporcion = new ArrayList<>();
-        } else {
-            this.listaNutrientesConProporcion = listaNutrientes;
-        }
+    public void setListaNutrientesConProporcion(List<ComposicionAlimento> listaNutrientes) {
+        this.listaNutrientesConProporcion = listaNutrientes;
+
     }
 
     public ImageIcon getFotoDelAlimento() {
@@ -80,8 +72,19 @@ public final class Alimento implements Serializable {
 
     @Override
     public boolean equals(Object obj) {
+        if (!(obj instanceof Alimento)) {
+            return false;
+        }
+
         Alimento otroAlimento = (Alimento) obj;
-        return (this.getNombre().equals(otroAlimento.getNombre()));
+        return this.getNombre().equals(otroAlimento.getNombre());
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 41 * hash + Objects.hashCode(this.nombre);
+        return hash;
     }
 
 }
