@@ -47,16 +47,26 @@ Capacidad de cargar un set de datos al entrar al sistema - 4hs | Desarrollador
 
 Capacidad de eliminar alimentos ingeridos y registrados - FUERA DEL ALCANCE
 
-Posibilidad de subir im´agenes jpg - FUERA DEL ALCANCE
+Posibilidad de subir imagenes jpg - FUERA DEL ALCANCE
 
 => 6hs Desarrollador
 -----------------------------------------------------
 -----------------------------------------------------
 ##Pruebas unitarias##
 
-Solucionar test que fallan - 4hs | QA
+Solucionar test que fallan - 4hs | Desarrollador
 
-Mejorar porcentaje de pruebas unitarias - 7hs | QA
+Mejorar porcentaje de pruebas unitarias - 7hs | Desarrollador
+
+=> 11hs Desarrollador
+-----------------------------------------------------
+-----------------------------------------------------
+##Nueva documentación##
+
+Requerimientos funcionales - 3hs | QA
+Casos de uso - 6hs | QA
+
+=> 9hs QA
 -----------------------------------------------------
 -----------------------------------------------------
 Product Manager Tasks:
@@ -67,14 +77,4 @@ Actualizar tablero de JIRA con los cambios para el próximo período - 1hs
 Actualizar tablero de JIRA semanalmente - 1hs
 
 => 15hs Product Manager
------------------------------------------------------
------------------------------------------------------
-##Nueva documentación##
-
-Requerimientos funcionales - 3hs | QA
-Casos de uso - 6hs | QA
-
-=> 9hs QA
------------------------------------------------------
-
 
