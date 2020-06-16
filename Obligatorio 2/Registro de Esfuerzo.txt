@@ -1,0 +1,80 @@
+##Mejora en la Calidad Global del Codigo##
+
+Correccion de bugs de alta prioridad - 45min | Desarrollador
+
+Correccion de bugs de baja prioridad - 1hs 30min | Desarrollador
+
+Correccion vulnerabilidades - 1 hs | Desarrollador
+
+Correccion code smells alta prioridad - 1hs | Desarrollador
+
+Correccion code smells baja prioridad - 1hs 30min | Desarrollador
+
+=> 5:45hs Desarrollador
+-----------------------------------------------------
+-----------------------------------------------------
+##Correcciones en el Funcionamiento del Sistema##
+
+Netbeans sin errores - 0hs (quedo solucionado con el entregable anterior) | Desarrollador
+
+Correccion solicitud de plan de alimentacion - 10hs (TN2 9hs / TN3 1h) | Desarrollador
+
+Visualizacion de ingestas - 1hs 30min | Desarrollador
+
+Correccion creacion de plan de alimentacion - 9hs | Desarrollador
+
+=> 20:30hs Desarrollador - 2hs QA (Testing)
+-----------------------------------------------------
+-----------------------------------------------------
+##Mejora en la Usabilidad Global del Sistema##
+
+Capacidad de tener una resolucion diferente a la que tiene por defecto el programa (SOLUCION DISTINTA) - 8hs | Desarrollador
+
+Tener un orden lógico y natural de los campos del login - 2hs {1 REGRESION} | Desarrollador
+
+Tener visibilidad de usuario realizo el inicio de sesion - 1hs | Desarrollador
+
+Unificacion de la forma en que se presentan las imagenes en la aplicacion - 7hs | Desarrollador
+
+=> 18hs Desarrollador - 2hs QA (Testing) || 1 Regresion
+-----------------------------------------------------
+-----------------------------------------------------
+##Nuevas Funcionalidades##
+
+Capacidad de cerrar la aplicación desde cualquier pantalla - 2hs | Desarrollador {ADELANTADO}
+
+Capacidad de cargar un set de datos al entrar al sistema - 4hs | Desarrollador
+
+Capacidad de eliminar alimentos ingeridos y registrados - FUERA DEL ALCANCE
+
+Posibilidad de subir imagenes jpg - FUERA DEL ALCANCE
+
+=> 6hs Desarrollador
+-----------------------------------------------------
+-----------------------------------------------------
+##Pruebas unitarias##
+
+Solucionar test que fallan - 4hs | Desarrollador
+
+Mejorar porcentaje de pruebas unitarias - 7hs | Desarrollador
+
+=> 11hs Desarrollador
+-----------------------------------------------------
+-----------------------------------------------------
+##Nueva documentación##
+
+Requerimientos funcionales - 3hs | QA
+Casos de uso - 6hs | QA
+
+=> 9hs QA
+-----------------------------------------------------
+-----------------------------------------------------
+Product Manager Tasks:
+
+Gestionar avanze por cada periodo definido por el entregable - 2hs x 6 = 12hs
+Planear acciones preventivas para el próximo período - 1hs
+Actualizar tablero de JIRA con los cambios para el próximo período - 1hs
+Actualizar tablero de JIRA semanalmente - 1hs
+
+=> 15hs Product Manager
+
