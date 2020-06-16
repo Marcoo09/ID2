@@ -1,0 +1,655 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>VentanaRegistrarProfesional.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;AlimentacionSaludable&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">interfaz</a> &gt; <span class="el_source">VentanaRegistrarProfesional.java</span></div><h1>VentanaRegistrarProfesional.java</h1><pre class="source lang-java linenums">package interfaz;
+
+import dominio.Sistema;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+import java.util.List;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileNameExtensionFilter;
+
+public final class VentanaRegistrarProfesional extends javax.swing.JDialog {
+
+    private Sistema sistema;
+    private ImageIcon fotoDePerfilActual;
+    private boolean primeraVez;
+    private RecortadorImagen recortadorImagen;
+    private static final int LARGO_IMAGEN = 100;
+    private static final int ANCHO_IMAGEN = 75;
+
+
+<span class="nc" id="L22">    public VentanaRegistrarProfesional(Sistema unSistema) {</span>
+<span class="nc" id="L23">        initComponents();</span>
+<span class="nc" id="L24">        this.setLocationRelativeTo(null);</span>
+<span class="nc" id="L25">        this.sistema = unSistema;</span>
+<span class="nc" id="L26">        this.fotoDePerfilActual = new ImageIcon(getClass().getResource(&quot;/Imagenes/fotoDeUsuarioStandard.png&quot;));</span>
+<span class="nc" id="L27">        ocultarEtiquetas();</span>
+<span class="nc" id="L28">        this.primeraVez = true;</span>
+<span class="nc" id="L29">        cargarListaPaisesGraduacion();</span>
+<span class="nc" id="L30">        Calendar fecha = new GregorianCalendar();</span>
+<span class="nc" id="L31">        this.dateChooserFechaNacimiento.setMaxDate(fecha);</span>
+<span class="nc" id="L32">        this.dateChooserFechaGraduacion.setMaxDate(fecha);</span>
+<span class="nc" id="L33">        this.primeraVez = false;</span>
+<span class="nc" id="L34">        this.recortadorImagen = new RecortadorImagen(LARGO_IMAGEN, ANCHO_IMAGEN);</span>
+<span class="nc" id="L35">    }</span>
+
+    @SuppressWarnings(&quot;unchecked&quot;)
+    // &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents
+    private void initComponents() {
+
+<span class="nc" id="L41">        panel1 = new javax.swing.JPanel();</span>
+<span class="nc" id="L42">        btnHome = new javax.swing.JButton();</span>
+<span class="nc" id="L43">        icono = new javax.swing.JLabel();</span>
+<span class="nc" id="L44">        btnCerrarSistema = new javax.swing.JButton();</span>
+<span class="nc" id="L45">        panel2 = new javax.swing.JPanel();</span>
+<span class="nc" id="L46">        lblNuevoProfesional = new javax.swing.JLabel();</span>
+<span class="nc" id="L47">        lblIconoNuevoProfesional = new javax.swing.JLabel();</span>
+<span class="nc" id="L48">        lblNombre = new javax.swing.JLabel();</span>
+<span class="nc" id="L49">        lblApellido = new javax.swing.JLabel();</span>
+<span class="nc" id="L50">        txtNombre = new javax.swing.JTextField();</span>
+<span class="nc" id="L51">        txtApellido = new javax.swing.JTextField();</span>
+<span class="nc" id="L52">        lblTituloProfesional = new javax.swing.JLabel();</span>
+<span class="nc" id="L53">        btnIngresarProfesionalASistema = new javax.swing.JButton();</span>
+<span class="nc" id="L54">        lblPaisGraduacion = new javax.swing.JLabel();</span>
+<span class="nc" id="L55">        listaPaisGraduacion = new javax.swing.JComboBox&lt;&gt;();</span>
+<span class="nc" id="L56">        listaTituloProfesional = new javax.swing.JComboBox&lt;&gt;();</span>
+<span class="nc" id="L57">        lblFechaNac = new javax.swing.JLabel();</span>
+<span class="nc" id="L58">        dateChooserFechaNacimiento = new datechooser.beans.DateChooserCombo();</span>
+<span class="nc" id="L59">        btnIngresarFotoPerfil = new javax.swing.JButton();</span>
+<span class="nc" id="L60">        lblFechaGraduacion = new javax.swing.JLabel();</span>
+<span class="nc" id="L61">        dateChooserFechaGraduacion = new datechooser.beans.DateChooserCombo();</span>
+<span class="nc" id="L62">        lblValidarNombre = new javax.swing.JLabel();</span>
+<span class="nc" id="L63">        lblValidarApellido = new javax.swing.JLabel();</span>
+<span class="nc" id="L64">        lblValidarTituloProfesional = new javax.swing.JLabel();</span>
+<span class="nc" id="L65">        lblValidarPaisGraduacion = new javax.swing.JLabel();</span>
+<span class="nc" id="L66">        lblDatosIncorrectos = new javax.swing.JLabel();</span>
+<span class="nc" id="L67">        lblNombreVacio = new javax.swing.JLabel();</span>
+<span class="nc" id="L68">        lblTituloVacio = new javax.swing.JLabel();</span>
+<span class="nc" id="L69">        lblPaisVacio = new javax.swing.JLabel();</span>
+<span class="nc" id="L70">        lblApellidoVacio = new javax.swing.JLabel();</span>
+<span class="nc" id="L71">        lbRegistrarProfesional = new javax.swing.JLabel();</span>
+
+<span class="nc" id="L73">        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);</span>
+<span class="nc" id="L74">        setAlwaysOnTop(true);</span>
+<span class="nc" id="L75">        setMinimumSize(new java.awt.Dimension(1280, 720));</span>
+<span class="nc" id="L76">        setModalityType(java.awt.Dialog.ModalityType.APPLICATION_MODAL);</span>
+<span class="nc" id="L77">        setUndecorated(true);</span>
+<span class="nc" id="L78">        setResizable(false);</span>
+<span class="nc" id="L79">        setSize(new java.awt.Dimension(1280, 720));</span>
+<span class="nc" id="L80">        addWindowListener(new java.awt.event.WindowAdapter() {</span>
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+<span class="nc" id="L82">                formWindowClosing(evt);</span>
+<span class="nc" id="L83">            }</span>
+        });
+
+<span class="nc" id="L86">        panel1.setBackground(new java.awt.Color(164, 211, 249));</span>
+<span class="nc" id="L87">        panel1.setMaximumSize(new java.awt.Dimension(270, 720));</span>
+<span class="nc" id="L88">        panel1.setMinimumSize(new java.awt.Dimension(270, 720));</span>
+<span class="nc" id="L89">        panel1.setPreferredSize(new java.awt.Dimension(270, 720));</span>
+
+<span class="nc" id="L91">        btnHome.setForeground(new java.awt.Color(255, 255, 255));</span>
+<span class="nc" id="L92">        btnHome.setIcon(new javax.swing.ImageIcon(getClass().getResource(&quot;/Imagenes/iconoVolverAtras.png&quot;))); // NOI18N</span>
+<span class="nc" id="L93">        btnHome.setBorder(null);</span>
+<span class="nc" id="L94">        btnHome.setBorderPainted(false);</span>
+<span class="nc" id="L95">        btnHome.setContentAreaFilled(false);</span>
+<span class="nc" id="L96">        btnHome.setFocusPainted(false);</span>
+<span class="nc" id="L97">        btnHome.addActionListener(new java.awt.event.ActionListener() {</span>
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+<span class="nc" id="L99">                btnHomeActionPerformed(evt);</span>
+<span class="nc" id="L100">            }</span>
+        });
+
+<span class="nc" id="L103">        icono.setIcon(new javax.swing.ImageIcon(getClass().getResource(&quot;/Imagenes/IconoBrocoli.png&quot;))); // NOI18N</span>
+
+<span class="nc" id="L105">        btnCerrarSistema.setBackground(new java.awt.Color(51, 51, 51));</span>
+<span class="nc" id="L106">        btnCerrarSistema.setForeground(new java.awt.Color(51, 51, 51));</span>
+<span class="nc" id="L107">        btnCerrarSistema.setIcon(new javax.swing.ImageIcon(getClass().getResource(&quot;/Imagenes/icons8_Close_Window_48px.png&quot;))); // NOI18N</span>
+<span class="nc" id="L108">        btnCerrarSistema.setBorderPainted(false);</span>
+<span class="nc" id="L109">        btnCerrarSistema.setContentAreaFilled(false);</span>
+<span class="nc" id="L110">        btnCerrarSistema.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));</span>
+<span class="nc" id="L111">        btnCerrarSistema.setFocusPainted(false);</span>
+<span class="nc" id="L112">        btnCerrarSistema.setInheritsPopupMenu(true);</span>
+<span class="nc" id="L113">        btnCerrarSistema.addActionListener(new java.awt.event.ActionListener() {</span>
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+<span class="nc" id="L115">                btnCerrarSistemaActionPerformed(evt);</span>
+<span class="nc" id="L116">            }</span>
+        });
+
+<span class="nc" id="L119">        javax.swing.GroupLayout panel1Layout = new javax.swing.GroupLayout(panel1);</span>
+<span class="nc" id="L120">        panel1.setLayout(panel1Layout);</span>
+<span class="nc" id="L121">        panel1Layout.setHorizontalGroup(</span>
+<span class="nc" id="L122">            panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
+<span class="nc" id="L123">            .addGroup(panel1Layout.createSequentialGroup()</span>
+<span class="nc" id="L124">                .addGap(28, 28, 28)</span>
+<span class="nc" id="L125">                .addComponent(icono)</span>
+<span class="nc" id="L126">                .addContainerGap(41, Short.MAX_VALUE))</span>
+<span class="nc" id="L127">            .addGroup(panel1Layout.createSequentialGroup()</span>
+<span class="nc" id="L128">                .addContainerGap()</span>
+<span class="nc" id="L129">                .addComponent(btnHome, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L130">                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)</span>
+<span class="nc" id="L131">                .addComponent(btnCerrarSistema, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L132">                .addGap(0, 0, Short.MAX_VALUE))</span>
+        );
+<span class="nc" id="L134">        panel1Layout.setVerticalGroup(</span>
+<span class="nc" id="L135">            panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
+<span class="nc" id="L136">            .addGroup(panel1Layout.createSequentialGroup()</span>
+<span class="nc" id="L137">                .addContainerGap()</span>
+<span class="nc" id="L138">                .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)</span>
+<span class="nc" id="L139">                    .addComponent(btnHome)</span>
+<span class="nc" id="L140">                    .addComponent(btnCerrarSistema, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))</span>
+<span class="nc" id="L141">                .addGap(199, 199, 199)</span>
+<span class="nc" id="L142">                .addComponent(icono)</span>
+<span class="nc" id="L143">                .addContainerGap(259, Short.MAX_VALUE))</span>
+        );
+
+<span class="nc" id="L146">        panel2.setBackground(new java.awt.Color(51, 51, 51));</span>
+<span class="nc" id="L147">        panel2.setForeground(new java.awt.Color(51, 51, 51));</span>
+<span class="nc" id="L148">        panel2.setMaximumSize(new java.awt.Dimension(1020, 720));</span>
+<span class="nc" id="L149">        panel2.setMinimumSize(new java.awt.Dimension(1020, 720));</span>
+<span class="nc" id="L150">        panel2.setPreferredSize(new java.awt.Dimension(1020, 720));</span>
+
+<span class="nc" id="L152">        lblNuevoProfesional.setFont(new java.awt.Font(&quot;Levenim MT&quot;, 0, 65)); // NOI18N</span>
+<span class="nc" id="L153">        lblNuevoProfesional.setForeground(new java.awt.Color(255, 255, 255));</span>
+<span class="nc" id="L154">        lblNuevoProfesional.setText(&quot;Nuevo Profesional&quot;);</span>
+
+<span class="nc" id="L156">        lblIconoNuevoProfesional.setIcon(new javax.swing.ImageIcon(getClass().getResource(&quot;/Imagenes/fotoDeUsuarioStandard.png&quot;))); // NOI18N</span>
+
+<span class="nc" id="L158">        lblNombre.setFont(new java.awt.Font(&quot;Century Gothic&quot;, 0, 30)); // NOI18N</span>
+<span class="nc" id="L159">        lblNombre.setForeground(new java.awt.Color(255, 255, 255));</span>
+<span class="nc" id="L160">        lblNombre.setText(&quot;Nombre&quot;);</span>
+
+<span class="nc" id="L162">        lblApellido.setFont(new java.awt.Font(&quot;Century Gothic&quot;, 0, 30)); // NOI18N</span>
+<span class="nc" id="L163">        lblApellido.setForeground(new java.awt.Color(255, 255, 255));</span>
+<span class="nc" id="L164">        lblApellido.setText(&quot;Apellido&quot;);</span>
+
+<span class="nc" id="L166">        txtNombre.setBackground(new java.awt.Color(227, 227, 227));</span>
+<span class="nc" id="L167">        txtNombre.setFont(new java.awt.Font(&quot;Century Gothic&quot;, 0, 15)); // NOI18N</span>
+<span class="nc" id="L168">        txtNombre.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));</span>
+<span class="nc" id="L169">        txtNombre.setMaximumSize(new java.awt.Dimension(6, 26));</span>
+<span class="nc" id="L170">        txtNombre.addFocusListener(new java.awt.event.FocusAdapter() {</span>
+            public void focusLost(java.awt.event.FocusEvent evt) {
+<span class="nc" id="L172">                txtNombreFocusLost(evt);</span>
+<span class="nc" id="L173">            }</span>
+        });
+
+<span class="nc" id="L176">        txtApellido.setBackground(new java.awt.Color(227, 227, 227));</span>
+<span class="nc" id="L177">        txtApellido.setFont(new java.awt.Font(&quot;Century Gothic&quot;, 0, 15)); // NOI18N</span>
+<span class="nc" id="L178">        txtApellido.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));</span>
+<span class="nc" id="L179">        txtApellido.addFocusListener(new java.awt.event.FocusAdapter() {</span>
+            public void focusLost(java.awt.event.FocusEvent evt) {
+<span class="nc" id="L181">                txtApellidoFocusLost(evt);</span>
+<span class="nc" id="L182">            }</span>
+        });
+
+<span class="nc" id="L185">        lblTituloProfesional.setFont(new java.awt.Font(&quot;Century Gothic&quot;, 0, 30)); // NOI18N</span>
+<span class="nc" id="L186">        lblTituloProfesional.setForeground(new java.awt.Color(255, 255, 255));</span>
+<span class="nc" id="L187">        lblTituloProfesional.setText(&quot;Seleccione el título profesional&quot;);</span>
+
+<span class="nc" id="L189">        btnIngresarProfesionalASistema.setIcon(new javax.swing.ImageIcon(getClass().getResource(&quot;/Imagenes/fotoConfirmar.png&quot;))); // NOI18N</span>
+<span class="nc" id="L190">        btnIngresarProfesionalASistema.setBorderPainted(false);</span>
+<span class="nc" id="L191">        btnIngresarProfesionalASistema.setContentAreaFilled(false);</span>
+<span class="nc" id="L192">        btnIngresarProfesionalASistema.addActionListener(new java.awt.event.ActionListener() {</span>
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+<span class="nc" id="L194">                btnIngresarProfesionalASistemaActionPerformed(evt);</span>
+<span class="nc" id="L195">            }</span>
+        });
+
+<span class="nc" id="L198">        lblPaisGraduacion.setFont(new java.awt.Font(&quot;Century Gothic&quot;, 0, 30)); // NOI18N</span>
+<span class="nc" id="L199">        lblPaisGraduacion.setForeground(new java.awt.Color(255, 255, 255));</span>
+<span class="nc" id="L200">        lblPaisGraduacion.setText(&quot;Seleccione el pais de graduación&quot;);</span>
+
+<span class="nc" id="L202">        listaPaisGraduacion.setFont(new java.awt.Font(&quot;Century Gothic&quot;, 0, 19)); // NOI18N</span>
+<span class="nc" id="L203">        listaPaisGraduacion.addItemListener(new java.awt.event.ItemListener() {</span>
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+<span class="nc" id="L205">                listaPaisGraduacionItemStateChanged(evt);</span>
+<span class="nc" id="L206">            }</span>
+        });
+
+<span class="nc" id="L209">        listaTituloProfesional.setFont(new java.awt.Font(&quot;Century Gothic&quot;, 0, 19)); // NOI18N</span>
+<span class="nc" id="L210">        listaTituloProfesional.setModel(new javax.swing.DefaultComboBoxModel&lt;&gt;(new String[] { &quot;Seleccione...&quot;, &quot;Ciencia de los alimentos&quot;, &quot;Entrenador físico e instructor aeróbico&quot;, &quot;Ingeniería en alimentos&quot;, &quot;Licenciatura en nutrición&quot;, &quot;Maestro de salud y educación física&quot;, &quot;Medicina&quot;, &quot;Nutrición Humana y Dietética&quot;, &quot;Nutricionista&quot;, &quot;Técnicatura en Gestión Gastronómica&quot;, &quot;Técnicatura en tecnología de alimentos&quot;, &quot;Técnico operador de alimentos&quot;, &quot;Otro...&quot; }));</span>
+<span class="nc" id="L211">        listaTituloProfesional.addItemListener(new java.awt.event.ItemListener() {</span>
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+<span class="nc" id="L213">                listaTituloProfesionalItemStateChanged(evt);</span>
+<span class="nc" id="L214">            }</span>
+        });
+
+<span class="nc" id="L217">        lblFechaNac.setFont(new java.awt.Font(&quot;Century Gothic&quot;, 0, 30)); // NOI18N</span>
+<span class="nc" id="L218">        lblFechaNac.setForeground(new java.awt.Color(255, 255, 255));</span>
+<span class="nc" id="L219">        lblFechaNac.setText(&quot;Fecha de nacimiento&quot;);</span>
+
+<span class="nc" id="L221">        dateChooserFechaNacimiento.setFieldFont(new java.awt.Font(&quot;Century Gothic&quot;, java.awt.Font.PLAIN, 19));</span>
+<span class="nc" id="L222">        dateChooserFechaNacimiento.setMaxDate(new java.util.GregorianCalendar(2017, 10, 9));</span>
+<span class="nc" id="L223">        dateChooserFechaNacimiento.setMinDate(new java.util.GregorianCalendar(1917, 10, 1));</span>
+
+<span class="nc" id="L225">        btnIngresarFotoPerfil.setIcon(new javax.swing.ImageIcon(getClass().getResource(&quot;/Imagenes/agregarFotoUsuario.png&quot;))); // NOI18N</span>
+<span class="nc" id="L226">        btnIngresarFotoPerfil.setBorderPainted(false);</span>
+<span class="nc" id="L227">        btnIngresarFotoPerfil.setContentAreaFilled(false);</span>
+<span class="nc" id="L228">        btnIngresarFotoPerfil.addActionListener(new java.awt.event.ActionListener() {</span>
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+<span class="nc" id="L230">                btnIngresarFotoPerfilActionPerformed(evt);</span>
+<span class="nc" id="L231">            }</span>
+        });
+
+<span class="nc" id="L234">        lblFechaGraduacion.setFont(new java.awt.Font(&quot;Century Gothic&quot;, 0, 30)); // NOI18N</span>
+<span class="nc" id="L235">        lblFechaGraduacion.setForeground(new java.awt.Color(255, 255, 255));</span>
+<span class="nc" id="L236">        lblFechaGraduacion.setText(&quot;Seleccione la fecha de graduación&quot;);</span>
+
+<span class="nc" id="L238">        dateChooserFechaGraduacion.setFieldFont(new java.awt.Font(&quot;Century Gothic&quot;, java.awt.Font.PLAIN, 19));</span>
+<span class="nc" id="L239">        dateChooserFechaGraduacion.setMaxDate(new java.util.GregorianCalendar(2017, 10, 9));</span>
+<span class="nc" id="L240">        dateChooserFechaGraduacion.setMinDate(new java.util.GregorianCalendar(1917, 10, 1));</span>
+
+<span class="nc" id="L242">        lblValidarNombre.setForeground(new java.awt.Color(255, 255, 255));</span>
+<span class="nc" id="L243">        lblValidarNombre.setIcon(new javax.swing.ImageIcon(getClass().getResource(&quot;/Imagenes/iconoCampoIncorrecto.png&quot;))); // NOI18N</span>
+
+<span class="nc" id="L245">        lblValidarApellido.setForeground(new java.awt.Color(255, 255, 255));</span>
+<span class="nc" id="L246">        lblValidarApellido.setIcon(new javax.swing.ImageIcon(getClass().getResource(&quot;/Imagenes/iconoCampoIncorrecto.png&quot;))); // NOI18N</span>
+
+<span class="nc" id="L248">        lblValidarTituloProfesional.setForeground(new java.awt.Color(255, 255, 255));</span>
+<span class="nc" id="L249">        lblValidarTituloProfesional.setIcon(new javax.swing.ImageIcon(getClass().getResource(&quot;/Imagenes/iconoCampoIncorrecto.png&quot;))); // NOI18N</span>
+
+<span class="nc" id="L251">        lblValidarPaisGraduacion.setForeground(new java.awt.Color(255, 255, 255));</span>
+<span class="nc" id="L252">        lblValidarPaisGraduacion.setIcon(new javax.swing.ImageIcon(getClass().getResource(&quot;/Imagenes/iconoCampoIncorrecto.png&quot;))); // NOI18N</span>
+
+<span class="nc" id="L254">        lblDatosIncorrectos.setFont(new java.awt.Font(&quot;Century Gothic&quot;, 0, 20)); // NOI18N</span>
+<span class="nc" id="L255">        lblDatosIncorrectos.setForeground(new java.awt.Color(255, 153, 153));</span>
+<span class="nc" id="L256">        lblDatosIncorrectos.setText(&quot;Aún quedan datos incorrectos&quot;);</span>
+
+<span class="nc" id="L258">        lblNombreVacio.setFont(new java.awt.Font(&quot;Century Gothic&quot;, 0, 19)); // NOI18N</span>
+<span class="nc" id="L259">        lblNombreVacio.setForeground(new java.awt.Color(240, 128, 128));</span>
+<span class="nc" id="L260">        lblNombreVacio.setText(&quot;Dato vacío&quot;);</span>
+
+<span class="nc" id="L262">        lblTituloVacio.setFont(new java.awt.Font(&quot;Century Gothic&quot;, 0, 19)); // NOI18N</span>
+<span class="nc" id="L263">        lblTituloVacio.setForeground(new java.awt.Color(240, 128, 128));</span>
+<span class="nc" id="L264">        lblTituloVacio.setText(&quot;Dato vacío&quot;);</span>
+
+<span class="nc" id="L266">        lblPaisVacio.setFont(new java.awt.Font(&quot;Century Gothic&quot;, 0, 19)); // NOI18N</span>
+<span class="nc" id="L267">        lblPaisVacio.setForeground(new java.awt.Color(240, 128, 128));</span>
+<span class="nc" id="L268">        lblPaisVacio.setText(&quot;Dato vacío&quot;);</span>
+
+<span class="nc" id="L270">        lblApellidoVacio.setFont(new java.awt.Font(&quot;Century Gothic&quot;, 0, 19)); // NOI18N</span>
+<span class="nc" id="L271">        lblApellidoVacio.setForeground(new java.awt.Color(240, 128, 128));</span>
+<span class="nc" id="L272">        lblApellidoVacio.setText(&quot;Dato vacío&quot;);</span>
+
+<span class="nc" id="L274">        lbRegistrarProfesional.setFont(new java.awt.Font(&quot;Century Gothic&quot;, 0, 20)); // NOI18N</span>
+<span class="nc" id="L275">        lbRegistrarProfesional.setForeground(new java.awt.Color(255, 255, 255));</span>
+<span class="nc" id="L276">        lbRegistrarProfesional.setText(&quot;Registrar Profesional&quot;);</span>
+
+<span class="nc" id="L278">        javax.swing.GroupLayout panel2Layout = new javax.swing.GroupLayout(panel2);</span>
+<span class="nc" id="L279">        panel2.setLayout(panel2Layout);</span>
+<span class="nc" id="L280">        panel2Layout.setHorizontalGroup(</span>
+<span class="nc" id="L281">            panel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
+<span class="nc" id="L282">            .addGroup(panel2Layout.createSequentialGroup()</span>
+<span class="nc" id="L283">                .addContainerGap()</span>
+<span class="nc" id="L284">                .addGroup(panel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
+<span class="nc" id="L285">                    .addGroup(panel2Layout.createSequentialGroup()</span>
+<span class="nc" id="L286">                        .addGap(10, 10, 10)</span>
+<span class="nc" id="L287">                        .addGroup(panel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)</span>
+<span class="nc" id="L288">                            .addGroup(panel2Layout.createSequentialGroup()</span>
+<span class="nc" id="L289">                                .addGroup(panel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
+<span class="nc" id="L290">                                    .addGroup(panel2Layout.createSequentialGroup()</span>
+<span class="nc" id="L291">                                        .addComponent(lblFechaNac, javax.swing.GroupLayout.PREFERRED_SIZE, 338, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L292">                                        .addGap(32, 32, 32)</span>
+<span class="nc" id="L293">                                        .addComponent(dateChooserFechaNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE))</span>
+<span class="nc" id="L294">                                    .addGroup(panel2Layout.createSequentialGroup()</span>
+<span class="nc" id="L295">                                        .addGroup(panel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
+<span class="nc" id="L296">                                            .addComponent(lblTituloProfesional)</span>
+<span class="nc" id="L297">                                            .addComponent(listaTituloProfesional, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE))</span>
+<span class="nc" id="L298">                                        .addGap(15, 15, 15)</span>
+<span class="nc" id="L299">                                        .addComponent(lblValidarTituloProfesional)</span>
+<span class="nc" id="L300">                                        .addGap(8, 8, 8)</span>
+<span class="nc" id="L301">                                        .addComponent(lblTituloVacio, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))</span>
+<span class="nc" id="L302">                                    .addGroup(panel2Layout.createSequentialGroup()</span>
+<span class="nc" id="L303">                                        .addComponent(listaPaisGraduacion, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L304">                                        .addGap(19, 19, 19)</span>
+<span class="nc" id="L305">                                        .addComponent(lblValidarPaisGraduacion)</span>
+<span class="nc" id="L306">                                        .addGap(8, 8, 8)</span>
+<span class="nc" id="L307">                                        .addComponent(lblPaisVacio, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))</span>
+<span class="nc" id="L308">                                .addGap(326, 326, 326))</span>
+<span class="nc" id="L309">                            .addGroup(panel2Layout.createSequentialGroup()</span>
+<span class="nc" id="L310">                                .addGroup(panel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
+<span class="nc" id="L311">                                    .addComponent(dateChooserFechaGraduacion, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L312">                                    .addComponent(lblFechaGraduacion)</span>
+<span class="nc" id="L313">                                    .addComponent(lblPaisGraduacion))</span>
+<span class="nc" id="L314">                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)</span>
+<span class="nc" id="L315">                                .addGroup(panel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
+<span class="nc" id="L316">                                    .addComponent(lblDatosIncorrectos, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L317">                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel2Layout.createSequentialGroup()</span>
+<span class="nc" id="L318">                                        .addGroup(panel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
+<span class="nc" id="L319">                                            .addComponent(lbRegistrarProfesional, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L320">                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel2Layout.createSequentialGroup()</span>
+<span class="nc" id="L321">                                                .addComponent(btnIngresarProfesionalASistema, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L322">                                                .addGap(51, 51, 51)))</span>
+<span class="nc" id="L323">                                        .addGap(51, 51, 51)))</span>
+<span class="nc" id="L324">                                .addGap(11, 11, 11))</span>
+<span class="nc" id="L325">                            .addGroup(panel2Layout.createSequentialGroup()</span>
+<span class="nc" id="L326">                                .addGroup(panel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)</span>
+<span class="nc" id="L327">                                    .addComponent(lblNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L328">                                    .addComponent(lblApellido, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))</span>
+<span class="nc" id="L329">                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)</span>
+<span class="nc" id="L330">                                .addGroup(panel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
+<span class="nc" id="L331">                                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L332">                                    .addComponent(txtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE))</span>
+<span class="nc" id="L333">                                .addGroup(panel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
+<span class="nc" id="L334">                                    .addGroup(panel2Layout.createSequentialGroup()</span>
+<span class="nc" id="L335">                                        .addGap(56, 56, 56)</span>
+<span class="nc" id="L336">                                        .addComponent(lblValidarApellido))</span>
+<span class="nc" id="L337">                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel2Layout.createSequentialGroup()</span>
+<span class="nc" id="L338">                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)</span>
+<span class="nc" id="L339">                                        .addComponent(lblValidarNombre)))</span>
+<span class="nc" id="L340">                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)</span>
+<span class="nc" id="L341">                                .addGroup(panel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
+<span class="nc" id="L342">                                    .addComponent(lblNombreVacio, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L343">                                    .addComponent(lblApellidoVacio, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))</span>
+<span class="nc" id="L344">                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)</span>
+<span class="nc" id="L345">                                .addComponent(btnIngresarFotoPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L346">                                .addGap(97, 97, 97))))</span>
+<span class="nc" id="L347">                    .addGroup(panel2Layout.createSequentialGroup()</span>
+<span class="nc" id="L348">                        .addComponent(lblIconoNuevoProfesional)</span>
+<span class="nc" id="L349">                        .addGap(18, 18, 18)</span>
+<span class="nc" id="L350">                        .addComponent(lblNuevoProfesional)))</span>
+<span class="nc" id="L351">                .addContainerGap(53, Short.MAX_VALUE))</span>
+        );
+<span class="nc" id="L353">        panel2Layout.setVerticalGroup(</span>
+<span class="nc" id="L354">            panel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
+<span class="nc" id="L355">            .addGroup(panel2Layout.createSequentialGroup()</span>
+<span class="nc" id="L356">                .addGap(27, 27, 27)</span>
+<span class="nc" id="L357">                .addGroup(panel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
+<span class="nc" id="L358">                    .addComponent(lblIconoNuevoProfesional)</span>
+<span class="nc" id="L359">                    .addComponent(lblNuevoProfesional, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))</span>
+<span class="nc" id="L360">                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)</span>
+<span class="nc" id="L361">                .addGroup(panel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
+<span class="nc" id="L362">                    .addGroup(panel2Layout.createSequentialGroup()</span>
+<span class="nc" id="L363">                        .addGroup(panel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
+<span class="nc" id="L364">                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel2Layout.createSequentialGroup()</span>
+<span class="nc" id="L365">                                .addGroup(panel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
+<span class="nc" id="L366">                                    .addComponent(lblValidarNombre, javax.swing.GroupLayout.Alignment.TRAILING)</span>
+<span class="nc" id="L367">                                    .addComponent(lblNombreVacio, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))</span>
+<span class="nc" id="L368">                                .addGap(17, 17, 17))</span>
+<span class="nc" id="L369">                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel2Layout.createSequentialGroup()</span>
+<span class="nc" id="L370">                                .addGroup(panel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
+<span class="nc" id="L371">                                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L372">                                    .addComponent(lblNombre))</span>
+<span class="nc" id="L373">                                .addGap(14, 14, 14)))</span>
+<span class="nc" id="L374">                        .addGroup(panel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
+<span class="nc" id="L375">                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)</span>
+<span class="nc" id="L376">                                .addComponent(lblApellido)</span>
+<span class="nc" id="L377">                                .addComponent(txtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))</span>
+<span class="nc" id="L378">                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
+<span class="nc" id="L379">                                .addComponent(lblApellidoVacio)</span>
+<span class="nc" id="L380">                                .addComponent(lblValidarApellido)))</span>
+<span class="nc" id="L381">                        .addGap(18, 18, 18)</span>
+<span class="nc" id="L382">                        .addGroup(panel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
+<span class="nc" id="L383">                            .addComponent(lblFechaNac)</span>
+<span class="nc" id="L384">                            .addComponent(dateChooserFechaNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))</span>
+<span class="nc" id="L385">                        .addGap(36, 36, 36)</span>
+<span class="nc" id="L386">                        .addGroup(panel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
+<span class="nc" id="L387">                            .addGroup(panel2Layout.createSequentialGroup()</span>
+<span class="nc" id="L388">                                .addComponent(lblTituloProfesional)</span>
+<span class="nc" id="L389">                                .addGap(6, 6, 6)</span>
+<span class="nc" id="L390">                                .addComponent(listaTituloProfesional, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))</span>
+<span class="nc" id="L391">                            .addGroup(panel2Layout.createSequentialGroup()</span>
+<span class="nc" id="L392">                                .addGap(33, 33, 33)</span>
+<span class="nc" id="L393">                                .addGroup(panel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
+<span class="nc" id="L394">                                    .addComponent(lblValidarTituloProfesional, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L395">                                    .addComponent(lblTituloVacio, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))))</span>
+<span class="nc" id="L396">                    .addGroup(panel2Layout.createSequentialGroup()</span>
+<span class="nc" id="L397">                        .addGap(3, 3, 3)</span>
+<span class="nc" id="L398">                        .addComponent(btnIngresarFotoPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)))</span>
+<span class="nc" id="L399">                .addGap(35, 35, 35)</span>
+<span class="nc" id="L400">                .addGroup(panel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
+<span class="nc" id="L401">                    .addGroup(panel2Layout.createSequentialGroup()</span>
+<span class="nc" id="L402">                        .addComponent(btnIngresarProfesionalASistema, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L403">                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)</span>
+<span class="nc" id="L404">                        .addComponent(lbRegistrarProfesional)</span>
+<span class="nc" id="L405">                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)</span>
+<span class="nc" id="L406">                        .addComponent(lblDatosIncorrectos))</span>
+<span class="nc" id="L407">                    .addGroup(panel2Layout.createSequentialGroup()</span>
+<span class="nc" id="L408">                        .addComponent(lblFechaGraduacion)</span>
+<span class="nc" id="L409">                        .addGap(29, 29, 29)</span>
+<span class="nc" id="L410">                        .addComponent(dateChooserFechaGraduacion, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L411">                        .addGap(18, 18, 18)</span>
+<span class="nc" id="L412">                        .addComponent(lblPaisGraduacion)</span>
+<span class="nc" id="L413">                        .addGap(15, 15, 15)</span>
+<span class="nc" id="L414">                        .addGroup(panel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
+<span class="nc" id="L415">                            .addGroup(panel2Layout.createSequentialGroup()</span>
+<span class="nc" id="L416">                                .addGap(3, 3, 3)</span>
+<span class="nc" id="L417">                                .addComponent(listaPaisGraduacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))</span>
+<span class="nc" id="L418">                            .addComponent(lblValidarPaisGraduacion, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L419">                            .addComponent(lblPaisVacio, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))))</span>
+<span class="nc" id="L420">                .addGap(22, 22, 22))</span>
+        );
+
+<span class="nc" id="L423">        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());</span>
+<span class="nc" id="L424">        getContentPane().setLayout(layout);</span>
+<span class="nc" id="L425">        layout.setHorizontalGroup(</span>
+<span class="nc" id="L426">            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
+<span class="nc" id="L427">            .addGroup(layout.createSequentialGroup()</span>
+<span class="nc" id="L428">                .addComponent(panel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L429">                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)</span>
+<span class="nc" id="L430">                .addComponent(panel2, javax.swing.GroupLayout.DEFAULT_SIZE, 1034, Short.MAX_VALUE))</span>
+        );
+<span class="nc" id="L432">        layout.setVerticalGroup(</span>
+<span class="nc" id="L433">            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
+<span class="nc" id="L434">            .addComponent(panel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L435">            .addComponent(panel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+        );
+
+<span class="nc" id="L438">        pack();</span>
+<span class="nc" id="L439">    }// &lt;/editor-fold&gt;//GEN-END:initComponents</span>
+
+    public Sistema getSistema() {
+<span class="nc" id="L442">        return sistema;</span>
+    }
+
+    public void setSistema(Sistema unSistema) {
+<span class="nc" id="L446">        this.sistema = unSistema;</span>
+<span class="nc" id="L447">    }</span>
+
+    public ImageIcon getFotoDePerfilActual() {
+<span class="nc" id="L450">        return fotoDePerfilActual;</span>
+    }
+
+    public void setFotoDePerfilActual(ImageIcon unaFoto) {
+<span class="nc" id="L454">        this.fotoDePerfilActual = unaFoto;</span>
+<span class="nc" id="L455">    }</span>
+
+    public boolean getPrimeraVezEnSistema() {
+<span class="nc" id="L458">        return primeraVez;</span>
+    }
+
+    public void setPrimeraVezEnSistema(boolean primera) {
+<span class="nc" id="L462">        this.primeraVez = primera;</span>
+<span class="nc" id="L463">    }</span>
+
+    private void btnIngresarProfesionalASistemaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarProfesionalASistemaActionPerformed
+<span class="nc" id="L466">        String nombre = this.txtNombre.getText();</span>
+<span class="nc" id="L467">        String apellido = this.txtApellido.getText();</span>
+<span class="nc" id="L468">        String tituloProfesional = (String) this.listaTituloProfesional.getSelectedItem();</span>
+<span class="nc" id="L469">        String paisGraduacion = (String) this.listaPaisGraduacion.getSelectedItem();</span>
+<span class="nc" id="L470">        String fechaNacimiento = this.dateChooserFechaNacimiento.getText();</span>
+<span class="nc" id="L471">        String fechaGraduacion = this.dateChooserFechaGraduacion.getText();</span>
+<span class="nc bnc" id="L472" title="All 8 branches missed.">        if (nombre.equals(&quot;&quot;) || apellido.equals(&quot;&quot;) || tituloProfesional.equals(&quot;Seleccione...&quot;) || paisGraduacion.equals(&quot;Seleccione...&quot;)) {</span>
+<span class="nc" id="L473">            this.lblDatosIncorrectos.setVisible(true);</span>
+<span class="nc" id="L474">            mostrarErrores(nombre, apellido, tituloProfesional, paisGraduacion);</span>
+        } else {
+<span class="nc" id="L476">            this.lblDatosIncorrectos.setVisible(false);</span>
+<span class="nc" id="L477">            boolean seAgregoProfesional = this.getSistema().crearProfesional(nombre, apellido, fechaNacimiento, this.fotoDePerfilActual, tituloProfesional, fechaGraduacion, paisGraduacion);</span>
+<span class="nc bnc" id="L478" title="All 2 branches missed.">            if (seAgregoProfesional) {</span>
+<span class="nc" id="L479">                this.txtNombre.setText(&quot;&quot;);</span>
+<span class="nc" id="L480">                this.txtApellido.setText(&quot;&quot;);</span>
+<span class="nc" id="L481">                VentanaMenuPrincipal vPrincipal = new VentanaMenuPrincipal(sistema);</span>
+<span class="nc" id="L482">                this.setVisible(false);</span>
+<span class="nc" id="L483">                vPrincipal.setVisible(true);</span>
+<span class="nc" id="L484">                this.dispose();</span>
+            }
+        }
+<span class="nc" id="L487">    }//GEN-LAST:event_btnIngresarProfesionalASistemaActionPerformed</span>
+
+    private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeActionPerformed
+<span class="nc" id="L490">        VentanaMenuPrincipal vPrincipal = new VentanaMenuPrincipal(sistema);</span>
+<span class="nc" id="L491">        this.setVisible(false);</span>
+<span class="nc" id="L492">        vPrincipal.setVisible(true);</span>
+<span class="nc" id="L493">        this.dispose();</span>
+<span class="nc" id="L494">    }//GEN-LAST:event_btnHomeActionPerformed</span>
+
+    private void btnIngresarFotoPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarFotoPerfilActionPerformed
+<span class="nc" id="L497">        JFileChooser fileChooser = new JFileChooser();</span>
+<span class="nc" id="L498">        FileNameExtensionFilter file = new FileNameExtensionFilter(&quot;PNG&quot;, &quot;png&quot;);</span>
+<span class="nc" id="L499">        fileChooser.setFileFilter(file);</span>
+<span class="nc" id="L500">        fileChooser.setAcceptAllFileFilterUsed(false);</span>
+<span class="nc" id="L501">        int imagen = fileChooser.showOpenDialog(this);</span>
+<span class="nc bnc" id="L502" title="All 2 branches missed.">        if (imagen == JFileChooser.APPROVE_OPTION) {</span>
+<span class="nc" id="L503">            ImageIcon iconoPerfil = new ImageIcon(fileChooser.getSelectedFile().getAbsolutePath());</span>
+<span class="nc" id="L504">            recortadorImagen.recortarImagen(iconoPerfil);</span>
+<span class="nc" id="L505">            this.btnIngresarFotoPerfil.setIcon(iconoPerfil);</span>
+<span class="nc" id="L506">            this.fotoDePerfilActual = iconoPerfil;</span>
+        }
+<span class="nc" id="L508">    }//GEN-LAST:event_btnIngresarFotoPerfilActionPerformed</span>
+
+    private void txtNombreFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNombreFocusLost
+<span class="nc" id="L511">        String nombreIngresado = this.txtNombre.getText();</span>
+<span class="nc bnc" id="L512" title="All 2 branches missed.">        if (nombreIngresado.equals(&quot;&quot;)) {</span>
+<span class="nc" id="L513">            this.lblValidarNombre.setIcon(new ImageIcon(getClass().getResource(&quot;/Imagenes/iconoCampoIncorrecto.png&quot;)));</span>
+<span class="nc" id="L514">            this.lblValidarNombre.setVisible(true);</span>
+<span class="nc" id="L515">            this.lblNombreVacio.setVisible(true);</span>
+        } else {
+<span class="nc" id="L517">            this.lblValidarNombre.setIcon(new ImageIcon(getClass().getResource(&quot;/Imagenes/iconoCampoCorrecto.png&quot;)));</span>
+<span class="nc" id="L518">            this.lblValidarNombre.setVisible(true);</span>
+<span class="nc" id="L519">            this.lblNombreVacio.setVisible(false);</span>
+        }
+<span class="nc" id="L521">    }//GEN-LAST:event_txtNombreFocusLost</span>
+
+    private void txtApellidoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtApellidoFocusLost
+<span class="nc" id="L524">        String apellidoIngresado = this.txtApellido.getText();</span>
+<span class="nc bnc" id="L525" title="All 2 branches missed.">        if (apellidoIngresado.equals(&quot;&quot;)) {</span>
+<span class="nc" id="L526">            this.lblValidarApellido.setIcon(new ImageIcon(getClass().getResource(&quot;/Imagenes/iconoCampoIncorrecto.png&quot;)));</span>
+<span class="nc" id="L527">            this.lblValidarApellido.setVisible(true);</span>
+<span class="nc" id="L528">            this.lblApellidoVacio.setVisible(true);</span>
+        } else {
+<span class="nc" id="L530">            this.lblValidarApellido.setIcon(new ImageIcon(getClass().getResource(&quot;/Imagenes/iconoCampoCorrecto.png&quot;)));</span>
+<span class="nc" id="L531">            this.lblValidarApellido.setVisible(true);</span>
+<span class="nc" id="L532">            this.lblApellidoVacio.setVisible(false);</span>
+        }
+<span class="nc" id="L534">    }//GEN-LAST:event_txtApellidoFocusLost</span>
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+<span class="nc" id="L537">        this.sistema.guardarDatosSistema();</span>
+<span class="nc" id="L538">    }//GEN-LAST:event_formWindowClosing</span>
+
+    private void listaTituloProfesionalItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_listaTituloProfesionalItemStateChanged
+<span class="nc" id="L541">        String tituloIngresado = (String) this.listaTituloProfesional.getSelectedItem();</span>
+<span class="nc bnc" id="L542" title="All 2 branches missed.">        if (tituloIngresado.equals(&quot;Seleccione...&quot;)) {</span>
+<span class="nc" id="L543">            this.lblValidarTituloProfesional.setIcon(new ImageIcon(getClass().getResource(&quot;/Imagenes/iconoCampoIncorrecto.png&quot;)));</span>
+<span class="nc" id="L544">            this.lblValidarTituloProfesional.setVisible(true);</span>
+<span class="nc" id="L545">            this.lblTituloVacio.setVisible(true);</span>
+        } else {
+<span class="nc" id="L547">            this.lblTituloVacio.setVisible(false);</span>
+<span class="nc" id="L548">            this.lblValidarTituloProfesional.setIcon(new ImageIcon(getClass().getResource(&quot;/Imagenes/iconoCampoCorrecto.png&quot;)));</span>
+<span class="nc" id="L549">            this.lblValidarTituloProfesional.setVisible(true);</span>
+        }
+<span class="nc" id="L551">    }//GEN-LAST:event_listaTituloProfesionalItemStateChanged</span>
+
+    private void listaPaisGraduacionItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_listaPaisGraduacionItemStateChanged
+<span class="nc bnc" id="L554" title="All 2 branches missed.">        if (!this.primeraVez) {</span>
+<span class="nc" id="L555">            String paisGraduacionIngresado = (String) this.listaPaisGraduacion.getSelectedItem();</span>
+<span class="nc bnc" id="L556" title="All 2 branches missed.">            if (paisGraduacionIngresado.equals(&quot;Seleccione...&quot;)) {</span>
+<span class="nc" id="L557">                this.lblValidarPaisGraduacion.setIcon(new ImageIcon(getClass().getResource(&quot;/Imagenes/iconoCampoIncorrecto.png&quot;)));</span>
+<span class="nc" id="L558">                this.lblValidarPaisGraduacion.setVisible(true);</span>
+<span class="nc" id="L559">                this.lblPaisVacio.setVisible(true);</span>
+            } else {
+<span class="nc" id="L561">                this.lblValidarPaisGraduacion.setIcon(new ImageIcon(getClass().getResource(&quot;/Imagenes/iconoCampoCorrecto.png&quot;)));</span>
+<span class="nc" id="L562">                this.lblValidarPaisGraduacion.setVisible(true);</span>
+<span class="nc" id="L563">                this.lblPaisVacio.setVisible(false);</span>
+            }
+        }
+<span class="nc" id="L566">    }//GEN-LAST:event_listaPaisGraduacionItemStateChanged</span>
+
+    private void btnCerrarSistemaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarSistemaActionPerformed
+<span class="nc" id="L569">        this.sistema.guardarDatosSistema();</span>
+<span class="nc" id="L570">        this.setVisible(false);</span>
+<span class="nc" id="L571">        System.exit(0);</span>
+<span class="nc" id="L572">    }//GEN-LAST:event_btnCerrarSistemaActionPerformed</span>
+
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCerrarSistema;
+    private javax.swing.JButton btnHome;
+    private javax.swing.JButton btnIngresarFotoPerfil;
+    private javax.swing.JButton btnIngresarProfesionalASistema;
+    private datechooser.beans.DateChooserCombo dateChooserFechaGraduacion;
+    private datechooser.beans.DateChooserCombo dateChooserFechaNacimiento;
+    private javax.swing.JLabel icono;
+    private javax.swing.JLabel lbRegistrarProfesional;
+    private javax.swing.JLabel lblApellido;
+    private javax.swing.JLabel lblApellidoVacio;
+    private javax.swing.JLabel lblDatosIncorrectos;
+    private javax.swing.JLabel lblFechaGraduacion;
+    private javax.swing.JLabel lblFechaNac;
+    private javax.swing.JLabel lblIconoNuevoProfesional;
+    private javax.swing.JLabel lblNombre;
+    private javax.swing.JLabel lblNombreVacio;
+    private javax.swing.JLabel lblNuevoProfesional;
+    private javax.swing.JLabel lblPaisGraduacion;
+    private javax.swing.JLabel lblPaisVacio;
+    private javax.swing.JLabel lblTituloProfesional;
+    private javax.swing.JLabel lblTituloVacio;
+    private javax.swing.JLabel lblValidarApellido;
+    private javax.swing.JLabel lblValidarNombre;
+    private javax.swing.JLabel lblValidarPaisGraduacion;
+    private javax.swing.JLabel lblValidarTituloProfesional;
+    private javax.swing.JComboBox&lt;String&gt; listaPaisGraduacion;
+    private javax.swing.JComboBox&lt;String&gt; listaTituloProfesional;
+    private javax.swing.JPanel panel1;
+    private javax.swing.JPanel panel2;
+    private javax.swing.JTextField txtApellido;
+    private javax.swing.JTextField txtNombre;
+    // End of variables declaration//GEN-END:variables
+
+    private void ocultarEtiquetas() {
+<span class="nc" id="L610">        this.lblValidarNombre.setVisible(false);</span>
+<span class="nc" id="L611">        this.lblValidarApellido.setVisible(false);</span>
+<span class="nc" id="L612">        this.lblValidarTituloProfesional.setVisible(false);</span>
+<span class="nc" id="L613">        this.lblValidarPaisGraduacion.setVisible(false);</span>
+<span class="nc" id="L614">        this.lblDatosIncorrectos.setVisible(false);</span>
+<span class="nc" id="L615">        this.lblNombreVacio.setVisible(false);</span>
+<span class="nc" id="L616">        this.lblApellidoVacio.setVisible(false);</span>
+<span class="nc" id="L617">        this.lblTituloVacio.setVisible(false);</span>
+<span class="nc" id="L618">        this.lblPaisVacio.setVisible(false);</span>
+<span class="nc" id="L619">    }</span>
+
+    private void cargarListaPaisesGraduacion() {
+<span class="nc" id="L622">        DefaultComboBoxModel modelo = new DefaultComboBoxModel();</span>
+<span class="nc" id="L623">        List&lt;String&gt; paisesEnSistema = sistema.devolverListaPaises();</span>
+<span class="nc" id="L624">        this.listaPaisGraduacion.setModel(modelo);</span>
+<span class="nc" id="L625">        this.listaPaisGraduacion.addItem(&quot;Seleccione...&quot;);</span>
+<span class="nc bnc" id="L626" title="All 2 branches missed.">        for (int i = 0; i &lt; paisesEnSistema.size(); i++) {</span>
+<span class="nc" id="L627">            this.listaPaisGraduacion.addItem(paisesEnSistema.get(i));</span>
+        }
+<span class="nc" id="L629">    }</span>
+
+    private void mostrarErrores(String nombre, String apellido, String tituloProfesional, String paisGraduacion) {
+<span class="nc bnc" id="L632" title="All 2 branches missed.">        if (nombre.equals(&quot;&quot;)) {</span>
+<span class="nc" id="L633">            this.lblValidarNombre.setIcon(new ImageIcon(getClass().getResource(&quot;/Imagenes/iconoCampoIncorrecto.png&quot;)));</span>
+<span class="nc" id="L634">            this.lblValidarNombre.setVisible(true);</span>
+<span class="nc" id="L635">            this.lblNombreVacio.setVisible(true);</span>
+        }
+<span class="nc bnc" id="L637" title="All 2 branches missed.">        if (apellido.equals(&quot;&quot;)) {</span>
+<span class="nc" id="L638">            this.lblValidarApellido.setIcon(new ImageIcon(getClass().getResource(&quot;/Imagenes/iconoCampoIncorrecto.png&quot;)));</span>
+<span class="nc" id="L639">            this.lblValidarApellido.setVisible(true);</span>
+<span class="nc" id="L640">            this.lblApellidoVacio.setVisible(true);</span>
+        }
+<span class="nc bnc" id="L642" title="All 2 branches missed.">        if (tituloProfesional.equals(&quot;Seleccione...&quot;)) {</span>
+<span class="nc" id="L643">            this.lblValidarTituloProfesional.setIcon(new ImageIcon(getClass().getResource(&quot;/Imagenes/iconoCampoIncorrecto.png&quot;)));</span>
+<span class="nc" id="L644">            this.lblValidarTituloProfesional.setVisible(true);</span>
+<span class="nc" id="L645">            this.lblTituloVacio.setVisible(true);</span>
+        }
+<span class="nc bnc" id="L647" title="All 2 branches missed.">        if (paisGraduacion.equals(&quot;Seleccione...&quot;)) {</span>
+<span class="nc" id="L648">            this.lblValidarPaisGraduacion.setIcon(new ImageIcon(getClass().getResource(&quot;/Imagenes/iconoCampoIncorrecto.png&quot;)));</span>
+<span class="nc" id="L649">            this.lblValidarPaisGraduacion.setVisible(true);</span>
+<span class="nc" id="L650">            this.lblPaisVacio.setVisible(true);</span>
+        }
+<span class="nc" id="L652">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>
